@@ -35,7 +35,7 @@ export const Container = (props) => {
 		setSidebar(sidebar);
 	}, [location.pathname]);
 
-	// Shared slideout options
+	// Slideout options
 	const slideoutOptions = {
 		id: 'menu',
 		isDesktop: isDesktop,
