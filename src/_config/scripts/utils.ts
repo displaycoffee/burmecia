@@ -2,11 +2,6 @@
 import { ReactNode, SyntheticEvent } from 'react';
 import { createRoot } from 'react-dom/client';
 
-/* Types for setAttributes function */
-interface AttributeTypes {
-	[key: string]: string;
-}
-
 export const utils = {
 	handleize: (value: string) => {
 		// Format value for html classes
@@ -40,16 +35,12 @@ export const utils = {
 			}
 		}
 	},
-	scrollTo: (e: SyntheticEvent, selector: string, offset: number) => {
+	scrollTo: (e: SyntheticEvent, selector: string | undefined, offset: number) => {
 		// Scroll to element on page
 		if (e) {
 			e.preventDefault();
 		}
-		const anchor: {
-			selector?: string;
-			offset: number;
-			position: () => number;
-		} = {
+		const anchor = {
 			selector: selector,
 			offset: offset ? offset : 0,
 			position: () => {
@@ -59,7 +50,12 @@ export const utils = {
 		};
 		window.scroll({ top: anchor.position(), left: 0, behavior: 'smooth' });
 	},
-	setAttributes: (element: HTMLElement, attributes: AttributeTypes) => {
+	setAttributes: (
+		element: HTMLElement,
+		attributes: {
+			[key: string]: string;
+		},
+	) => {
 		// Set multiple attributes on an element
 		for (const attribute in attributes) {
 			element.setAttribute(attribute, attributes[attribute]);
