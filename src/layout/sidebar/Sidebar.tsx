@@ -1,7 +1,12 @@
 /* Local styles */
 import './styles/sidebar.scss';
 
-export const Sidebar = (props) => {
+/* Props for Sidebar */
+type SidebarProps = {
+	show: boolean;
+};
+
+export const Sidebar = (props: SidebarProps) => {
 	const show = props.show;
 
 	return show ? (
