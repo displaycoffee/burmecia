@@ -97,7 +97,7 @@ export const SlideoutOverlay = (props) => {
 
 	// Get slideout target and create element reference
 	const slideoutTarget = useRef(document.querySelector('body')).current;
-	const elementRef = useRef(false);
+	const elementRef = useRef(null);
 
 	// If there is no target, don't return anything
 	if (!slideoutTarget) return null;

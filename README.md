@@ -1,4 +1,4 @@
-﻿# Burmecia - version 2.4.1
+﻿# Burmecia - version 2.5.0
 
 React-based framework to create projects. Primarily built with React, JavaScript, Sass, and Vite. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better.
 

@@ -1,5 +1,5 @@
 /* React */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 /* Local styles */
@@ -20,7 +20,8 @@ import { Footer } from '../../layout/footer/Footer';
 import { Portal } from '../../targets/portal/Portal';
 
 export const Container = (props) => {
-	const { theme, utils } = props;
+	const context = useContext(Context);
+	const { theme, utils } = context;
 	const location = useLocation();
 	const isDesktop = useRespond(theme.bps.bp02);
 	let [sidebar, setSidebar] = useState(true);
@@ -49,47 +50,45 @@ export const Container = (props) => {
 	};
 
 	return (
-		<Context.Provider value={props}>
-			<div className="container">
-				<ErrorBoundary message={<ContainerError />}>
-					<SlideoutOverlay options={slideoutOptions} />
+		<div className="container">
+			<ErrorBoundary message={<ContainerError />}>
+				<SlideoutOverlay options={slideoutOptions} />
 
-					<Header />
+				<Header />
 
-					{isDesktop ? <Navigation /> : <Slideout options={slideoutOptions} />}
+				{isDesktop ? <Navigation /> : <Slideout options={slideoutOptions} />}
 
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra imperdiet nisl sed mattis. Orci varius natoque
+					penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris pharetra enim non nunc pharetra condimentum ac nec nisi.
+					Nunc ac tortor leo. Vestibulum dui diam, ultricies vel tempor quis, cursus eget arcu. Donec sagittis urna volutpat, accumsan odio
+					in, porta ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Interdum et malesuada fames ac ante ipsum primis in
+					faucibus. Mauris a vulputate tellus, at varius mi. Donec vitae purus faucibus, feugiat ipsum eget, semper diam. Pellentesque
+					pretium vulputate accumsan.
+				</p>
+
+				<main className="main">
+					<div className="main-layout flex-wrap">
+						<Content />
+
+						<Sidebar show={sidebar && isDesktop} />
+					</div>
+				</main>
+
+				<Footer />
+
+				<button className="pointer unstyled a" onClick={(e) => utils.scrollTo(e, '#index')} type="button">
+					Scroll to top
+				</button>
+
+				<Portal element={'#portal'}>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra imperdiet nisl sed mattis. Orci varius natoque
-						penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris pharetra enim non nunc pharetra condimentum ac nec
-						nisi. Nunc ac tortor leo. Vestibulum dui diam, ultricies vel tempor quis, cursus eget arcu. Donec sagittis urna volutpat,
-						accumsan odio in, porta ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Interdum et malesuada fames ac ante
-						ipsum primis in faucibus. Mauris a vulputate tellus, at varius mi. Donec vitae purus faucibus, feugiat ipsum eget, semper
-						diam. Pellentesque pretium vulputate accumsan.
+						This is an example of a portal from index.html. It could also be added inside other components to access details of that
+						component.
 					</p>
-
-					<main className="main">
-						<div className="main-layout flex-wrap">
-							<Content />
-
-							<Sidebar show={sidebar && isDesktop} />
-						</div>
-					</main>
-
-					<Footer />
-
-					<button className="pointer unstyled a" onClick={(e) => utils.scrollTo(e, '#index')} type="button">
-						Scroll to top
-					</button>
-
-					<Portal element={'#portal'}>
-						<p>
-							This is an example of a portal from index.html. It could also be added inside other components to access details of that
-							component.
-						</p>
-					</Portal>
-				</ErrorBoundary>
-			</div>
-		</Context.Provider>
+				</Portal>
+			</ErrorBoundary>
+		</div>
 	);
 };
 

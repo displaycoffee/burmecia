@@ -26,7 +26,13 @@ export const slideout = {
 			// Toggle slideout body class
 			const classes = slideout.config.classes;
 			const body = document.querySelector('body');
-			state == 'add' ? body.classList.add(classes.activeBody) : body.classList.remove(classes.activeBody);
+			if (body) {
+				if (state == 'add') {
+					body.classList.add(classes.activeBody);
+				} else {
+					body.classList.remove(classes.activeBody);
+				}
+			}
 		},
 		slideout: (element, state) => {
 			// Helper function to toggle slideout properties
@@ -34,18 +40,20 @@ export const slideout = {
 			const { classes, values } = config;
 			const menu = element.querySelector(`.${classes.menu}`);
 
-			// Get data attributes
-			const width = element.dataset.width;
-			const direction = element.dataset.direction;
-			const orientation = element.dataset.orientation;
+			if (menu && element?.dataset) {
+				// Get data attributes
+				const width = element.dataset.width;
+				const direction = element.dataset.direction;
+				const orientation = element.dataset.orientation;
 
-			// Update elements depending on state
-			if (state == 'add') {
-				element.classList.add(classes.active);
-				menu.style[direction] = 0;
-			} else {
-				element.classList.remove(classes.active);
-				menu.style[direction] = orientation == 'vertical' ? values.vertical : `-${width}`;
+				// Update elements depending on state
+				if (state == 'add') {
+					element.classList.add(classes.active);
+					menu.style.setProperty(direction, '0');
+				} else {
+					element.classList.remove(classes.active);
+					menu.style.setProperty(direction, orientation == 'vertical' ? values.vertical : `-${width}`);
+				}
 			}
 		},
 	},

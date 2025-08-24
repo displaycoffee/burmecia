@@ -8,7 +8,7 @@ import './styles/portal.scss';
 export const Portal = ({ element, children }) => {
 	// Get portal and create element reference
 	const portal = useRef(document.querySelector(element)).current;
-	const elementRef = useRef(false);
+	const elementRef = useRef(null);
 
 	// If there is no portal, don't return anything
 	if (!portal) return null;
