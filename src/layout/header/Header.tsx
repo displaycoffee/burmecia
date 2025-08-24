@@ -8,7 +8,7 @@ export const Header = () => {
 	return (
 		<header className="header">
 			<h1>
-				<Link to="/" alt="Burmecia - Home" title="Burmecia - Home">
+				<Link to="/" title="Burmecia - Home">
 					Burmecia
 				</Link>
 			</h1>

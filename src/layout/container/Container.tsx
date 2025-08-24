@@ -19,11 +19,11 @@ import { Sidebar } from '../sidebar/Sidebar';
 import { Footer } from '../footer/Footer';
 import { Portal } from '../../targets/portal/Portal';
 
-export const Container = (props) => {
+export const Container = () => {
 	const context = useContext(Context);
 	const { theme, utils } = context;
 	const location = useLocation();
-	const isDesktop = useRespond(theme.bps.bp02);
+	const isDesktop = useRespond(theme.bps.bp02 as number);
 	let [sidebar, setSidebar] = useState(true);
 
 	// Set body class using custom hook

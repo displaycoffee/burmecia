@@ -7,10 +7,17 @@ import { utils } from '../_config/scripts/utils';
 import { variables } from '../_config/scripts/variables';
 
 /* Context value types */
+type ObjectTypes = {
+	[key: string]: {
+		[key: string]: string | number | boolean;
+	};
+};
 type ContextValues = {
-	theme: {};
-	utils: {};
-	variables: {};
+	theme: ObjectTypes;
+	utils: {
+		[key: string]: Function;
+	};
+	variables: ObjectTypes;
 };
 
 /* Create context */
