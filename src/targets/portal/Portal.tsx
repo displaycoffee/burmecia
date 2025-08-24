@@ -1,14 +1,19 @@
 /* React */
-import { useRef } from 'react';
+import { RefObject, PropsWithChildren, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 /* Local styles */
 import './styles/portal.scss';
 
-export const Portal = ({ element, children }) => {
+/* Create portal props */
+type PortalProps = {
+	element: string;
+};
+
+export const Portal = ({ element, children }: PropsWithChildren<PortalProps>) => {
 	// Get portal and create element reference
 	const portal = useRef(document.querySelector(element)).current;
-	const elementRef = useRef(false);
+	const elementRef: RefObject<HTMLDivElement | null> = useRef(null);
 
 	// If there is no portal, don't return anything
 	if (!portal) return null;
