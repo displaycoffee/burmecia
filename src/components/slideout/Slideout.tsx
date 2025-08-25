@@ -10,7 +10,7 @@ import { slideout } from './scripts/slideout';
 /* Local components */
 import { Context } from '../../context/Context';
 
-/* Props for Slideout */
+/* Types */
 type SlideoutProps = {
 	options: {
 		closeOnClick: boolean;
@@ -27,6 +27,7 @@ type SlideoutProps = {
 		};
 	};
 };
+type SlideoutOverlayProps = SlideoutProps;
 
 export const Slideout = (props: SlideoutProps) => {
 	let { options } = props;
@@ -110,7 +111,7 @@ export const Slideout = (props: SlideoutProps) => {
 	);
 };
 
-export const SlideoutOverlay = (props: SlideoutProps) => {
+export const SlideoutOverlay = (props: SlideoutOverlayProps) => {
 	const { options } = props;
 	const context = useContext(Context);
 	const { config, set, toggle } = slideout;

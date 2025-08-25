@@ -1,5 +1,5 @@
 /* React */
-import { ReactNode, SyntheticEvent } from 'react';
+import { ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 export const utils = {
@@ -35,7 +35,7 @@ export const utils = {
 			}
 		}
 	},
-	scrollTo: (e: SyntheticEvent, selector: string | undefined, offset: number) => {
+	scrollTo: (e: EventType, selector: string | undefined, offset: number) => {
 		// Scroll to element on page
 		if (e) {
 			e.preventDefault();

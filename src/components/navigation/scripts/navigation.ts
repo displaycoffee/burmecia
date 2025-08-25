@@ -43,7 +43,7 @@ export const navigation = [
 });
 
 /* Function to filter out navigation links */
-export const createNavigationList = (navigation: Page[], isRoute: boolean) => {
+export const createNavigationList = (navigation: PageType[], isRoute: boolean) => {
 	// Determine initial navigaton check
 	let hasNavigation = navigation && navigation.length !== 0 ? true : false;
 

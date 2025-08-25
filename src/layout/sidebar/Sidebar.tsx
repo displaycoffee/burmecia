@@ -1,7 +1,7 @@
 /* Local styles */
 import './styles/sidebar.scss';
 
-/* Props for Sidebar */
+/* Types */
 type SidebarProps = {
 	show: boolean;
 };

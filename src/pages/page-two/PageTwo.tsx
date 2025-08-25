@@ -8,7 +8,12 @@ import './styles/page-two.scss';
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
 import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
 
-export const PageTwo = (props: PageProps) => {
+/* Types */
+type PageTwoProps = PageType;
+type PageTwoRoutesProps = ChildPagesType;
+type PageTwoContentProps = ChildPagesType;
+
+export const PageTwo = (props: PageTwoProps) => {
 	const { url } = props;
 
 	// Set up child pages
@@ -30,14 +35,14 @@ export const PageTwo = (props: PageProps) => {
 	return <PageTwoRoutes url={url} childPages={childPages} />;
 };
 
-export const PageTwoRoutes = (props: ChildPageProps) => {
+export const PageTwoRoutes = (props: PageTwoRoutesProps) => {
 	const { url, childPages } = props;
 
 	return (
 		<Routes>
 			<Route path="/" element={<PageTwoContent url={url} childPages={childPages} />} />
 
-			{childPages.map((page: Page) => {
+			{childPages.map((page: PageType) => {
 				return <Route path={page.url} element={<page.component url={url} />} key={page.url} />;
 			})}
 
@@ -46,14 +51,14 @@ export const PageTwoRoutes = (props: ChildPageProps) => {
 	);
 };
 
-export const PageTwoContent = (props: ChildPageProps) => {
+export const PageTwoContent = (props: PageTwoContentProps) => {
 	const { url, childPages } = props;
 
 	return (
 		<div className="page-two spacing-reset">
 			<h4>Child Pages</h4>
 			<ul>
-				{childPages.map((page: Page) => {
+				{childPages.map((page: PageType) => {
 					return (
 						<li key={page.url}>
 							<Link to={`${url}${page.url}`}>{page.label}</Link>
