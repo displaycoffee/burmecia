@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 /* Local styles */
 import './styles/portal.scss';
 
-/* Create portal props */
+/* Types */
 type PortalProps = {
 	element: string;
 };

@@ -1,20 +1,21 @@
 /* React */
-/* Note: mostly code from reactjs.org/docs/error-boundaries.html */
-import { Component, ErrorInfo, PropsWithChildren, ReactElement, ReactNode } from 'react';
+/* Note: mostly code from react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary */
+import { Component, ErrorInfo, ReactNode } from 'react';
 
 /* Local styles */
 import './styles/error-boundary.scss';
 
-type ErrorProps = {
+/* Types */
+type ErrorBoundaryProps = {
 	message: ReactNode;
 	children: ReactNode;
 };
-type ErrorState = {
+type ErrorBoundaryState = {
 	hasError: boolean;
 };
 
-export class ErrorBoundary extends Component<ErrorProps, ErrorState> {
-	constructor(props: ErrorProps) {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+	constructor(props: ErrorBoundaryProps) {
 		super(props);
 		this.state = { hasError: false };
 	}

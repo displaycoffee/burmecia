@@ -6,26 +6,26 @@ import { theme } from '../_config/scripts/theme';
 import { utils } from '../_config/scripts/utils';
 import { variables } from '../_config/scripts/variables';
 
-/* Context value types */
-type ObjectTypes = {
+/* Types */
+type ContextValueObjectType = {
 	[key: string]: {
 		[key: string]: string | number | boolean;
 	};
 };
-type ContextValues = {
-	theme: ObjectTypes;
+type ContextValuesType = {
+	theme: ContextValueObjectType;
+	variables: ContextValueObjectType;
 	utils: {
 		[key: string]: Function;
 	};
-	variables: ObjectTypes;
 };
 
 /* Create context */
-export const Context = createContext({} as ContextValues);
+export const Context = createContext({} as ContextValuesType);
 
 /* Create Context.Provider wrapper */
 export const ContextProvider = ({ children }: PropsWithChildren) => {
-	const values: ContextValues = {
+	const values: ContextValuesType = {
 		theme,
 		utils,
 		variables,

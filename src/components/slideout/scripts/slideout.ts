@@ -1,5 +1,3 @@
-import { SyntheticEvent } from 'react';
-
 export const slideout = {
 	config: {
 		classes: {
@@ -59,7 +57,7 @@ export const slideout = {
 			}
 		},
 	},
-	toggle: (e: SyntheticEvent | PointerEvent, id: string | boolean) => {
+	toggle: (e: EventType, id: string | boolean) => {
 		e.preventDefault();
 		const { config, set } = slideout;
 		const classes = config.classes;

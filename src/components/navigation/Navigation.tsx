@@ -26,7 +26,7 @@ export const Navigation = () => {
 	return navigationList && navigationList.length != 0 ? (
 		<nav className="navigation">
 			<ul className="navigation-list unstyled">
-				{navigationList.map((nav: Page) => {
+				{navigationList.map((nav: PageType) => {
 					const isIndex = nav.url == '/' ? true : false;
 					const isIndexWindow = windowPath == '/' ? true : false;
 
@@ -56,7 +56,7 @@ export const NavigationRoutes = () => {
 
 	return navigationList && navigationList.length != 0 ? (
 		<Routes>
-			{navigationList.map((nav: Page) => {
+			{navigationList.map((nav: PageType) => {
 				const path = nav.hasChildren ? `${nav.url}/*` : nav.url;
 				const navProps = nav?.props ? nav.props : {};
 

@@ -1,8 +1,9 @@
 /* React */
-import { ReactNode } from 'react';
+import { ReactNode, SyntheticEvent } from 'react';
 
 declare global {
-	type Page = {
+	type EventType = SyntheticEvent | Event;
+	type PageType = {
 		alt?: string;
 		component: JSX.Element;
 		id: number;
@@ -15,12 +16,9 @@ declare global {
 			[key: string]: string | number | boolean;
 		};
 	};
-	type PageProps = {
+	type ChildPagesType = {
 		url: string;
-	};
-	type ChildPageProps = {
-		url: string;
-		childPages: Page[];
+		childPages: PageType[];
 	};
 }
 

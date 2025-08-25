@@ -1,7 +1,10 @@
 /* React */
 import { Link } from 'react-router-dom';
 
-export const ChildPageOne = (props: PageProps) => {
+/* Types */
+type ChildPageOneProps = PageType;
+
+export const ChildPageOne = (props: ChildPageOneProps) => {
 	const { url } = props;
 
 	return (
