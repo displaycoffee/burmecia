@@ -1,5 +1,5 @@
 /* React */
-/* Note: mostly code from reactjs.org/docs/error-boundaries.html */
+/* Note: mostly code from react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary */
 import { Component } from 'react';
 
 /* Local styles */
