@@ -10,25 +10,6 @@ import { slideout } from './scripts/slideout';
 /* Local components */
 import { Context } from '../../context/Context';
 
-/* Types */
-type SlideoutProps = {
-	options: {
-		closeOnClick: boolean;
-		content: ReactNode;
-		direction?: string;
-		id: string;
-		isDesktop: boolean;
-		label: string;
-		orientation?: string;
-		width?: number;
-		button: {
-			outside: boolean;
-			show: boolean;
-		};
-	};
-};
-type SlideoutOverlayProps = SlideoutProps;
-
 export const Slideout = (props: SlideoutProps) => {
 	let { options } = props;
 	const { config, get, toggle } = slideout;
@@ -140,3 +121,22 @@ export const SlideoutOverlay = (props: SlideoutOverlayProps) => {
 		set.body('remove');
 	}
 };
+
+/* Types */
+type SlideoutProps = {
+	options: {
+		closeOnClick: boolean;
+		content: ReactNode;
+		direction?: string;
+		id: string;
+		isDesktop: boolean;
+		label: string;
+		orientation?: string;
+		width?: number;
+		button: {
+			outside: boolean;
+			show: boolean;
+		};
+	};
+};
+type SlideoutOverlayProps = SlideoutProps;

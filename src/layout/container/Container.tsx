@@ -30,7 +30,7 @@ export const Container = () => {
 	useBodyClass('home');
 
 	// Determine if layout should have sidebar or not
-	const excludeSidebar = ['/page-two'];
+	const excludeSidebar: string[] = ['/page-two'];
 	useEffect(() => {
 		sidebar = excludeSidebar.includes(location.pathname) ? false : true;
 		setSidebar(sidebar);

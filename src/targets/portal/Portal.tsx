@@ -5,11 +5,6 @@ import { createPortal } from 'react-dom';
 /* Local styles */
 import './styles/portal.scss';
 
-/* Types */
-type PortalProps = {
-	element: string;
-};
-
 export const Portal = ({ element, children }: PropsWithChildren<PortalProps>) => {
 	// Get portal and create element reference
 	const portal = useRef(document.querySelector(element)).current;
@@ -28,4 +23,9 @@ export const Portal = ({ element, children }: PropsWithChildren<PortalProps>) =>
 
 	// Create portal with children
 	return createPortal(children, elementRef.current);
+};
+
+/* Types */
+type PortalProps = {
+	element: string;
 };

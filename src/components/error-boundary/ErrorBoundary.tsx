@@ -5,15 +5,6 @@ import { Component, ErrorInfo, ReactNode } from 'react';
 /* Local styles */
 import './styles/error-boundary.scss';
 
-/* Types */
-type ErrorBoundaryProps = {
-	message: ReactNode;
-	children: ReactNode;
-};
-type ErrorBoundaryState = {
-	hasError: boolean;
-};
-
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 	constructor(props: ErrorBoundaryProps) {
 		super(props);
@@ -37,3 +28,12 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 		return this.props.children;
 	}
 }
+
+/* Types */
+type ErrorBoundaryProps = {
+	message: ReactNode;
+	children: ReactNode;
+};
+type ErrorBoundaryState = {
+	hasError: boolean;
+};

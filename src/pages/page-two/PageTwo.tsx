@@ -8,11 +8,6 @@ import './styles/page-two.scss';
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
 import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
 
-/* Types */
-type PageTwoProps = PageType;
-type PageTwoRoutesProps = ChildPagesType;
-type PageTwoContentProps = ChildPagesType;
-
 export const PageTwo = (props: PageTwoProps) => {
 	const { url } = props;
 
@@ -83,3 +78,8 @@ export const PageTwoContent = (props: PageTwoContentProps) => {
 		</div>
 	);
 };
+
+/* Types */
+type PageTwoProps = PageType;
+type PageTwoRoutesProps = ChildPagesType;
+type PageTwoContentProps = ChildPagesType;

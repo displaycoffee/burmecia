@@ -1,9 +1,6 @@
 /* React */
 import { Link } from 'react-router-dom';
 
-/* Types */
-type ChildPageTwoProps = PageType;
-
 export const ChildPageTwo = (props: ChildPageTwoProps) => {
 	const { url } = props;
 
@@ -19,3 +16,6 @@ export const ChildPageTwo = (props: ChildPageTwoProps) => {
 		</div>
 	);
 };
+
+/* Types */
+type ChildPageTwoProps = PageType;
