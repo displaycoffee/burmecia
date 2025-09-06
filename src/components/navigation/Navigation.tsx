@@ -1,12 +1,12 @@
 /* React */
-import { useEffect, useContext } from 'react';
-import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 /* Local styles */
 import './styles/navigation.scss';
 
 /* Local scripts */
-import { navigation, createNavigationList } from './scripts/navigation';
+import { createNavigationList, navigation } from './scripts/navigation';
 
 /* Local components */
 import { Context } from '../../context/Context';

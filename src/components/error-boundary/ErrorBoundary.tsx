@@ -1,9 +1,12 @@
 /* React */
 /* Note: mostly code from react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary */
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo } from 'react';
 
 /* Local styles */
 import './styles/error-boundary.scss';
+
+/* Local scripts */
+import { ErrorBoundaryProps, ErrorBoundaryState } from './scripts/error-boundary-types';
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 	constructor(props: ErrorBoundaryProps) {
@@ -28,12 +31,3 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 		return this.props.children;
 	}
 }
-
-/* Types */
-type ErrorBoundaryProps = {
-	message: ReactNode;
-	children: ReactNode;
-};
-type ErrorBoundaryState = {
-	hasError: boolean;
-};

@@ -1,6 +1,9 @@
 /* React */
 import { Link } from 'react-router-dom';
 
+/* Local scripts */
+import { ChildPageTwoProps } from './scripts/child-page-two-types';
+
 export const ChildPageTwo = (props: ChildPageTwoProps) => {
 	const { url } = props;
 
@@ -16,6 +19,3 @@ export const ChildPageTwo = (props: ChildPageTwoProps) => {
 		</div>
 	);
 };
-
-/* Types */
-type ChildPageTwoProps = PageType;

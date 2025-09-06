@@ -1,3 +1,3 @@
-/* Tell TypeScript about Sass files */
+/* Declare Sass files */
 declare module '*.scss';
 declare module '*.module.scss';

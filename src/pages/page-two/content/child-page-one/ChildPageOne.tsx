@@ -1,6 +1,9 @@
 /* React */
 import { Link } from 'react-router-dom';
 
+/* Local scripts */
+import { ChildPageOneProps } from './scripts/child-page-one-types';
+
 export const ChildPageOne = (props: ChildPageOneProps) => {
 	const { url } = props;
 
@@ -16,6 +19,3 @@ export const ChildPageOne = (props: ChildPageOneProps) => {
 		</div>
 	);
 };
-
-/* Types */
-type ChildPageOneProps = PageType;

@@ -1,10 +1,11 @@
 /* React */
-import { useId, useContext, useRef, ReactNode, RefObject } from 'react';
+import { RefObject, useContext, useId, useRef } from 'react';
 
 /* Local styles */
 import './styles/slideout.scss';
 
 /* Local scripts */
+import { SlideoutOverlayProps, SlideoutProps } from './scripts/slideout-types';
 import { slideout } from './scripts/slideout';
 
 /* Local components */
@@ -121,22 +122,3 @@ export const SlideoutOverlay = (props: SlideoutOverlayProps) => {
 		set.body('remove');
 	}
 };
-
-/* Types */
-type SlideoutProps = {
-	options: {
-		closeOnClick: boolean;
-		content: ReactNode;
-		direction?: string;
-		id: string;
-		isDesktop: boolean;
-		label: string;
-		orientation?: string;
-		width?: number;
-		button: {
-			outside: boolean;
-			show: boolean;
-		};
-	};
-};
-type SlideoutOverlayProps = SlideoutProps;

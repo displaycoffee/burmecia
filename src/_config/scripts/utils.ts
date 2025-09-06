@@ -50,12 +50,7 @@ export const utils = {
 		};
 		window.scroll({ top: anchor.position(), left: 0, behavior: 'smooth' });
 	},
-	setAttributes: (
-		element: HTMLElement,
-		attributes: {
-			[key: string]: string;
-		},
-	) => {
+	setAttributes: (element: HTMLElement, attributes: ObjectStringType) => {
 		// Set multiple attributes on an element
 		for (const attribute in attributes) {
 			element.setAttribute(attribute, attributes[attribute]);
