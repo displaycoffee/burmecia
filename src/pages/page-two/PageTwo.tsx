@@ -1,8 +1,11 @@
 /* React */
-import { Link, Routes, Route, Navigate } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 
 /* Local styles */
 import './styles/page-two.scss';
+
+/* Local scripts */
+import { PageTwoContentProps, PageTwoProps, PageTwoRoutesProps } from './scripts/page-two-types';
 
 /* Local components */
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
@@ -31,7 +34,7 @@ export const PageTwo = (props: PageTwoProps) => {
 };
 
 export const PageTwoRoutes = (props: PageTwoRoutesProps) => {
-	const { url, childPages } = props;
+	const { childPages, url } = props;
 
 	return (
 		<Routes>
@@ -47,7 +50,7 @@ export const PageTwoRoutes = (props: PageTwoRoutesProps) => {
 };
 
 export const PageTwoContent = (props: PageTwoContentProps) => {
-	const { url, childPages } = props;
+	const { childPages, url } = props;
 
 	return (
 		<div className="page-two spacing-reset">
@@ -78,8 +81,3 @@ export const PageTwoContent = (props: PageTwoContentProps) => {
 		</div>
 	);
 };
-
-/* Types */
-type PageTwoProps = PageType;
-type PageTwoRoutesProps = ChildPagesType;
-type PageTwoContentProps = ChildPagesType;

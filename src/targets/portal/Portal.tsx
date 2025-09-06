@@ -1,11 +1,14 @@
 /* React */
-import { RefObject, PropsWithChildren, useRef } from 'react';
+import { RefObject, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 /* Local styles */
 import './styles/portal.scss';
 
-export const Portal = ({ element, children }: PropsWithChildren<PortalProps>) => {
+/* Local scripts */
+import { PortalProps } from './scripts/portal-types';
+
+export const Portal = ({ element, children }: PortalProps) => {
 	// Get portal and create element reference
 	const portal = useRef(document.querySelector(element)).current;
 	const elementRef: RefObject<HTMLDivElement | null> = useRef(null);
@@ -23,9 +26,4 @@ export const Portal = ({ element, children }: PropsWithChildren<PortalProps>) =>
 
 	// Create portal with children
 	return createPortal(children, elementRef.current);
-};
-
-/* Types */
-type PortalProps = {
-	element: string;
 };

@@ -2,23 +2,31 @@
 import { ReactNode, SyntheticEvent } from 'react';
 
 declare global {
-	type EventType = SyntheticEvent | Event;
-	type PageType = {
-		alt?: string;
-		component: JSX.Element;
-		id: number;
-		hasChildren?: boolean;
-		isRoute?: boolean;
-		label: string;
-		showInNav?: boolean;
-		url: string;
-		props?: {
-			[key: string]: string | number | boolean;
-		};
-	};
 	type ChildPagesType = {
 		url: string;
 		childPages: PageType[];
+	};
+
+	type EventType = SyntheticEvent | Event;
+
+	type ObjectStringType = {
+		[key: string]: string;
+	};
+
+	type ObjectPrimitiveType = {
+		[key: string]: string | number | boolean;
+	};
+
+	type PageType = {
+		alt?: string;
+		component: JSX.Element;
+		hasChildren?: boolean;
+		id: number;
+		isRoute?: boolean;
+		label: string;
+		props?: ObjectPrimitiveType;
+		showInNav?: boolean;
+		url: string;
 	};
 }
 
