@@ -1,3 +1,4 @@
+/* Export types */
 export type PageTwoContentProps = ChildPagesType;
 
 export type PageTwoProps = PageType;

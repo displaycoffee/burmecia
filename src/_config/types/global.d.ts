@@ -1,6 +1,7 @@
 /* React */
 import { ReactNode, SyntheticEvent } from 'react';
 
+/* Declare global types */
 declare global {
 	type ChildPagesType = {
 		url: string;
@@ -30,4 +31,5 @@ declare global {
 	};
 }
 
+/* Export global types */
 export {};

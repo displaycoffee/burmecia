@@ -1,11 +1,13 @@
 /* React */
 import { ReactNode } from 'react';
 
+/* Type definitions */
 type SlideoutButtonProps = {
 	outside: boolean;
 	show: boolean;
 };
 
+/* Export types */
 export type SlideoutOverlayProps = SlideoutProps;
 
 export type SlideoutProps = {

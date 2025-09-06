@@ -1,5 +1,5 @@
 /* React */
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 /* Local scripts */
 import { utils } from '../../_config/scripts/utils';
@@ -12,11 +12,11 @@ import { Container } from '../../layout/container/Container';
 /* Index component */
 const Index = () => {
 	return (
-		<Router basename={variables.paths.basename}>
+		<BrowserRouter basename={variables.paths.basename}>
 			<ContextProvider>
 				<Container />
 			</ContextProvider>
-		</Router>
+		</BrowserRouter>
 	);
 };
 

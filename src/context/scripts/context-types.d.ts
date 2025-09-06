@@ -1,6 +1,7 @@
 /* React */
 import { ReactNode } from 'react';
 
+/* Export types */
 export type ContextProps = {
 	children: ReactNode;
 };
