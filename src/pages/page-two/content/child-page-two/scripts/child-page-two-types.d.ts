@@ -1,2 +1,2 @@
-/* Export types */
+/* Export prop types */
 export type ChildPageTwoProps = PageType;

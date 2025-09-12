@@ -2,10 +2,6 @@
 import { ReactNode } from 'react';
 
 /* Export types */
-export type ContextProps = {
-	children: ReactNode;
-};
-
 export type ContextValuesType = {
 	theme: {
 		[key: string]: ObjectPrimitiveType;
@@ -16,4 +12,9 @@ export type ContextValuesType = {
 	variables: {
 		[key: string]: ObjectPrimitiveType;
 	};
+};
+
+/* Export prop types */
+export type ContextProps = {
+	children: ReactNode;
 };
