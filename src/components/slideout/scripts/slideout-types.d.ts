@@ -2,17 +2,14 @@
 import { ReactNode } from 'react';
 
 /* Type definitions */
-type SlideoutButtonProps = {
+type SlideoutButton = {
 	outside: boolean;
 	show: boolean;
 };
 
-/* Export types */
-export type SlideoutOverlayProps = SlideoutProps;
-
-export type SlideoutProps = {
+type SlideoutOptions = {
 	options: {
-		button: SlideoutButtonProps;
+		button: SlideoutButton;
 		closeOnClick: boolean;
 		content: ReactNode;
 		direction?: string;
@@ -23,3 +20,8 @@ export type SlideoutProps = {
 		width?: number;
 	};
 };
+
+/* Export prop types */
+export type SlideoutOverlayProps = SlideoutOptions;
+
+export type SlideoutProps = SlideoutOptions;
