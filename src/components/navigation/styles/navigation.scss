@@ -6,21 +6,12 @@
 //// NAVIGATION
 //// --------------------------------------------------------------------------
 
-	// Configuration
-
-	$navigation-is-inline: true; // determine if navigation is inline
-
 	// Style block
 
 	.navigation {
 		.navigation-list {
-			margin: 0 -#{theme.$spacing-x2};
-			.navigation-list-item {
-				@if $navigation-is-inline == true {
-					@include mixins.inline-block(middle);
-				}
-				padding: 0 theme.$spacing-x2;
-				margin: 0 0 theme.$spacing-x4 0;
-			}
+			@include mixins.flex-layout((align-items: center));
+			@include mixins.gap(theme.$spacing-x4);
+			margin: 0 0 theme.$spacing-x4 0;
 		}
 	}
