@@ -389,6 +389,9 @@
 	#{$selector}::-webkit-scrollbar {
 		width: $width;
 	}
+	#{$selector}::-webkit-scrollbar {
+		height: $width;
+	}
 	@if $s-color-01 != '' {
 		#{$selector}::-webkit-scrollbar-track {
 			background: $s-color-01;
