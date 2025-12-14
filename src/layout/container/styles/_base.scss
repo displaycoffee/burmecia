@@ -97,6 +97,7 @@
 	// Configuration
 
 	$base-helpers-scrollbar-width: 6px; // width of scrollbar
+	$base-helpers-scrollbar-height: 6px; // height of scrollbar
 
 	// Style block
 
@@ -110,5 +111,5 @@
 		@include mixins.clearfix('&');
 	}
 	.scrollbar {
-		@include mixins.scrollbar('&', $base-helpers-scrollbar-width, $base-helpers-color-01, $base-helpers-color-02);
+		@include mixins.scrollbar('&', $base-helpers-scrollbar-width, $base-helpers-scrollbar-height, $base-helpers-color-01, $base-helpers-color-02);
 	}
