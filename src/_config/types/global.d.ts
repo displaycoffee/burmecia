@@ -20,12 +20,11 @@ declare global {
 
 	type PageType = {
 		alt?: string;
+		children?: PageType[];
 		component: JSX.Element;
-		hasChildren?: boolean;
 		id: number;
 		isRoute?: boolean;
 		label: string;
-		props?: ObjectPrimitiveType;
 		showInNav?: boolean;
 		url: string;
 	};

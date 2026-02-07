@@ -29,9 +29,9 @@
 
 	// Encode characters in svg
 	$encoded: str-replace($svg, '%', '%25');
-	$encoded: str-replace($encoded, '#', '%23');       
+	$encoded: str-replace($encoded, '#', '%23');
 	$encoded: str-replace($encoded, '{', '%7B');
-	$encoded: str-replace($encoded, '}', '%7D');         
+	$encoded: str-replace($encoded, '}', '%7D');
 	$encoded: str-replace($encoded, '<', '%3C');
 	$encoded: str-replace($encoded, '>', '%3E');
 
@@ -43,5 +43,5 @@
 // Input: unicode("e655")
 // Output: "\e655"
 @function unicode($str) {
-    @return unquote("\"") + unquote(str-insert($str, "\\", 1)) + unquote("\"");
+	@return unquote("\"") + unquote(str-insert($str, "\\", 1)) + unquote("\"");
 }

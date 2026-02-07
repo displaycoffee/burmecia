@@ -51,11 +51,6 @@
 				@include mixins.position($top: 0, $bottom: 0);
 			}
 		}
-		.slideout-button {
-			margin: 0 0 $slideout-spacing 0;
-			@include mixins.flex-layout((align-items: center));
-			@include mixins.gap(theme.$spacing-x2);
-		}
 		.slideout-menu {
 			max-width: 100%;
 			background-color: $slideout-color-02;
@@ -82,4 +77,9 @@
 				max-height: calc(100% - ($slideout-header + $slideout-spacing));
 			}
 		}
+	}
+	.slideout-button {
+		margin: 0 0 $slideout-spacing 0;
+		@include mixins.flex-layout((align-items: center));
+		@include mixins.gap(theme.$spacing-x2);
 	}

@@ -1,6 +1,9 @@
 /* React */
 import { BrowserRouter } from 'react-router-dom';
 
+/* Local styles */
+import './styles/index.scss';
+
 /* Local scripts */
 import { utils } from '../../_config/scripts/utils';
 import { variables } from '../../_config/scripts/variables';
