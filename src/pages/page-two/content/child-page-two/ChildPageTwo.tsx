@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 /* Get parent path */
 const linkTo = window.location.pathname.split('/').slice(0, -1).join('/');
 
-export const ChildPageTwo = () => {
+export const ChildPageTwo = (props: ObjectPrimitiveProps) => {
 	return (
 		<div className="page-child-page-two spacing-reset">
 			<p>

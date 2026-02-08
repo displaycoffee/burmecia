@@ -14,6 +14,9 @@ export const navigation = [
 		label: 'Page One',
 		showInNav: true,
 		url: '/page-one',
+		props: {
+			test: 'test test',
+		},
 	},
 	{
 		id: 2,
@@ -38,6 +41,10 @@ export const navigation = [
 				label: 'Child Page Two',
 				url: '/child-page-two',
 				showInNav: true,
+				props: {
+					test1: 'test test 1',
+					test2: 'test test 2',
+				},
 			},
 		],
 	},

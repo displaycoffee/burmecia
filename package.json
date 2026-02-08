@@ -1,6 +1,6 @@
 {
 	"name": "burmecia",
-	"version": "3.1.5",
+	"version": "3.2.0",
 	"description": "Custom react template build.",
 	"main": "bundle.js",
 	"type": "module",

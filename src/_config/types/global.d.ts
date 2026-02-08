@@ -1,19 +1,24 @@
-/* Declare global types */
+/* Type definitions */
+type Events = SyntheticEvent | Event;
+
+type ObjectString = {
+	[key: string]: string;
+};
+
+type ObjectPrimitive = {
+	[key: string]: string | number | boolean;
+};
+
 declare global {
-	type ChildPagesType = {
-		url: string;
-		childPages: PageType[];
-	};
+	/* Declare global types */
+	type EventsType = Events;
 
-	type EventType = SyntheticEvent | Event;
+	type ObjectStringType = ObjectString;
 
-	type ObjectStringType = {
-		[key: string]: string;
-	};
+	type ObjectPrimitiveType = ObjectPrimitive;
 
-	type ObjectPrimitiveType = {
-		[key: string]: string | number | boolean;
-	};
+	/* Declare global prop types */
+	type ObjectPrimitiveProps = ObjectPrimitive;
 }
 
 /* Export global types */

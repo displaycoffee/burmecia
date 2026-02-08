@@ -1,5 +1,5 @@
 /* Local scripts */
-import { NavigationMapType, NavigationType } from './navigation-types';
+import { NavigationMapType, NavigationRoutesType, NavigationType } from './navigation-types';
 import { navigation } from './navigation';
 
 export const navigationUtils = {
@@ -58,11 +58,18 @@ export const navigationUtils = {
 		build: {
 			config: (nav: NavigationType, map: NavigationMapType) => {
 				// Build route config
-				return {
+				const config = {
 					id: nav.id,
 					element: map[navigationUtils.routes.build.key(nav.url)],
 					path: nav.url,
-				};
+				} as NavigationRoutesType;
+
+				// Add props if there are any
+				if (nav?.props) {
+					config.props = nav.props;
+				}
+
+				return config;
 			},
 			key: (url: string) => {
 				// Build map key for routes

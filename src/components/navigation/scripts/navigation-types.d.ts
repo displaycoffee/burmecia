@@ -5,14 +5,16 @@ type Navigation = {
 	id: number;
 	isRoute?: boolean;
 	label: string;
+	props?: ObjectPrimitiveType;
 	showInNav?: boolean;
 	url: string;
 };
 
 type NavigationListItem = {
 	children?: ReactNode;
-	isActive: boolean;
 	nav: Navigation;
+	navigationClass: string;
+	navigationActiveClass: string;
 	parent?: string;
 };
 
@@ -25,6 +27,7 @@ type NavigationRoutes = {
 	element: JSX.Element;
 	id: number;
 	path: string;
+	props?: ObjectPrimitiveType;
 };
 
 /* Export types */
