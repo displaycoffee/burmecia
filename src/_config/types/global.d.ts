@@ -1,6 +1,3 @@
-/* React */
-import { ReactNode, SyntheticEvent } from 'react';
-
 /* Declare global types */
 declare global {
 	type ChildPagesType = {
@@ -16,17 +13,6 @@ declare global {
 
 	type ObjectPrimitiveType = {
 		[key: string]: string | number | boolean;
-	};
-
-	type PageType = {
-		alt?: string;
-		children?: PageType[];
-		component: JSX.Element;
-		id: number;
-		isRoute?: boolean;
-		label: string;
-		showInNav?: boolean;
-		url: string;
 	};
 }
 

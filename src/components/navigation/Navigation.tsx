@@ -6,15 +6,15 @@ import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './styles/navigation.scss';
 
 /* Local scripts */
-import { NavigationListItemProps } from './scripts/navigation-types';
-import { createNavigationList } from './scripts/navigation';
+import { NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
+import { navigationUtils } from './scripts/navigation-utils';
+import { navigationRoutes } from './scripts/navigation-routes';
 
 /* Local components */
 import { Context } from '../../context/Context';
 
-/* Create navigation lists */
-const navigationList = createNavigationList(false) as PageType[];
-const navigationListRoutes = createNavigationList(true) as PageType[];
+/* Get navigation menu */
+const navigationList = navigationUtils.get.list();
 
 export const Navigation = () => {
 	const { pathname } = useLocation();
@@ -30,7 +30,7 @@ export const Navigation = () => {
 	return navigationList && navigationList.length != 0 ? (
 		<nav className="navigation">
 			<ul className="navigation-list unstyled">
-				{navigationList.map((nav: PageType) => {
+				{navigationList.map((nav) => {
 					const isIndex = nav.url == '/' ? true : false;
 					const isIndexWindow = windowPath == '/' ? true : false;
 
@@ -47,7 +47,7 @@ export const Navigation = () => {
 							{nav?.children && nav.children.length !== 0 ? (
 								<NavigationListItem isActive={isActive} nav={nav}>
 									<ul className="navigation-list navigation-list--submenu unstyled">
-										{nav.children.map((child: PageType) => {
+										{nav.children.map((child) => {
 											return <NavigationListItem isActive={false} nav={child} parent={nav.url} key={child.id} />;
 										})}
 									</ul>
@@ -78,21 +78,21 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 };
 
 export const NavigationRoutes = () => {
-	return navigationListRoutes && navigationListRoutes.length != 0 ? (
+	return navigationRoutes && navigationRoutes.length != 0 ? (
 		<Routes>
-			{navigationListRoutes.map((nav: PageType) => {
+			{navigationRoutes.map((nav: NavigationRoutesProps) => {
 				return (
 					<Fragment key={nav.id}>
 						{nav?.children && nav.children.length !== 0 ? (
 							<>
-								<Route path={`${nav.url}/*`} element={<nav.component />} />
+								<Route path={`${nav.path}/*`} element={<nav.element />} />
 
-								{nav.children.map((child: PageType) => {
-									return <Route path={child.url} element={<child.component />} key={child.id} />;
+								{nav.children.map((child: NavigationRoutesProps) => {
+									return <Route path={child.path} element={<child.element />} key={child.id} />;
 								})}
 							</>
 						) : (
-							<Route path={nav.url} element={<nav.component />} />
+							<Route path={nav.path} element={<nav.element />} />
 						)}
 					</Fragment>
 				);
