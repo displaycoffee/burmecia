@@ -1,7 +1,7 @@
 /* Local styles */
 import './styles/page-one.scss';
 
-export const PageOne = () => {
+export const PageOne = (props: ObjectPrimitiveProps) => {
 	return (
 		<div className="page-one spacing-reset">
 			<p>this is the first page.</p>

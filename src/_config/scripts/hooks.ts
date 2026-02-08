@@ -1,5 +1,5 @@
 /* React */
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /* Set pageCache to get previous page */
@@ -29,6 +29,25 @@ export function useBodyClass(defaultPrefix: string) {
 
 	return null;
 }
+
+export const useClickOutside = (callback: Function) => {
+	const clickRef: RefObject<HTMLDivElement | null> = useRef(null);
+
+	// Determine if a click has been performed outside an element
+	useEffect(() => {
+		const handleClickOutside = (e: Event) => {
+			if (clickRef.current && !clickRef.current.contains(e.target as Node)) {
+				callback();
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, [clickRef, callback]);
+
+	return clickRef;
+};
 
 export function useRespond(bp: number) {
 	const rule = window.matchMedia(`(min-width: ${bp}px)`);

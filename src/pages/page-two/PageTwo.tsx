@@ -1,65 +1,24 @@
 /* React */
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /* Local styles */
 import './styles/page-two.scss';
 
 /* Local scripts */
-import { PageTwoContentProps, PageTwoProps, PageTwoRoutesProps } from './scripts/page-two-types';
+import { navigationUtils } from '../../components/navigation/scripts/navigation-utils';
 
-/* Local components */
-import { ChildPageOne } from './content/child-page-one/ChildPageOne';
-import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
+/* Get navigation menu */
+const navigationList = navigationUtils.get.children(2);
 
-export const PageTwo = (props: PageTwoProps) => {
-	const { url } = props;
-
-	// Set up child pages
-	const childPages = [
-		{
-			id: 0,
-			label: 'Child page one',
-			url: '/child-page-one',
-			component: ChildPageOne,
-		},
-		{
-			id: 1,
-			label: 'Child page two',
-			url: '/child-page-two',
-			component: ChildPageTwo,
-		},
-	];
-
-	return <PageTwoRoutes url={url} childPages={childPages} />;
-};
-
-export const PageTwoRoutes = (props: PageTwoRoutesProps) => {
-	const { childPages, url } = props;
-
-	return (
-		<Routes>
-			<Route path="/" element={<PageTwoContent url={url} childPages={childPages} />} />
-
-			{childPages.map((page: PageType) => {
-				return <Route path={page.url} element={<page.component url={url} />} key={page.url} />;
-			})}
-
-			<Route path="*" element={<Navigate to={url} />} />
-		</Routes>
-	);
-};
-
-export const PageTwoContent = (props: PageTwoContentProps) => {
-	const { childPages, url } = props;
-
+export const PageTwo = () => {
 	return (
 		<div className="page-two spacing-reset">
 			<h4>Child Pages</h4>
 			<ul>
-				{childPages.map((page: PageType) => {
+				{navigationList.map((nav) => {
 					return (
-						<li key={page.url}>
-							<Link to={`${url}${page.url}`}>{page.label}</Link>
+						<li key={nav.url}>
+							<Link to={`${nav.url}`}>{nav.label}</Link>
 						</li>
 					);
 				})}

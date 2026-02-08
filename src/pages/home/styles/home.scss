@@ -8,4 +8,8 @@
 
 	// Style block
 
-	.page-home {}
+	.page-home {
+		.dropdown {
+			max-width: 400px;
+		}
+	}

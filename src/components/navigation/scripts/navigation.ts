@@ -1,61 +1,51 @@
-/* Local components */
-import { Home } from '../../../pages/home/Home';
-import { PageOne } from '../../../pages/page-one/PageOne';
-import { PageTwo } from '../../../pages/page-two/PageTwo';
-
 export const navigation = [
 	{
-		id: 2,
-		label: 'Page Two',
-		alt: 'Page Two',
-		url: '/page-two',
-		showInNav: true,
+		id: 0,
+		alt: 'Home',
 		isRoute: true,
-		hasChildren: true,
-		component: PageTwo,
-		props: {
-			url: '/page-two',
-		},
+		label: 'Home',
+		showInNav: true,
+		url: '/',
 	},
 	{
 		id: 1,
-		label: 'Page One',
 		alt: 'Page One',
-		url: '/page-one',
-		showInNav: true,
 		isRoute: true,
-		hasChildren: false,
-		component: PageOne,
+		label: 'Page One',
+		showInNav: true,
+		url: '/page-one',
+		props: {
+			test: 'test test',
+		},
 	},
 	{
-		id: 0,
-		label: 'Home',
-		alt: 'Home',
-		url: '/',
-		showInNav: true,
+		id: 2,
+		alt: 'Page Two',
 		isRoute: true,
-		hasChildren: false,
-		component: Home,
+		label: 'Page Two',
+		showInNav: true,
+		url: '/page-two',
+		children: [
+			{
+				id: 1,
+				alt: 'Child Page One',
+				isRoute: true,
+				label: 'Child Page One',
+				showInNav: true,
+				url: '/child-page-one',
+			},
+			{
+				id: 2,
+				alt: 'Child Page Two',
+				isRoute: true,
+				label: 'Child Page Two',
+				url: '/child-page-two',
+				showInNav: true,
+				props: {
+					test1: 'test test 1',
+					test2: 'test test 2',
+				},
+			},
+		],
 	},
-].sort((a, b) => {
-	// Sort navigation by id
-	return a.id - b.id;
-});
-
-/* Function to filter out navigation links */
-export const createNavigationList = (navigation: PageType[], isRoute: boolean) => {
-	// Determine initial navigaton check
-	let hasNavigation = navigation && navigation.length !== 0 ? true : false;
-
-	// Filter out navigation links
-	navigation = navigation.filter((nav) => {
-		const hasNavLink = (isRoute && nav.isRoute) || (!isRoute && nav.showInNav) ? true : false;
-		return hasNavLink;
-	});
-
-	// Check navigation again
-	hasNavigation = navigation && navigation.length !== 0 ? true : false;
-
-	// Return final navigation
-	return hasNavigation ? navigation : [];
-};
+];

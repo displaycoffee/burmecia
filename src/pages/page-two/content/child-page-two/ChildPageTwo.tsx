@@ -1,12 +1,10 @@
 /* React */
 import { Link } from 'react-router-dom';
 
-/* Local scripts */
-import { ChildPageTwoProps } from './scripts/child-page-two-types';
+/* Get parent path */
+const linkTo = window.location.pathname.split('/').slice(0, -1).join('/');
 
-export const ChildPageTwo = (props: ChildPageTwoProps) => {
-	const { url } = props;
-
+export const ChildPageTwo = (props: ObjectPrimitiveProps) => {
 	return (
 		<div className="page-child-page-two spacing-reset">
 			<p>
@@ -14,7 +12,7 @@ export const ChildPageTwo = (props: ChildPageTwoProps) => {
 			</p>
 
 			<p>
-				<Link to={url}>Go back to page two</Link>
+				<Link to={linkTo}>Go back to page two</Link>
 			</p>
 		</div>
 	);

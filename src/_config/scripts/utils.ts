@@ -35,7 +35,7 @@ export const utils = {
 			}
 		}
 	},
-	scrollTo: (e: EventType, selector: string | undefined, offset: number) => {
+	scrollTo: (e: EventsType, selector: string | undefined, offset: number) => {
 		// Scroll to element on page
 		if (e) {
 			e.preventDefault();
