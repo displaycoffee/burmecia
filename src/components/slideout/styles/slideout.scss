@@ -37,6 +37,11 @@
 		opacity: 0;
 		visibility: hidden;
 	}
+	.slideout-button {
+		margin: 0 0 $slideout-spacing 0;
+		@include mixins.flex-layout((align-items: center));
+		@include mixins.gap(theme.$spacing-x2);
+	}
 	.slideout {
 		&.slideout-vertical {
 			.slideout-menu {
@@ -89,9 +94,4 @@
 				}
 			}
 		}
-	}
-	.slideout-button {
-		margin: 0 0 $slideout-spacing 0;
-		@include mixins.flex-layout((align-items: center));
-		@include mixins.gap(theme.$spacing-x2);
 	}
