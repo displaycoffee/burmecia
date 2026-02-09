@@ -21,8 +21,7 @@ export const Navigation = () => {
 	const { pathname } = useLocation();
 	const context = useContext(Context);
 	const utils = context.utils;
-	const navigationClass = 'navigation-link';
-	const navigationActiveClass = `${navigationClass} ${navigationClass}-active`;
+	const navigationLinkClass = 'navigation-link';
 
 	// Scroll to top when navigation link is clicked on
 	useEffect(() => {
@@ -37,23 +36,16 @@ export const Navigation = () => {
 						<Fragment key={nav.id}>
 							{nav?.children && nav.children.length !== 0 ? (
 								<li className="navigation-list-item">
-									<Dropdown buttonLabel={nav.label} buttonLinkClass={navigationClass} buttonUrl={nav.url} closeOnClick={true}>
+									<Dropdown buttonLabel={nav.label} buttonLinkClass={navigationLinkClass} buttonUrl={nav.url} closeOnClick={true}>
 										<ul className="navigation-list-submenu unstyled">
 											{nav.children.map((child) => {
-												return (
-													<NavigationListItem
-														nav={child}
-														navigationClass={navigationClass}
-														navigationActiveClass={navigationActiveClass}
-														key={child.id}
-													/>
-												);
+												return <NavigationListItem nav={child} navigationLinkClass={navigationLinkClass} key={child.id} />;
 											})}
 										</ul>
 									</Dropdown>
 								</li>
 							) : (
-								<NavigationListItem navigationClass={navigationClass} navigationActiveClass={navigationActiveClass} nav={nav} />
+								<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav} />
 							)}
 						</Fragment>
 					);
@@ -64,11 +56,12 @@ export const Navigation = () => {
 };
 
 export const NavigationListItem = (props: NavigationListItemProps) => {
-	const { children, nav, navigationClass, navigationActiveClass } = props;
+	const { children, nav, navigationLinkClass } = props;
+	const navigationActiveClass = `${navigationLinkClass} ${navigationLinkClass}-active`;
 
 	return (
 		<li className="navigation-list-item">
-			<NavLink to={nav.url} title={nav.alt || nav.label} className={({ isActive }) => (isActive ? navigationActiveClass : navigationClass)}>
+			<NavLink to={nav.url} title={nav.alt || nav.label} className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}>
 				{nav.label}
 			</NavLink>
 

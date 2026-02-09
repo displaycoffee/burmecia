@@ -46,8 +46,8 @@ export const Dropdown = (props: DropdownProps) => {
 
 export const DropdownButton = (props: DropdownButtonProps) => {
 	const { buttonLabel, buttonLinkClass, buttonUrl, closeContent, toggleDropdown } = props;
-	const dropdownClass = buttonLinkClass ? buttonLinkClass : 'dropdown-link';
-	const dropdownActiveClass = `${dropdownClass} ${dropdownClass}-active`;
+	const dropdownLinkClass = buttonLinkClass ? buttonLinkClass : 'dropdown-link';
+	const dropdownActiveClass = `${dropdownLinkClass} ${dropdownLinkClass}-active`;
 
 	// Create dropdown icon
 	const icon = (
@@ -66,7 +66,7 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 						to={buttonUrl}
 						onClick={closeContent}
 						title={buttonLabel}
-						className={({ isActive }) => (isActive ? dropdownActiveClass : dropdownClass)}
+						className={({ isActive }) => (isActive ? dropdownActiveClass : dropdownLinkClass)}
 					>
 						{buttonLabel}
 					</NavLink>

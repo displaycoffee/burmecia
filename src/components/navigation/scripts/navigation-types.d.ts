@@ -13,8 +13,7 @@ type Navigation = {
 type NavigationListItem = {
 	children?: ReactNode;
 	nav: Navigation;
-	navigationClass: string;
-	navigationActiveClass: string;
+	navigationLinkClass: string;
 	parent?: string;
 };
 
