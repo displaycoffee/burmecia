@@ -1,3 +1,6 @@
+/* Local scripts */
+import { NavigationType } from './navigation-types';
+
 export const navigation = [
 	{
 		id: 0,
@@ -48,4 +51,4 @@ export const navigation = [
 			},
 		],
 	},
-];
+] as NavigationType[];

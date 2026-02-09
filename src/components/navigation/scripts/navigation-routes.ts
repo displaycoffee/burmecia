@@ -34,7 +34,7 @@ navigation.forEach((nav) => {
 		};
 
 		// Build child config
-		if (nav.children && nav.children.length !== 0) {
+		if (nav?.children && nav.children.length !== 0) {
 			nav.children.forEach((child) => {
 				const childKey = navigationUtils.routes.build.key(child.url);
 
