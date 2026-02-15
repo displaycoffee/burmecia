@@ -1,5 +1,6 @@
 /* React */
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 /* Local styles */
 import './styles/page-two.scss';
@@ -7,10 +8,22 @@ import './styles/page-two.scss';
 /* Local scripts */
 import { navigationUtils } from '../../components/navigation/scripts/navigation-utils';
 
+/* Local components */
+import { Context } from '../../context/Context';
+import { ChildPageOne } from './content/child-page-one/ChildPageOne';
+import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
+
 /* Get navigation menu */
 const navigationList = navigationUtils.get.children(2);
 
 export const PageTwo = () => {
+	const location = useLocation();
+	const showPageTwo = location.pathname == '/page-two' ? true : false;
+
+	return showPageTwo ? <PageTwoIndex /> : <PageTwoContent />;
+};
+
+export const PageTwoIndex = () => {
 	return (
 		<div className="page-two spacing-reset">
 			<h4>Child Pages</h4>
@@ -36,5 +49,23 @@ export const PageTwo = () => {
 
 			<p>an element below the row example.</p>
 		</div>
+	);
+};
+
+export const PageTwoContent = () => {
+	const context = useContext(Context);
+	const location = useLocation();
+
+	// Get last path
+	const last = context.utils.getLast(location.pathname, '/');
+
+	// Default content
+	const defaultContent = <p>Thank you! But the page is in another castle.</p>;
+
+	return (
+		{
+			'child-page-one': <ChildPageOne />,
+			'child-page-two': <ChildPageTwo />,
+		}[last as string] || defaultContent
 	);
 };

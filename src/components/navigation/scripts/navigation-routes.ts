@@ -7,8 +7,6 @@ import { navigationUtils } from './navigation-utils';
 import { Home } from '../../../pages/home/Home';
 import { PageOne } from '../../../pages/page-one/PageOne';
 import { PageTwo } from '../../../pages/page-two/PageTwo';
-import { ChildPageOne } from '../../../pages/page-two/content/child-page-one/ChildPageOne';
-import { ChildPageTwo } from '../../../pages/page-two/content/child-page-two/ChildPageTwo';
 
 /* Set up component mapping for routes */
 /* Note: this should match the navigation.url value in navigation.ts (without the '/') */
@@ -16,8 +14,8 @@ const routeMap = {
 	home: Home,
 	'page-one': PageOne,
 	'page-two': PageTwo,
-	'child-page-one': ChildPageOne,
-	'child-page-two': ChildPageTwo,
+	'child-page-one': PageTwo,
+	'child-page-two': PageTwo,
 } as NavigationMapType;
 
 /* Create routes array */
