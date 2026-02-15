@@ -1,10 +1,13 @@
 /* React */
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-/* Get parent path */
-const linkTo = window.location.pathname.split('/').slice(0, -1).join('/');
+/* Local components */
+import { Context } from '../../../../context/Context';
 
 export const ChildPageOne = () => {
+	const context = useContext(Context);
+
 	return (
 		<div className="page-child-page-one spacing-reset">
 			<p>
@@ -12,7 +15,7 @@ export const ChildPageOne = () => {
 			</p>
 
 			<p>
-				<Link to={linkTo}>Go back to page two</Link>
+				<Link to={context.utils.getPage()}>Go back to page two</Link>
 			</p>
 		</div>
 	);

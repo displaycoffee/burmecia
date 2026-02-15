@@ -1,4 +1,5 @@
 /* Local scripts */
+import { utils } from '../../../_config/scripts/utils';
 import { NavigationMapType, NavigationRoutesType, NavigationType } from './navigation-types';
 import { navigation } from './navigation';
 
@@ -73,8 +74,8 @@ export const navigationUtils = {
 			},
 			key: (url: string) => {
 				// Build map key for routes
-				const urlSplit = url.split('/');
-				return urlSplit[urlSplit.length - 1] ? urlSplit[urlSplit.length - 1] : 'home';
+				const last = utils.getLast(url, '/');
+				return last ? last : 'home';
 			},
 		},
 	},
