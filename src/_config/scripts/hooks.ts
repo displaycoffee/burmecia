@@ -1,5 +1,5 @@
 /* React */
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useId, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /* Set pageCache to get previous page */
@@ -47,6 +47,15 @@ export const useClickOutside = (callback: Function) => {
 	}, [clickRef, callback]);
 
 	return clickRef;
+};
+
+export const useFormattedId = () => {
+	// Updates the format of useId hook
+	const id = useId();
+	return id
+		.slice(1, -1)
+		.replace(/^\_|\_$/g, '')
+		.replace(/\_/g, '-');
 };
 
 export const useRespond = (bp: number) => {
