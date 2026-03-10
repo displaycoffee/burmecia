@@ -1,5 +1,5 @@
 /* React */
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useId, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /* Set pageCache to get previous page */
@@ -7,7 +7,7 @@ let pageCache = {
 	previous: '',
 };
 
-export function useBodyClass(defaultPrefix: string) {
+export const useBodyClass = (defaultPrefix: string) => {
 	const location = useLocation();
 	const bodySelector = document.querySelector('body');
 	const bodyPrefix = 'page-';
@@ -28,7 +28,7 @@ export function useBodyClass(defaultPrefix: string) {
 	}
 
 	return null;
-}
+};
 
 export const useClickOutside = (callback: Function) => {
 	const clickRef: RefObject<HTMLDivElement | null> = useRef(null);
@@ -49,7 +49,16 @@ export const useClickOutside = (callback: Function) => {
 	return clickRef;
 };
 
-export function useRespond(bp: number) {
+export const useFormattedId = () => {
+	// Updates the format of useId hook
+	const id = useId();
+	return id
+		.slice(1, -1)
+		.replace(/^\_|\_$/g, '')
+		.replace(/\_/g, '-');
+};
+
+export const useRespond = (bp: number) => {
 	const rule = window.matchMedia(`(min-width: ${bp}px)`);
 	let [match, setMatch] = useState(rule.matches);
 
@@ -64,4 +73,4 @@ export function useRespond(bp: number) {
 	};
 
 	return match;
-}
+};

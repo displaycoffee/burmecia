@@ -1,10 +1,11 @@
 /* React */
-import { RefObject, useContext, useId, useRef } from 'react';
+import { RefObject, useContext, useRef } from 'react';
 
 /* Local styles */
 import './styles/slideout.scss';
 
 /* Local scripts */
+import { useFormattedId } from '../../_config/scripts/hooks';
 import { SlideoutOverlayProps, SlideoutProps } from './scripts/slideout-types';
 import { slideout } from './scripts/slideout';
 
@@ -14,7 +15,7 @@ import { Context } from '../../context/Context';
 export const Slideout = (props: SlideoutProps) => {
 	let { options } = props;
 	const { config, get, toggle } = slideout;
-	const fallbackId = useId().replace(/:/g, '');
+	const fallbackId = useFormattedId();
 	const slideoutId = `slideout-${options?.id ? options.id : fallbackId}`;
 
 	// Get default attributes for slideout
