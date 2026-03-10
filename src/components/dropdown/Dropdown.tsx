@@ -1,5 +1,5 @@
 /* React */
-import { useId, useState } from 'react';
+import { useContext, useId, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 /* Local styles */
@@ -9,9 +9,13 @@ import './styles/dropdown.scss';
 import { DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside } from '../../_config/scripts/hooks';
 
+/* Local components */
+import { Context } from '../../context/Context';
+
 export const Dropdown = (props: DropdownProps) => {
 	const { buttonLabel, buttonLinkClass, buttonUrl, children, closeOnClick } = props;
-	const dropdownId = `dropdown-${useId().replace(/:/g, '')}`;
+	const context = useContext(Context);
+	const dropdownId = `dropdown-${context.utils.setId(useId())}`;
 	let [dropdown, setDropdown] = useState('');
 
 	// Toggle dropdown state

@@ -61,9 +61,19 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 
 	return (
 		<li className="navigation-list-item">
-			<NavLink to={nav.url} title={nav.alt || nav.label} className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}>
-				{nav.label}
-			</NavLink>
+			{nav.isRoute ? (
+				<NavLink
+					to={nav.url}
+					title={nav.alt || nav.label}
+					className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}
+				>
+					{nav.label}
+				</NavLink>
+			) : (
+				<a href={nav.url} title={nav.alt || nav.label} target="_blank" rel="noreferrer">
+					{nav.label}
+				</a>
+			)}
 
 			{children ? children : null}
 		</li>

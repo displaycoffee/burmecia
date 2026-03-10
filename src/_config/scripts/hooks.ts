@@ -7,7 +7,7 @@ let pageCache = {
 	previous: '',
 };
 
-export function useBodyClass(defaultPrefix: string) {
+export const useBodyClass = (defaultPrefix: string) => {
 	const location = useLocation();
 	const bodySelector = document.querySelector('body');
 	const bodyPrefix = 'page-';
@@ -28,7 +28,7 @@ export function useBodyClass(defaultPrefix: string) {
 	}
 
 	return null;
-}
+};
 
 export const useClickOutside = (callback: Function) => {
 	const clickRef: RefObject<HTMLDivElement | null> = useRef(null);
@@ -49,7 +49,7 @@ export const useClickOutside = (callback: Function) => {
 	return clickRef;
 };
 
-export function useRespond(bp: number) {
+export const useRespond = (bp: number) => {
 	const rule = window.matchMedia(`(min-width: ${bp}px)`);
 	let [match, setMatch] = useState(rule.matches);
 
@@ -64,4 +64,4 @@ export function useRespond(bp: number) {
 	};
 
 	return match;
-}
+};

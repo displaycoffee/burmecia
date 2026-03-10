@@ -13,8 +13,9 @@ import { Context } from '../../context/Context';
 
 export const Slideout = (props: SlideoutProps) => {
 	let { options } = props;
+	const context = useContext(Context);
 	const { config, get, toggle } = slideout;
-	const fallbackId = useId().replace(/:/g, '');
+	const fallbackId = context.utils.setId(useId());
 	const slideoutId = `slideout-${options?.id ? options.id : fallbackId}`;
 
 	// Get default attributes for slideout
