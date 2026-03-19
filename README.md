@@ -1,4 +1,4 @@
-﻿# Burmecia - version 3.2.5
+﻿# Burmecia - version 3.3.0
 
 React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better.
 
@@ -18,13 +18,8 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 - `_config` directory configures "global" settings
 - Organized other directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `pages` ("major" content), and `targets`
 - `targets` directory contains code that targets elements in index.html (`#index` and `#portal`)
+- index.html also contains a target for `#font-face-styles`, which sets the `font-face` styles before other styles
 
 ### Built with
 
-- React
-- TypeScript
-- JavaScript
-- CSS
-- Sass
-- HTML
-- Vite
+[![Built with](https://skillicons.dev/icons?i=react,ts,js,css,sass,html,vite)](https://skillicons.dev)
