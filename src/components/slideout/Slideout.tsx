@@ -30,7 +30,7 @@ export const Slideout = (props: SlideoutProps) => {
 
 	// Create shared slideout button
 	const slideoutButton = (
-		<button className="slideout-button unstyled pointer" type="button" onClick={(e) => toggle(e, slideoutId)}>
+		<button className="slideout-button unstyled pointer" type="button" aria-label="Slideout Button" onClick={(e) => toggle(e, slideoutId)}>
 			<span className="icon-wrapper icon-wrapper-large">
 				<svg className="icon icon-equalizer">
 					<use xlinkHref="#icon-equalizer"></use>
@@ -57,9 +57,14 @@ export const Slideout = (props: SlideoutProps) => {
 
 			<div className={config.classes.menu} style={styles}>
 				<header className="slideout-header flex-nowrap flex-align-items-center">
-					<h3 className="slideout-title">{options.label}</h3>
+					<h2 className="slideout-title h3">{options.label}</h2>
 
-					<button className="slideout-close pointer unstyled" type="button" onClick={(e) => toggle(e, false)}>
+					<button
+						className="slideout-close pointer unstyled"
+						type="button"
+						aria-label="Slideout Close Button"
+						onClick={(e) => toggle(e, false)}
+					>
 						<span className="icon-wrapper">
 							<svg className="icon icon-close-thin">
 								<use xlinkHref="#icon-close-thin"></use>

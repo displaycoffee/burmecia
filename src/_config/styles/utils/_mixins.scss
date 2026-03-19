@@ -202,12 +202,10 @@
 @mixin font-face($name, $path, $file-name, $weight : normal, $style: normal) {
 	@font-face {
 		font-family: $name;
-		src: url($path + $file-name + '.woff2') format('woff2'),
-			url($path + $file-name + '.woff') format('woff'),
-			url($path + $file-name + '.ttf') format('truetype');
+		src: url($path + $file-name + '.woff2') format('woff2');
 		font-weight: $weight;
 		font-style: $style;
-		font-display: block;
+		font-display: swap;
 	}
 }
 

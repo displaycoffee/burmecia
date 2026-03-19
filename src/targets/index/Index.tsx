@@ -2,6 +2,7 @@
 import { BrowserRouter } from 'react-router-dom';
 
 /* Local styles */
+import fontFaceStyles from './styles/font-face.scss?inline';
 import './styles/index.scss';
 
 /* Local scripts */
@@ -24,4 +25,5 @@ const Index = () => {
 };
 
 /* Create main target entry point */
+utils.renderTarget('#font-face-styles', fontFaceStyles);
 utils.renderTarget('#index', <Index />);
