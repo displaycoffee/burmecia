@@ -11,6 +11,7 @@ import { slideout } from './scripts/slideout';
 
 /* Local components */
 import { Context } from '../../context/Context';
+import { Icon } from '../icons/Icons';
 
 export const Slideout = (props: SlideoutProps) => {
 	let { options } = props;
@@ -31,11 +32,7 @@ export const Slideout = (props: SlideoutProps) => {
 	// Create shared slideout button
 	const slideoutButton = (
 		<button className="slideout-button unstyled pointer" type="button" aria-label="Slideout Button" onClick={(e) => toggle(e, slideoutId)}>
-			<span className="icon-wrapper icon-wrapper-large">
-				<svg className="icon icon-equalizer">
-					<use xlinkHref="#icon-equalizer"></use>
-				</svg>
-			</span>
+			<Icon id={'equalizer'} size={'large'} />
 			{options.label}
 		</button>
 	);
@@ -65,11 +62,7 @@ export const Slideout = (props: SlideoutProps) => {
 						aria-label="Slideout Close Button"
 						onClick={(e) => toggle(e, false)}
 					>
-						<span className="icon-wrapper">
-							<svg className="icon icon-close-thin">
-								<use xlinkHref="#icon-close-thin"></use>
-							</svg>
-						</span>
+						<Icon id={'close-thin'} />
 					</button>
 				</header>
 

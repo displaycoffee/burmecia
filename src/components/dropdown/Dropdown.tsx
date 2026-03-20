@@ -9,6 +9,9 @@ import './styles/dropdown.scss';
 import { DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside, useFormattedId } from '../../_config/scripts/hooks';
 
+/* Local components */
+import { Icon } from '../icons/Icons';
+
 export const Dropdown = (props: DropdownProps) => {
 	const { buttonLabel, buttonLinkClass, buttonUrl, children, closeOnClick } = props;
 	const dropdownId = `dropdown-${useFormattedId()}`;
@@ -51,13 +54,7 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 	const dropdownActiveClass = `${dropdownLinkClass} ${dropdownLinkClass}-active`;
 
 	// Create dropdown icon
-	const icon = (
-		<div className="icon-wrapper">
-			<svg className="icon icon-angle-down">
-				<use xlinkHref="#icon-angle-down"></use>
-			</svg>
-		</div>
-	);
+	const icon = <Icon id={'angle-down'} />;
 
 	return (
 		<div className="dropdown-button">
