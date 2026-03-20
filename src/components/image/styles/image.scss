@@ -11,6 +11,10 @@
 		max-width: 100%;
 		border: 0;
 	}
+	.image-hidden {
+		opacity: 0;
+		visibility: hidden;
+	}
 	.image-wrapper {
 		img {
 			line-height: 0;
@@ -36,9 +40,6 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-		img {
-			@include mixins.sr-only;
-		}
 	}
 	.image-wrapper-align-center {
 		img {
