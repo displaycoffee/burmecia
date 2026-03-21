@@ -80,7 +80,7 @@ export const Container = () => {
 
 				<Footer />
 
-				<button className="pointer unstyled a" type="button" aria-label="Scroll to Top Button" onClick={(e) => utils.scrollTo(e, '#index')}>
+				<button className="pointer unstyled a" type="button" aria-label="Scroll to top button" onClick={(e) => utils.scrollTo(e, '#index')}>
 					Scroll to top
 				</button>
 

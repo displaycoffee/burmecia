@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import './styles/dropdown.scss';
 
 /* Local scripts */
-import { DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
+import { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside, useFormattedId } from '../../_config/scripts/hooks';
 
 /* Local components */
@@ -56,6 +56,14 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 	// Create dropdown icon
 	const icon = <Icon id={'angle-down'} />;
 
+	// Set button attributes
+	const buttonAttributes = {
+		className: 'dropdown-button-toggle unstyled',
+		type: 'button',
+		ariaLabel: 'Dropdown button',
+		onClick: toggleDropdown,
+	} as DropdownButtonAttributesType;
+
 	return (
 		<div className="dropdown-button">
 			{buttonUrl ? (
@@ -69,12 +77,10 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 						{buttonLabel}
 					</NavLink>
 
-					<button className="dropdown-button-toggle unstyled" type="button" aria-label="Dropdown Button" onClick={toggleDropdown}>
-						{icon}
-					</button>
+					<button {...buttonAttributes}>{icon}</button>
 				</>
 			) : (
-				<button className="dropdown-button-toggle unstyled" type="button" aria-label="Dropdown Button" onClick={toggleDropdown}>
+				<button {...buttonAttributes}>
 					{buttonLabel}
 					{icon}
 				</button>

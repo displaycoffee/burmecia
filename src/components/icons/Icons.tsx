@@ -7,10 +7,15 @@ import { IconsProps } from './scripts/icons-types';
 export const Icon = (props: IconsProps) => {
 	const { id, size } = props;
 	const iconClass = 'icon-wrapper';
-	const iconClassSize = size ? ` ${iconClass}-${size}` : ``;
+
+	// Create icon classes
+	const iconClasses = [iconClass];
+	if (size) {
+		iconClasses.push(`${iconClass}-${size}`);
+	}
 
 	return (
-		<div className={`${iconClass}${iconClassSize}`}>
+		<div className={iconClasses.join(' ')}>
 			<svg className={`icon icon-${id}`}>
 				<use xlinkHref={`#icon-${id}`} />
 			</svg>

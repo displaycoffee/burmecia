@@ -32,6 +32,7 @@ export const Image = (props: ImageProps) => {
 	// Adjust image attributes
 	if (alt) {
 		imageAttributes.alt = alt;
+		imageAttributes.title = alt;
 	}
 	if (hasLazy) {
 		imageAttributes.loading = 'lazy';

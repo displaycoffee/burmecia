@@ -6,6 +6,7 @@ type Image = {
 	hasWrapper?: boolean;
 	image: string;
 	imageClass?: string;
+	title?: string;
 	wrapperClass?: string;
 };
 

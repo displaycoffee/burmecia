@@ -15,12 +15,15 @@ type DropdownButton = {
 	toggleDropdown: MouseEventHandler<HTMLButtonElement>;
 };
 
+type DropdownButtonAttributes = HTMLAttributes<HTMLDivElement>;
+
 type DropdownContent = {
 	children: ReactNode;
 	closeContent: MouseEventHandler<HTMLDivElement>;
 };
 
 /* Export types */
+export type DropdownButtonAttributesType = DropdownButtonAttributes;
 
 /* Export prop types */
 export type DropdownProps = Dropdown;

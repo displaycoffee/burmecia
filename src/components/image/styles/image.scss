@@ -18,6 +18,8 @@
 	.image-wrapper {
 		img {
 			line-height: 0;
+			max-width: 100%;
+			@include mixins.sizing(auto, auto);
 		}
 	}
 	.image-wrapper-fluid {
@@ -25,15 +27,24 @@
 		height: 0;
 		padding-bottom: 100%;
 		img {
-			@include mixins.sizing(auto, auto);
-			max-height: 100%;
 			@include mixins.position-fill(auto);
+		}
+	}
+	.image-wrapper-contain, .image-wrapper-fit {
+		img {
+			max-width: none;
+			max-height: none;
+			@include mixins.sizing(100%, 100%);
+		}
+	}
+	.image-wrapper-contain {
+		img {
+			@include mixins.object-fit(center, contain);
 		}
 	}
 	.image-wrapper-fit {
 		img {
-			@include mixins.sizing(100%, 100%);
-			@include mixins.object-fit(center, cover)
+			@include mixins.object-fit(center, cover);
 		}
 	}
 	.image-wrapper-bg {

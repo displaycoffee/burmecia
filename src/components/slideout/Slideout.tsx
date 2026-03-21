@@ -31,7 +31,7 @@ export const Slideout = (props: SlideoutProps) => {
 
 	// Create shared slideout button
 	const slideoutButton = (
-		<button className="slideout-button unstyled pointer" type="button" aria-label="Slideout Button" onClick={(e) => toggle(e, slideoutId)}>
+		<button className="slideout-button unstyled pointer" type="button" aria-label="Slideout button" onClick={(e) => toggle(e, slideoutId)}>
 			<Icon id={'equalizer'} size={'large'} />
 			{options.label}
 		</button>
