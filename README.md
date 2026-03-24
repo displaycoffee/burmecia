@@ -1,6 +1,6 @@
 ﻿# Burmecia - version 3.4.0
 
-React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better.
+React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better. [Preview here.](https://burmecia.display.coffee)
 
 This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal Rain" and home to the character Freya.
 
