@@ -7,6 +7,8 @@ import { Dropdown } from '../../components/dropdown/Dropdown';
 export const Home = () => {
 	return (
 		<div className="home spacing-reset">
+			<h2>Home</h2>
+
 			<p>this is an index page.</p>
 
 			<Dropdown buttonLabel={'Label'}>

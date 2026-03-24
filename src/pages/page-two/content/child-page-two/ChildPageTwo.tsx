@@ -10,6 +10,8 @@ export const ChildPageTwo = (props: ObjectPrimitiveProps) => {
 
 	return (
 		<div className="page-child-page-two spacing-reset">
+			<h2>Child Page Two</h2>
+
 			<p>
 				this is <strong>child page two</strong> of page two.
 			</p>

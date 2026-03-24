@@ -54,7 +54,7 @@ export const Slideout = (props: SlideoutProps) => {
 
 			<div className={config.classes.menu} style={styles}>
 				<header className="slideout-header flex-nowrap flex-align-items-center">
-					<h2 className="slideout-title h3">{options.label}</h2>
+					<h2 className="slideout-title">{options.label}</h2>
 
 					<button
 						className="slideout-close pointer unstyled"

@@ -10,6 +10,8 @@ export const ChildPageOne = () => {
 
 	return (
 		<div className="page-child-page-one spacing-reset">
+			<h2>Child Page One</h2>
+
 			<p>
 				this is <strong>child page one</strong> of page two.
 			</p>
