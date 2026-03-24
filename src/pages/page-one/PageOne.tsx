@@ -9,6 +9,8 @@ export const PageOne = (props: ObjectPrimitiveProps) => {
 
 	return (
 		<div className="page-one spacing-reset">
+			<h2>Page One</h2>
+
 			<p>this is the first page.</p>
 
 			<Image alt={'Cat 01'} hasBg={true} hasLazy={true} image={'/assets/images/test/test-image-01.jpg'} wrapperClass={`${imageClass}-bg`} />

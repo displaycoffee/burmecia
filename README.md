@@ -1,4 +1,4 @@
-﻿# Burmecia - version 3.3.1
+﻿# Burmecia - version 3.4.0
 
 React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better.
 
@@ -18,7 +18,14 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 - `_config` directory configures "global" settings
 - Organized other directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `pages` ("major" content), and `targets`
 - `targets` directory contains code that targets elements in index.html (`#index` and `#portal`)
-- index.html contains a `style` block with `@font-face` rules for faster rendering of font families
+- index.html contains a `style` block with `@font-face` rules for faster rendering of font families and defining system fonts as fallbacks
+
+### other
+
+- **optimize-html.js** - A helper script that runs after `npm run build`, reformatting HTML according to Lighthouse best practices
+- **vite.config.js** - Main Vite config file
+- **vite.sitemap.js** - Builds `sitemap.xml` which gets added to `dist` (modify as needed)
+- **vite.utils.js** - Utility functions to keep the Vite config files smaller
 
 ### Built with
 

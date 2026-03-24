@@ -18,7 +18,7 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks: {
-					vendor: ['react', 'react-dom'],
+					vendor: ['react', 'react-dom', 'react-router-dom'],
 				},
 				assetFileNames: (file) => {
 					return viteUtils.assetFileNames(file);

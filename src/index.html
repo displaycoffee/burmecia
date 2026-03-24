@@ -1,23 +1,44 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<title>Burmecia</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="Burmecia - A React/TypeScript Boilerplate" />
 		<meta property="og:title" content="Burmecia" />
 		<meta property="og:site_name" content="Burmecia" />
-		<meta property="og:url" content="https://github.com/displaycoffee/burmecia" />
+		<meta property="og:url" content="https://burmecia.display.coffee" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:description" content="Burmecia - A React/TypeScript Boilerplate" />
 		<meta property="og:type" content="website" />
-		<title>Burmecia</title>
-		<link rel="manifest" href="/assets/images/theme/site.webmanifest" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/theme/favicon-180x180.png" />
-		<link rel="icon" type="image/png" sizes="192x192" href="/assets/images/theme/favicon-192x192.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/theme/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/theme/favicon-16x16.png" />
+		<meta name="theme-color" content="#fdfdfd" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#333333" media="(prefers-color-scheme: dark)" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="/favicon-92x92.png" type="image/png" sizes="92x92" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="preload" href="/assets/fonts/open-sans-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/open-sans-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/open-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/open-sans-bold-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/montserrat-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/montserrat-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href="/assets/fonts/montserrat-bold-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		<script type="module" src="./targets/index/Index.tsx"></script>
 		<style>
+			@font-face {
+				font-family: 'Fallback';
+				src: local('Arial');
+				size-adjust: 105%;
+			}
+			@font-face {
+				font-family: 'Fallback Bold';
+				src: local('Arial Black');
+				size-adjust: 98%;
+			}
 			@font-face {
 				font-family: 'Open Sans';
 				src: url('/assets/fonts/open-sans-regular.woff2') format('woff2');
@@ -80,6 +101,5 @@
 	<body>
 		<div id="index"></div>
 		<div id="portal"></div>
-		<script type="module" src="./targets/index/Index.tsx"></script>
 	</body>
 </html>

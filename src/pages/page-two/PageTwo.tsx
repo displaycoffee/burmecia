@@ -26,7 +26,9 @@ export const PageTwo = () => {
 export const PageTwoIndex = () => {
 	return (
 		<div className="page-two spacing-reset">
-			<h4>Child Pages</h4>
+			<h2>Page Two</h2>
+
+			<h3>Child Pages</h3>
 			<ul>
 				{navigationList.map((nav) => {
 					return (

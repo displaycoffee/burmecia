@@ -1,15 +1,15 @@
 {
 	"name": "burmecia",
-	"version": "3.3.1",
+	"version": "3.4.0",
 	"description": "Custom react template build.",
 	"main": "bundle.js",
 	"type": "module",
 	"keywords": [],
 	"author": "displaycoffee",
 	"license": "ISC",
-	"homepage": "https://github.com/displaycoffee/burmecia",
+	"homepage": "https://burmecia.display.coffee",
 	"scripts": {
-		"build": "vite build",
+		"build": "vite build && node optimize-html.js && npx prettier --write dist/index.html --ignore-path /dev/null",
 		"dev": "vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
@@ -36,9 +36,7 @@
 		"vite-plugin-sitemap": "^0.8.2"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "^5.90.21",
 		"react": "^19.2.4",
-		"react-cookie": "^8.0.1",
 		"react-dom": "^19.2.4",
 		"react-router-dom": "^7.13.0"
 	},

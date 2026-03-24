@@ -9,6 +9,8 @@ export const Sidebar = (props: SidebarProps) => {
 
 	return show ? (
 		<aside className="sidebar">
+			<h3>Sidebar</h3>
+
 			<p>this is sidebar content.</p>
 		</aside>
 	) : null;

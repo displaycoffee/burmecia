@@ -60,7 +60,7 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 	const buttonAttributes = {
 		className: 'dropdown-button-toggle unstyled',
 		type: 'button',
-		ariaLabel: 'Dropdown button',
+		['aria-label']: 'Dropdown button',
 		onClick: toggleDropdown,
 	} as DropdownButtonAttributesType;
 
@@ -93,7 +93,7 @@ export const DropdownContent = (props: DropdownContentProps) => {
 	const { children, closeContent } = props;
 
 	return (
-		<div className="dropdown-content" onClick={closeContent} role="presentation">
+		<div className="dropdown-content spacing-reset" onClick={closeContent} role="presentation">
 			{children}
 		</div>
 	);
