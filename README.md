@@ -29,5 +29,5 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 
 ### Built with
 
-[![Built with](https://skillicons.dev/icons?i=react,ts,js,css,sass,html,vite)](https://skillicons.dev)<br />
+![Built with](https://skillicons.dev/icons?i=react,ts,js,css,sass,html,vite)<br />
 Also uses ESLint and Prettier.
