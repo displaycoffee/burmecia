@@ -1,12 +1,15 @@
+/* React */
+import { lazy } from 'react';
+
 /* Local scripts */
 import { NavigationMapType, NavigationRoutesType } from './navigation-types';
 import { navigation } from './navigation';
 import { navigationUtils } from './navigation-utils';
 
 /* Local components */
-import { Home } from '../../../pages/home/Home';
-import { PageOne } from '../../../pages/page-one/PageOne';
-import { PageTwo } from '../../../pages/page-two/PageTwo';
+const Home = lazy(() => import('../../../pages/home/Home').then((m) => ({ default: m.Home })));
+const PageOne = lazy(() => import('../../../pages/page-one/PageOne').then((m) => ({ default: m.PageOne })));
+const PageTwo = lazy(() => import('../../../pages/page-two/PageTwo').then((m) => ({ default: m.PageTwo })));
 
 /* Set up component mapping for routes */
 /* Note: this should match the navigation.url value in navigation.ts (without the '/') */

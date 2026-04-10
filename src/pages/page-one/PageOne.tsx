@@ -4,7 +4,7 @@ import './styles/page-one.scss';
 /* Local components */
 import { Image } from '../../components/image/Image';
 
-export const PageOne = (props: ObjectPrimitiveProps) => {
+export const PageOne = () => {
 	const imageClass = 'image-wrapper image-wrapper';
 
 	return (

@@ -10,8 +10,8 @@ export const Image = (props: ImageProps) => {
 	const hasWrapper = typeof props?.hasWrapper == 'boolean' ? props.hasWrapper : true;
 
 	// Set up initial attributes
-	let wrapperAttributes = {} as WrapperAttributesType;
-	let imageAttributes = {
+	const wrapperAttributes = {} as WrapperAttributesType;
+	const imageAttributes = {
 		onError: (e: EventsType) => imageUtils.onError(e),
 		onLoad: (e: EventsType) => imageUtils.onLoad(e),
 		src: image,
@@ -29,11 +29,10 @@ export const Image = (props: ImageProps) => {
 		}
 	}
 
+	// Create alt text
+	const altText = alt ? alt : '';
+
 	// Adjust image attributes
-	if (alt) {
-		imageAttributes.alt = alt;
-		imageAttributes.title = alt;
-	}
 	if (hasLazy) {
 		imageAttributes.loading = 'lazy';
 	}
@@ -50,9 +49,9 @@ export const Image = (props: ImageProps) => {
 
 	return hasWrapper ? (
 		<div {...wrapperAttributes}>
-			<img {...imageAttributes} />
+			<img {...imageAttributes} alt={altText} title={altText} />
 		</div>
 	) : (
-		<img {...imageAttributes} />
+		<img {...imageAttributes} alt={altText} title={altText} />
 	);
 };

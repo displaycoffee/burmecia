@@ -18,7 +18,7 @@ const navigationList = navigationUtils.get.children(2);
 
 export const PageTwo = () => {
 	const location = useLocation();
-	const showPageTwo = location.pathname == '/page-two' ? true : false;
+	const showPageTwo = location.pathname === '/page-two';
 
 	return showPageTwo ? <PageTwoIndex /> : <PageTwoContent />;
 };
@@ -65,9 +65,11 @@ export const PageTwoContent = () => {
 	const defaultContent = <p>Thank you! But the page is in another castle.</p>;
 
 	return (
-		{
-			'child-page-one': <ChildPageOne />,
-			'child-page-two': <ChildPageTwo />,
-		}[last as string] || defaultContent
+		<>
+			{{
+				'child-page-one': <ChildPageOne />,
+				'child-page-two': <ChildPageTwo />,
+			}[last as string] || defaultContent}
+		</>
 	);
 };

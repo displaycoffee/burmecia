@@ -1,5 +1,5 @@
 /* React */
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 /* Local styles */
@@ -20,22 +20,18 @@ import { Sidebar } from '../sidebar/Sidebar';
 import { Footer } from '../footer/Footer';
 import { Portal } from '../../targets/portal/Portal';
 
+/* Pages that should exclude the sidebar */
+const excludeSidebar: string[] = ['/page-two'];
+
 export const Container = () => {
 	const context = useContext(Context);
 	const { theme, utils } = context;
 	const location = useLocation();
 	const isDesktop = useRespond(theme.bps.bp02 as number);
-	let [sidebar, setSidebar] = useState(true);
+	const sidebar = !excludeSidebar.includes(location.pathname);
 
 	// Set body class using custom hook
 	useBodyClass('home');
-
-	// Determine if layout should have sidebar or not
-	const excludeSidebar: string[] = ['/page-two'];
-	useEffect(() => {
-		sidebar = excludeSidebar.includes(location.pathname) ? false : true;
-		setSidebar(sidebar);
-	}, [location.pathname]);
 
 	// Slideout options
 	const slideoutOptions = {
@@ -60,15 +56,6 @@ export const Container = () => {
 				<Header />
 
 				{isDesktop ? <Navigation /> : <Slideout options={slideoutOptions} />}
-
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra imperdiet nisl sed mattis. Orci varius natoque
-					penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris pharetra enim non nunc pharetra condimentum ac nec nisi.
-					Nunc ac tortor leo. Vestibulum dui diam, ultricies vel tempor quis, cursus eget arcu. Donec sagittis urna volutpat, accumsan odio
-					in, porta ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Interdum et malesuada fames ac ante ipsum primis in
-					faucibus. Mauris a vulputate tellus, at varius mi. Donec vitae purus faucibus, feugiat ipsum eget, semper diam. Pellentesque
-					pretium vulputate accumsan.
-				</p>
 
 				<main className="main">
 					<div className="main-layout flex-wrap">

@@ -15,12 +15,11 @@ import { Icon } from '../icons/Icons';
 export const Dropdown = (props: DropdownProps) => {
 	const { buttonLabel, buttonLinkClass, buttonUrl, children, closeOnClick } = props;
 	const dropdownId = `dropdown-${useFormattedId()}`;
-	let [dropdown, setDropdown] = useState('');
+	const [dropdown, setDropdown] = useState('');
 
 	// Toggle dropdown state
 	const toggleDropdown = () => {
-		dropdown = dropdown == dropdownId ? '' : dropdownId;
-		setDropdown(dropdown);
+		setDropdown(dropdown === dropdownId ? '' : dropdownId);
 	};
 
 	// Detect click outside dropdown
@@ -29,13 +28,12 @@ export const Dropdown = (props: DropdownProps) => {
 	// Determine if we should close dropdown when clicked inside
 	const closeContent = () => {
 		if (closeOnClick) {
-			dropdown = '';
-			setDropdown(dropdown);
+			setDropdown('');
 		}
 	};
 
 	return (
-		<div id={dropdownId} className={`dropdown dropdown-${dropdown == dropdownId ? 'expanded' : 'collapsed'}`} ref={dropdownRef}>
+		<div id={dropdownId} className={`dropdown dropdown-${dropdown === dropdownId ? 'expanded' : 'collapsed'}`} ref={dropdownRef}>
 			<DropdownButton
 				buttonLabel={buttonLabel}
 				buttonLinkClass={buttonLinkClass}
@@ -43,7 +41,7 @@ export const Dropdown = (props: DropdownProps) => {
 				closeContent={closeContent}
 				toggleDropdown={toggleDropdown}
 			/>
-			<DropdownContent children={children} closeContent={closeContent} />
+			<DropdownContent closeContent={closeContent}>{children}</DropdownContent>
 		</div>
 	);
 };
