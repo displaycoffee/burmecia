@@ -1,6 +1,6 @@
 /* Local scripts */
 import { utils } from '../../../_config/scripts/utils';
-import { NavigationMapType, NavigationRoutesType, NavigationType } from './navigation-types';
+import { NavigationRoutesType, NavigationType } from './navigation-types';
 import { navigation } from './navigation';
 
 export const navigationUtils = {
@@ -57,11 +57,11 @@ export const navigationUtils = {
 	},
 	routes: {
 		build: {
-			config: (nav: NavigationType, map: NavigationMapType) => {
+			config: (nav: NavigationType) => {
 				// Build route config
 				const config = {
 					id: nav.id,
-					element: map[navigationUtils.routes.build.key(nav.url)],
+					element: nav.element,
 					path: nav.url,
 				} as NavigationRoutesType;
 

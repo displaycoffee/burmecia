@@ -1,10 +1,19 @@
+/* React */
+import { lazy } from 'react';
+
 /* Local scripts */
 import { NavigationType } from './navigation-types';
+
+/* Local components */
+const Home = lazy(() => import('../../../pages/home/Home').then((m) => ({ default: m.Home })));
+const PageOne = lazy(() => import('../../../pages/page-one/PageOne').then((m) => ({ default: m.PageOne })));
+const PageTwo = lazy(() => import('../../../pages/page-two/PageTwo').then((m) => ({ default: m.PageTwo })));
 
 export const navigation = [
 	{
 		id: 0,
 		alt: 'Home',
+		element: Home,
 		isRoute: true,
 		label: 'Home',
 		showInNav: true,
@@ -13,6 +22,7 @@ export const navigation = [
 	{
 		id: 1,
 		alt: 'Page One',
+		element: PageOne,
 		isRoute: true,
 		label: 'Page One',
 		showInNav: true,
@@ -21,6 +31,7 @@ export const navigation = [
 	{
 		id: 2,
 		alt: 'Page Two',
+		element: PageTwo,
 		isRoute: true,
 		label: 'Page Two',
 		showInNav: true,
@@ -29,6 +40,7 @@ export const navigation = [
 			{
 				id: 1,
 				alt: 'Child Page One',
+				element: PageTwo,
 				isRoute: true,
 				label: 'Child Page One',
 				showInNav: true,
@@ -37,6 +49,7 @@ export const navigation = [
 			{
 				id: 2,
 				alt: 'Child Page Two',
+				element: PageTwo,
 				isRoute: true,
 				label: 'Child Page Two',
 				url: '/child-page-two',
