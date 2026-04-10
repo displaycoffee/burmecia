@@ -11,7 +11,6 @@ import { useBodyClass, useRespond } from '../../_config/scripts/hooks';
 /* Local components */
 import { Context } from '../../context/Context';
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
-import { IconMap } from '../../components/icons/Icons';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';
 import { Header } from '../header/Header';
@@ -49,8 +48,6 @@ export const Container = () => {
 	return (
 		<div className="container">
 			<ErrorBoundary message={<ContainerError />}>
-				<IconMap />
-
 				<SlideoutOverlay options={slideoutOptions} />
 
 				<Header />

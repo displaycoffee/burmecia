@@ -14,7 +14,7 @@ export default defineConfig({
 		outDir: '../dist',
 		emptyOutDir: false,
 		modulePreload: {
-			polyfill: true,
+			polyfill: false,
 		},
 		rollupOptions: {
 			output: {
