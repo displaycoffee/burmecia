@@ -7,7 +7,10 @@ export const Footer = () => {
 	return (
 		<footer className="footer">
 			<p>
-				&copy; {date} <a href="//github.com/displaycoffee">displaycoffee</a>
+				&copy; {date}{' '}
+				<a href="//display.coffee" target="_blank" rel="noreferrer">
+					displaycoffee
+				</a>
 			</p>
 		</footer>
 	);

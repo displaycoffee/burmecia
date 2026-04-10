@@ -1,5 +1,5 @@
 /* React */
-import { RefObject, useContext, useRef } from 'react';
+import { RefObject, useContext, useEffect, useRef } from 'react';
 
 /* Local styles */
 import './styles/slideout.scss';
@@ -14,7 +14,7 @@ import { Context } from '../../context/Context';
 import { Icon } from '../icons/Icons';
 
 export const Slideout = (props: SlideoutProps) => {
-	let { options } = props;
+	const { options } = props;
 	const { config, get, toggle } = slideout;
 	const fallbackId = useFormattedId();
 	const slideoutId = `slideout-${options?.id ? options.id : fallbackId}`;
@@ -26,7 +26,7 @@ export const Slideout = (props: SlideoutProps) => {
 	const styles = {
 		width: width,
 		transition: `${direction} 0.5s ease-in-out`,
-		[direction]: orientation == 'vertical' ? config.values.vertical : `-${width}`,
+		[direction]: orientation === 'vertical' ? config.values.vertical : `-${width}`,
 	};
 
 	// Create shared slideout button
@@ -38,7 +38,7 @@ export const Slideout = (props: SlideoutProps) => {
 	);
 
 	// Set button properties
-	const button = typeof options?.button == 'object' ? options.button : { outside: false, show: true };
+	const button = typeof options?.button === 'object' ? options.button : { outside: false, show: true };
 
 	return button.outside && button.show ? (
 		slideoutButton
@@ -74,7 +74,7 @@ export const Slideout = (props: SlideoutProps) => {
 
 							// Close slideout menu if inner link is clicked on
 							if (eventNode?.nodeName) {
-								if (eventNode.nodeName.toLowerCase() == 'a') {
+								if (eventNode.nodeName.toLowerCase() === 'a') {
 									setTimeout(() => {
 										toggle(e, false);
 									});
@@ -95,28 +95,35 @@ export const SlideoutOverlay = (props: SlideoutOverlayProps) => {
 	const { options } = props;
 	const context = useContext(Context);
 	const { config, set, toggle } = slideout;
-
-	// Get slideout target and create element reference
-	const slideoutTarget = useRef(document.querySelector('body')).current;
 	const elementRef: RefObject<HTMLDivElement | null> = useRef(null);
 
-	// If there is no target, don't return anything
-	if (!slideoutTarget) return null;
+	// Create overlay element and append to body on mount, remove on unmount
+	useEffect(() => {
+		const slideoutTarget = document.querySelector('body');
+		if (!slideoutTarget) return;
 
-	// Create element reference to inject slideout overlay
-	if (!elementRef.current) {
-		elementRef.current = document.createElement('div');
-		context.utils.setAttributes(elementRef.current, {
+		const overlay = document.createElement('div');
+		context.utils.setAttributes(overlay, {
 			class: 'slideout-overlay pointer',
 			role: 'presentation',
 		});
-		elementRef.current.onclick = (e) => toggle(e, false);
-		slideoutTarget.appendChild(elementRef.current);
-	}
+		overlay.onclick = (e) => toggle(e, false);
+		slideoutTarget.appendChild(overlay);
+		elementRef.current = overlay;
+
+		return () => {
+			overlay.remove();
+			elementRef.current = null;
+		};
+	}, [context.utils, toggle]);
 
 	// If we are on desktop and slideout is active, remove body classes to hide overlay
-	const body = document.querySelector('body');
-	if (body && body.classList.contains(config.classes.activeBody) && options.isDesktop) {
-		set.body('remove');
-	}
+	useEffect(() => {
+		const body = document.querySelector('body');
+		if (body && body.classList.contains(config.classes.activeBody) && options.isDesktop) {
+			set.body('remove');
+		}
+	}, [config, options.isDesktop, set]);
+
+	return null;
 };

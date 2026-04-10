@@ -42,7 +42,7 @@ export const utils = {
 		// Render target for app
 		const targetElement = document.querySelector(element);
 		if (targetElement) {
-			const targetHasChildren = targetElement?.children && targetElement.children.length !== 0 ? true : false;
+			const targetHasChildren = targetElement.children.length > 0;
 			if (!targetHasChildren) {
 				const target = createRoot(targetElement);
 				target.render(component);

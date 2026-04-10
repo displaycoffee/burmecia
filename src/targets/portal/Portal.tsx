@@ -1,5 +1,5 @@
 /* React */
-import { RefObject, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 /* Local styles */
@@ -9,21 +9,24 @@ import './styles/portal.scss';
 import { PortalProps } from './scripts/portal-types';
 
 export const Portal = ({ element, children }: PortalProps) => {
-	// Get portal and create element reference
-	const portal = useRef(document.querySelector(element)).current;
-	const elementRef: RefObject<HTMLDivElement | null> = useRef(null);
+	const [container] = useState<HTMLDivElement>(() => {
+		const div = document.createElement('div');
+		div.className = 'container container-portal';
+		return div;
+	});
 
-	// If there is no portal, don't return anything
-	if (!portal) return null;
+	// Append container to portal target on mount, remove on unmount
+	useEffect(() => {
+		const portal = document.querySelector(element);
+		if (!portal) return;
 
-	// Create element reference to wrap around portal content
-	if (!elementRef.current) {
-		elementRef.current = document.createElement('div');
-		elementRef.current.setAttribute('class', 'container');
-		portal.innerHTML = ''; // remove previous content
-		portal.appendChild(elementRef.current);
-	}
+		portal.innerHTML = '';
+		portal.appendChild(container);
 
-	// Create portal with children
-	return createPortal(children, elementRef.current);
+		return () => {
+			container.remove();
+		};
+	}, [element, container]);
+
+	return createPortal(children, container);
 };

@@ -7,7 +7,7 @@ export const navigationUtils = {
 	get: {
 		list: () => {
 			// Create navigation clone
-			let navigationClone = [] as NavigationType[];
+			const navigationClone = [] as NavigationType[];
 
 			navigation.forEach((nav) => {
 				// Create child array navigation
@@ -37,7 +37,7 @@ export const navigationUtils = {
 		},
 		children: (listId: number) => {
 			// Create navigation clone
-			let navigationClone = [] as NavigationType[];
+			const navigationClone = [] as NavigationType[];
 
 			navigation.forEach((nav) => {
 				if (listId == nav.id && nav?.children && nav.children.length !== 0) {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 /* Local components */
 import { Context } from '../../../../context/Context';
 
-export const ChildPageTwo = (props: ObjectPrimitiveProps) => {
+export const ChildPageTwo = () => {
 	const context = useContext(Context);
 
 	return (
