@@ -55,27 +55,25 @@ export const navigationUtils = {
 		},
 	},
 	routes: {
-		build: {
-			config: (nav: NavigationType) => {
-				// Build route config
-				const config = {
-					id: nav.id,
-					element: nav.element,
-					path: nav.url,
-				} as NavigationRoutesType;
+		build: (nav: NavigationType) => {
+			// Build route config
+			const config = {
+				id: nav.id,
+				element: nav.element,
+				path: nav.url,
+			} as NavigationRoutesType;
 
-				// Add props if there are any
-				if (nav?.props) {
-					config.props = nav.props;
-				}
+			// Add props if there are any
+			if (nav?.props) {
+				config.props = nav.props;
+			}
 
-				return config;
-			},
+			return config;
 		},
 	},
 	sort: (list: NavigationType[]) => {
 		// Function to sort navigation list
-		return list.sort((a, b) => {
+		return [...list].sort((a, b) => {
 			return a.id - b.id;
 		});
 	},
