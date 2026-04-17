@@ -1,5 +1,5 @@
 /* React */
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 /* Local scripts */
 import { ContextProps, ContextValuesType } from './scripts/context-types';
@@ -9,6 +9,9 @@ import { variables } from '../_config/scripts/variables';
 
 /* Create context */
 export const Context = createContext({} as ContextValuesType);
+
+/* Custom hook for consuming context */
+export const useAppContext = () => useContext(Context);
 
 /* Create Context.Provider wrapper */
 export const ContextProvider = ({ children }: ContextProps) => {

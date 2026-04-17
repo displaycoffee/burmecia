@@ -1,12 +1,11 @@
 /* React */
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 /* Local components */
-import { Context } from '../../../../context/Context';
+import { useAppContext } from '../../../../context/Context';
 
 export const ChildPageTwo = () => {
-	const context = useContext(Context);
+	const { utils } = useAppContext();
 
 	return (
 		<div className="page-child-page-two spacing-reset">
@@ -17,7 +16,7 @@ export const ChildPageTwo = () => {
 			</p>
 
 			<p>
-				<Link to={context.utils.getPage()}>Go back to page two</Link>
+				<Link to={utils.getPage()}>Go back to page two</Link>
 			</p>
 		</div>
 	);

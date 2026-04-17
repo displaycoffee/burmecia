@@ -1,5 +1,5 @@
 /* React */
-import { Fragment, Suspense, useContext, useEffect } from 'react';
+import { Fragment, Suspense, useEffect } from 'react';
 import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 /* Local styles */
@@ -11,7 +11,7 @@ import { navigationUtils } from './scripts/navigation-utils';
 import { navigationRoutes } from './scripts/navigation-routes';
 
 /* Local components */
-import { Context } from '../../context/Context';
+import { useAppContext } from '../../context/Context';
 import { Dropdown } from '../dropdown/Dropdown';
 
 /* Get navigation menu */
@@ -19,8 +19,7 @@ const navigationList = navigationUtils.get.list();
 
 export const Navigation = () => {
 	const { pathname } = useLocation();
-	const context = useContext(Context);
-	const utils = context.utils;
+	const { utils } = useAppContext();
 	const navigationLinkClass = 'navigation-link';
 
 	// Scroll to top when navigation link is clicked on
