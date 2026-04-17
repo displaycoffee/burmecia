@@ -1,5 +1,4 @@
 /* React */
-import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 /* Local styles */
@@ -9,7 +8,7 @@ import './styles/container.scss';
 import { useBodyClass, useRespond } from '../../_config/scripts/hooks';
 
 /* Local components */
-import { Context } from '../../context/Context';
+import { useAppContext } from '../../context/Context';
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';
@@ -23,8 +22,7 @@ import { Portal } from '../../targets/portal/Portal';
 const excludeSidebar: string[] = ['/page-two'];
 
 export const Container = () => {
-	const context = useContext(Context);
-	const { theme, utils } = context;
+	const { theme, utils } = useAppContext();
 	const location = useLocation();
 	const isDesktop = useRespond(theme.bps.bp02 as number);
 	const sidebar = !excludeSidebar.includes(location.pathname);

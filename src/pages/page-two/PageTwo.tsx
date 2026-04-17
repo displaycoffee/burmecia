@@ -1,5 +1,4 @@
 /* React */
-import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 /* Local styles */
@@ -9,7 +8,7 @@ import './styles/page-two.scss';
 import { navigationUtils } from '../../components/navigation/scripts/navigation-utils';
 
 /* Local components */
-import { Context } from '../../context/Context';
+import { useAppContext } from '../../context/Context';
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
 import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
 
@@ -55,11 +54,11 @@ export const PageTwoIndex = () => {
 };
 
 export const PageTwoContent = () => {
-	const context = useContext(Context);
+	const { utils } = useAppContext();
 	const location = useLocation();
 
 	// Get last path
-	const last = context.utils.getLast(location.pathname, '/');
+	const last = utils.getLast(location.pathname, '/');
 
 	// Default content
 	const defaultContent = <p>Thank you! But the page is in another castle.</p>;
