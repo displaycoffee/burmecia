@@ -1,50 +1,5 @@
 /* React */
-import { RefObject, useEffect, useId, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
-/* Variables for useBodyClass */
-const bodyPrefix = 'page-';
-const bodySelector = document.querySelector('body');
-let previousPage = '';
-
-export const useBodyClass = (defaultPrefix: string) => {
-	const location = useLocation();
-
-	useEffect(() => {
-		if (!bodySelector) return;
-
-		// Remove any previous body class
-		bodySelector.classList.remove(`${bodyPrefix}${previousPage || defaultPrefix}`);
-
-		// Update previous location path
-		// Replace any body prefix, remove first slash, and replace any other slash with hyphen
-		previousPage = location.pathname.replace(bodyPrefix, '').replace('/', '').replace(/\//g, '-');
-
-		// Add new body class
-		bodySelector.classList.add(`${bodyPrefix}${previousPage || defaultPrefix}`);
-	}, [location, defaultPrefix]);
-
-	return null;
-};
-
-export const useClickOutside = (callback: () => void) => {
-	const clickRef: RefObject<HTMLDivElement | null> = useRef(null);
-
-	// Determine if a click has been performed outside an element
-	useEffect(() => {
-		const handleClickOutside = (e: Event) => {
-			if (clickRef.current && !clickRef.current.contains(e.target as Node)) {
-				callback();
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-
-		return () => document.removeEventListener('mousedown', handleClickOutside);
-	}, [clickRef, callback]);
-
-	return clickRef;
-};
+import { useEffect, useId, useState } from 'react';
 
 export const useFormattedId = () => {
 	// Updates the format of useId hook
