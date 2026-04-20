@@ -5,9 +5,9 @@ import { Link, useLocation } from 'react-router-dom';
 import './styles/container.scss';
 
 /* Local scripts */
-import { useBodyClass } from './scripts/container-hooks';
-import { useAppContext } from '../../context/scripts/context-hooks';
 import { useRespond } from '../../_config/scripts/hooks';
+import { useAppContext } from '../../context/scripts/context-hooks';
+import { useBodyClass } from './scripts/container-hooks';
 
 /* Local components */
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
