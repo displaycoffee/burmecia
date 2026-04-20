@@ -6,12 +6,12 @@ import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import './styles/navigation.scss';
 
 /* Local scripts */
+import { useAppContext } from '../../context/scripts/context-hooks';
 import { NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
 import { navigationRoutes } from './scripts/navigation-routes';
 
 /* Local components */
-import { useAppContext } from '../../context/Context';
 import { Dropdown } from '../dropdown/Dropdown';
 
 /* Get navigation menu */

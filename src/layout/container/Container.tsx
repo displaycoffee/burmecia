@@ -6,10 +6,10 @@ import './styles/container.scss';
 
 /* Local scripts */
 import { useBodyClass } from './scripts/container-hooks';
+import { useAppContext } from '../../context/scripts/context-hooks';
 import { useRespond } from '../../_config/scripts/hooks';
 
 /* Local components */
-import { useAppContext } from '../../context/Context';
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';

@@ -5,10 +5,10 @@ import { Link, useLocation } from 'react-router-dom';
 import './styles/page-two.scss';
 
 /* Local scripts */
+import { useAppContext } from '../../context/scripts/context-hooks';
 import { navigationUtils } from '../../components/navigation/scripts/navigation-utils';
 
 /* Local components */
-import { useAppContext } from '../../context/Context';
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
 import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
 
