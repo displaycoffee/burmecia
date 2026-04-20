@@ -5,7 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 import './styles/container.scss';
 
 /* Local scripts */
-import { useBodyClass, useRespond } from '../../_config/scripts/hooks';
+import { useBodyClass } from './scripts/hooks';
+import { useRespond } from '../../_config/scripts/hooks';
 
 /* Local components */
 import { useAppContext } from '../../context/Context';
