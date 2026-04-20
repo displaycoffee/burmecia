@@ -7,7 +7,7 @@ import './styles/dropdown.scss';
 
 /* Local scripts */
 import { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
-import { useClickOutside } from './scripts/hooks';
+import { useClickOutside } from './scripts/dropdown-hooks';
 import { useFormattedId } from '../../_config/scripts/hooks';
 
 /* Local components */
