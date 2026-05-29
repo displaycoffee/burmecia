@@ -3,10 +3,10 @@ import './styles/navigation.scss';
 
 /* Packages */
 import { Fragment, Suspense, useEffect } from 'react';
-import { useViewTransition } from '../../_config/scripts/hooks';
 import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 /* Scripts */
+import { useRespond, useViewTransition } from '../../_config/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
 import { NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
@@ -57,7 +57,9 @@ export const Navigation = () => {
 
 export const NavigationListItem = (props: NavigationListItemProps) => {
 	const { children, nav, navigationLinkClass } = props;
+	const { theme } = useAppContext();
 	const handleTransition = useViewTransition();
+	const isDesktop = useRespond(theme.bps.bp02 as number);
 	const navigationActiveClass = `${navigationLinkClass} ${navigationLinkClass}-active`;
 
 	return (
@@ -66,7 +68,13 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 				<NavLink
 					to={nav.url}
 					title={nav.alt || nav.label}
-					onClick={(e) => handleTransition(e, nav.url)}
+					onClick={(e) => {
+						if (isDesktop) {
+							handleTransition(e, nav.url);
+						} else {
+							return false;
+						}
+					}}
 					className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}
 				>
 					{nav.label}
