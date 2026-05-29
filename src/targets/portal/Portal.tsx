@@ -1,11 +1,11 @@
-/* React */
+/* Styles */
+import './styles/portal.scss';
+
+/* Packages */
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-/* Local styles */
-import './styles/portal.scss';
-
-/* Local scripts */
+/* Scripts */
 import { PortalProps } from './scripts/portal-types';
 
 export const Portal = ({ element, children }: PortalProps) => {

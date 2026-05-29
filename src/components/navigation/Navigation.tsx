@@ -1,17 +1,18 @@
-/* React */
-import { Fragment, Suspense, useEffect } from 'react';
-import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
-
-/* Local styles */
+/* Styles */
 import './styles/navigation.scss';
 
-/* Local scripts */
+/* Packages */
+import { Fragment, Suspense, useEffect } from 'react';
+import { useViewTransition } from '../../_config/scripts/hooks';
+import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+
+/* Scripts */
 import { useAppContext } from '../../context/scripts/context-hooks';
 import { NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
 import { navigationRoutes } from './scripts/navigation-routes';
 
-/* Local components */
+/* Components */
 import { Dropdown } from '../dropdown/Dropdown';
 
 /* Get navigation menu */
@@ -34,15 +35,15 @@ export const Navigation = () => {
 					return (
 						<Fragment key={nav.id}>
 							{nav?.children && nav.children.length !== 0 ? (
-								<li className="navigation-list-item">
-									<Dropdown buttonLabel={nav.label} buttonLinkClass={navigationLinkClass} buttonUrl={nav.url} closeOnClick={true}>
+								<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav}>
+									<Dropdown closeOnClick={true}>
 										<ul className="navigation-list-submenu unstyled">
 											{nav.children.map((child) => {
 												return <NavigationListItem nav={child} navigationLinkClass={navigationLinkClass} key={child.id} />;
 											})}
 										</ul>
 									</Dropdown>
-								</li>
+								</NavigationListItem>
 							) : (
 								<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav} />
 							)}
@@ -56,6 +57,7 @@ export const Navigation = () => {
 
 export const NavigationListItem = (props: NavigationListItemProps) => {
 	const { children, nav, navigationLinkClass } = props;
+	const handleTransition = useViewTransition();
 	const navigationActiveClass = `${navigationLinkClass} ${navigationLinkClass}-active`;
 
 	return (
@@ -64,6 +66,7 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 				<NavLink
 					to={nav.url}
 					title={nav.alt || nav.label}
+					onClick={(e) => handleTransition(e, nav.url)}
 					className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}
 				>
 					{nav.label}

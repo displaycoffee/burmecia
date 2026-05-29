@@ -1,8 +1,6 @@
 /* Type definitions */
 type Dropdown = {
-	buttonLabel: string;
-	buttonLinkClass?: string;
-	buttonUrl?: string;
+	buttonLabel?: string;
 	children: ReactNode;
 	closeOnClick?: boolean;
 };

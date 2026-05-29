@@ -1,15 +1,15 @@
-/* React */
-import { Link, useLocation } from 'react-router-dom';
-
-/* Local styles */
+/* Styles */
 import './styles/container.scss';
 
-/* Local scripts */
+/* Packages */
+import { Link, useLocation } from 'react-router-dom';
+
+/* Scripts */
 import { useRespond } from '../../_config/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
 import { useBodyClass } from './scripts/container-hooks';
 
-/* Local components */
+/* Components */
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';

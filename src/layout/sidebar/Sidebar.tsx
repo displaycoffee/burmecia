@@ -1,7 +1,7 @@
-/* Local styles */
+/* Styles */
 import './styles/sidebar.scss';
 
-/* Local scripts */
+/* Scripts */
 import { SidebarProps } from './scripts/sidebar-types';
 
 export const Sidebar = (props: SidebarProps) => {

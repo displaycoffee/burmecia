@@ -1,4 +1,4 @@
-/* React */
+/* Packages */
 import { RefObject, useEffect, useRef } from 'react';
 
 export const useClickOutside = (callback: () => void) => {

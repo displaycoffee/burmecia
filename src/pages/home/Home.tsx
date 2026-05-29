@@ -1,7 +1,7 @@
-/* Local styles */
+/* Styles */
 import './styles/home.scss';
 
-/* Local components */
+/* Components */
 import { Dropdown } from '../../components/dropdown/Dropdown';
 
 export const Home = () => {

@@ -1,7 +1,7 @@
-/* Local styles */
+/* Styles */
 import './styles/content.scss';
 
-/* Local components */
+/* Components */
 import { NavigationRoutes } from '../../components/navigation/Navigation';
 
 export const Content = () => {

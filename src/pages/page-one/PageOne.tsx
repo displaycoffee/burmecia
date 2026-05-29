@@ -1,7 +1,7 @@
-/* Local styles */
+/* Styles */
 import './styles/page-one.scss';
 
-/* Local components */
+/* Components */
 import { Image } from '../../components/image/Image';
 
 export const PageOne = () => {

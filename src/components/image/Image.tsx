@@ -1,7 +1,7 @@
-/* Local styles */
+/* Styles */
 import './styles/image.scss';
 
-/* Local scripts */
+/* Scripts */
 import { ImageProps, ImageAttributesType, WrapperAttributesType } from './scripts/image-types';
 import { image as imageUtils } from './scripts/image';
 
