@@ -36,7 +36,7 @@ export const Container = () => {
 		id: 'menu',
 		isDesktop: isDesktop,
 		label: 'Menu',
-		content: <Navigation />,
+		content: <Navigation disableTransition={true} />,
 		closeOnClick: true,
 		button: {
 			outside: false,
