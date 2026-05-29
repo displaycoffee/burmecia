@@ -1,10 +1,10 @@
 /* Note: SVG file is loaded in src/index.html and then compiled into the final dist.index.html.
    Make sure it's in index.html to use the component or customize as needed. */
 
-/* Local styles */
+/* Styles */
 import './styles/icons.scss';
 
-/* Local scripts */
+/* Scripts */
 import { IconsProps } from './scripts/icons-types';
 
 export const Icon = (props: IconsProps) => {

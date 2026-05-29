@@ -1,7 +1,7 @@
-/* React */
+/* Packages */
 import { Link } from 'react-router-dom';
 
-/* Local scripts */
+/* Scripts */
 import { useAppContext } from '../../../../context/scripts/context-hooks';
 
 export const ChildPageOne = () => {

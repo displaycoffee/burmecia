@@ -1,23 +1,25 @@
-/* React */
+/* Styles */
+import './styles/navigation.scss';
+
+/* Packages */
 import { Fragment, Suspense, useEffect } from 'react';
 import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-/* Local styles */
-import './styles/navigation.scss';
-
-/* Local scripts */
+/* Scripts */
+import { useViewTransition } from '../../_config/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
-import { NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
+import { NavigationComponentProps, NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
 import { navigationRoutes } from './scripts/navigation-routes';
 
-/* Local components */
+/* Components */
 import { Dropdown } from '../dropdown/Dropdown';
 
 /* Get navigation menu */
 const navigationList = navigationUtils.get.list();
 
-export const Navigation = () => {
+export const Navigation = (props: NavigationComponentProps) => {
+	const { disableTransition } = props;
 	const { pathname } = useLocation();
 	const { utils } = useAppContext();
 	const navigationLinkClass = 'navigation-link';
@@ -34,17 +36,32 @@ export const Navigation = () => {
 					return (
 						<Fragment key={nav.id}>
 							{nav?.children && nav.children.length !== 0 ? (
-								<li className="navigation-list-item">
-									<Dropdown buttonLabel={nav.label} buttonLinkClass={navigationLinkClass} buttonUrl={nav.url} closeOnClick={true}>
+								<NavigationListItem
+									disableTransition={disableTransition ?? false}
+									navigationLinkClass={navigationLinkClass}
+									nav={nav}
+								>
+									<Dropdown closeOnClick={true}>
 										<ul className="navigation-list-submenu unstyled">
 											{nav.children.map((child) => {
-												return <NavigationListItem nav={child} navigationLinkClass={navigationLinkClass} key={child.id} />;
+												return (
+													<NavigationListItem
+														disableTransition={disableTransition ?? false}
+														nav={child}
+														navigationLinkClass={navigationLinkClass}
+														key={child.id}
+													/>
+												);
 											})}
 										</ul>
 									</Dropdown>
-								</li>
+								</NavigationListItem>
 							) : (
-								<NavigationListItem navigationLinkClass={navigationLinkClass} nav={nav} />
+								<NavigationListItem
+									disableTransition={disableTransition ?? false}
+									navigationLinkClass={navigationLinkClass}
+									nav={nav}
+								/>
 							)}
 						</Fragment>
 					);
@@ -55,7 +72,8 @@ export const Navigation = () => {
 };
 
 export const NavigationListItem = (props: NavigationListItemProps) => {
-	const { children, nav, navigationLinkClass } = props;
+	const { children, disableTransition, nav, navigationLinkClass } = props;
+	const handleTransition = useViewTransition();
 	const navigationActiveClass = `${navigationLinkClass} ${navigationLinkClass}-active`;
 
 	return (
@@ -64,6 +82,7 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 				<NavLink
 					to={nav.url}
 					title={nav.alt || nav.label}
+					onClick={disableTransition ? undefined : (e) => handleTransition(e, nav.url)}
 					className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}
 				>
 					{nav.label}

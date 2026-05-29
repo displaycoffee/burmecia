@@ -1,10 +1,10 @@
-/* React */
+/* Packages */
 import { lazy } from 'react';
 
-/* Local scripts */
+/* Scripts */
 import { NavigationType } from './navigation-types';
 
-/* Local components */
+/* Components */
 const Home = lazy(() => import('../../../pages/home/Home').then((m) => ({ default: m.Home })));
 const PageOne = lazy(() => import('../../../pages/page-one/PageOne').then((m) => ({ default: m.PageOne })));
 const PageTwo = lazy(() => import('../../../pages/page-two/PageTwo').then((m) => ({ default: m.PageTwo })));

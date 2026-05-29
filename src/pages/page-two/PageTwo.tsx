@@ -1,14 +1,14 @@
-/* React */
-import { Link, useLocation } from 'react-router-dom';
-
-/* Local styles */
+/* Styles */
 import './styles/page-two.scss';
 
-/* Local scripts */
+/* Packages */
+import { Link, useLocation } from 'react-router-dom';
+
+/* Scripts */
 import { useAppContext } from '../../context/scripts/context-hooks';
 import { navigationUtils } from '../../components/navigation/scripts/navigation-utils';
 
-/* Local components */
+/* Components */
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
 import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
 

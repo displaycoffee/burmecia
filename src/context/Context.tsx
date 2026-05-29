@@ -1,7 +1,7 @@
-/* React */
+/* Packages */
 import { createContext } from 'react';
 
-/* Local scripts */
+/* Scripts */
 import { ContextProps, ContextValuesType } from './scripts/context-types';
 import { theme } from '../_config/scripts/theme';
 import { utils } from '../_config/scripts/utils';

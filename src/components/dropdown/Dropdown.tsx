@@ -1,20 +1,19 @@
-/* React */
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-
-/* Local styles */
+/* Styles */
 import './styles/dropdown.scss';
 
-/* Local scripts */
+/* Packages */
+import { useState } from 'react';
+
+/* Scripts */
 import { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside } from './scripts/dropdown-hooks';
 import { useFormattedId } from '../../_config/scripts/hooks';
 
-/* Local components */
+/* Components */
 import { Icon } from '../icons/Icons';
 
 export const Dropdown = (props: DropdownProps) => {
-	const { buttonLabel, buttonLinkClass, buttonUrl, children, closeOnClick } = props;
+	const { buttonLabel, children, closeOnClick } = props;
 	const dropdownId = `dropdown-${useFormattedId()}`;
 	const [dropdown, setDropdown] = useState('');
 
@@ -35,22 +34,14 @@ export const Dropdown = (props: DropdownProps) => {
 
 	return (
 		<div id={dropdownId} className={`dropdown dropdown-${dropdown === dropdownId ? 'expanded' : 'collapsed'}`} ref={dropdownRef}>
-			<DropdownButton
-				buttonLabel={buttonLabel}
-				buttonLinkClass={buttonLinkClass}
-				buttonUrl={buttonUrl}
-				closeContent={closeContent}
-				toggleDropdown={toggleDropdown}
-			/>
+			<DropdownButton buttonLabel={buttonLabel ? buttonLabel : ''} closeContent={closeContent} toggleDropdown={toggleDropdown} />
 			<DropdownContent closeContent={closeContent}>{children}</DropdownContent>
 		</div>
 	);
 };
 
 export const DropdownButton = (props: DropdownButtonProps) => {
-	const { buttonLabel, buttonLinkClass, buttonUrl, closeContent, toggleDropdown } = props;
-	const dropdownLinkClass = buttonLinkClass ? buttonLinkClass : 'dropdown-link';
-	const dropdownActiveClass = `${dropdownLinkClass} ${dropdownLinkClass}-active`;
+	const { buttonLabel, toggleDropdown } = props;
 
 	// Create dropdown icon
 	const icon = <Icon id={'angle-down'} />;
@@ -65,25 +56,10 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 
 	return (
 		<div className="dropdown-button">
-			{buttonUrl ? (
-				<>
-					<NavLink
-						to={buttonUrl}
-						onClick={closeContent}
-						title={buttonLabel}
-						className={({ isActive }) => (isActive ? dropdownActiveClass : dropdownLinkClass)}
-					>
-						{buttonLabel}
-					</NavLink>
-
-					<button {...buttonAttributes}>{icon}</button>
-				</>
-			) : (
-				<button {...buttonAttributes}>
-					{buttonLabel}
-					{icon}
-				</button>
-			)}
+			<button {...buttonAttributes}>
+				{buttonLabel ? buttonLabel : null}
+				{icon}
+			</button>
 		</div>
 	);
 };
