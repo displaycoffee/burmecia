@@ -7,7 +7,7 @@ import { image as imageUtils } from './scripts/image';
 
 export const Image = (props: ImageProps) => {
 	const { alt, hasBg, hasLazy, image, imageClass, wrapperClass } = props;
-	const hasWrapper = typeof props?.hasWrapper == 'boolean' ? props.hasWrapper : true;
+	const hasWrapper = props?.hasWrapper ?? true;
 
 	// Set up initial attributes
 	const wrapperAttributes = {} as WrapperAttributesType;

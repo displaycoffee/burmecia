@@ -6,7 +6,7 @@ export const image = {
 		return src == image.placeholder || src.includes(image.placeholder) ? image.loading : image.placeholder;
 	},
 	onError: (e: EventsType) => {
-		// Set image error
+		// Handle error imaging if image has src or srcset
 		if (e.target.getAttribute('src')) {
 			e.target.src = image.getErrorImage(e.target.src);
 		}
@@ -15,7 +15,7 @@ export const image = {
 		}
 	},
 	onLoad: (e: EventsType) => {
-		// Set image on load
+		// Set natural image width and height on load
 		e.target.setAttribute('width', e.target.naturalWidth);
 		e.target.setAttribute('height', e.target.naturalHeight);
 	},
