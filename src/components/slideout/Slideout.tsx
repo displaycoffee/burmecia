@@ -17,11 +17,11 @@ export const Slideout = (props: SlideoutProps) => {
 	const { options } = props;
 	const { config, get, toggle } = slideout;
 	const fallbackId = useFormattedId();
-	const slideoutId = `slideout-${options?.id ? options.id : fallbackId}`;
+	const slideoutId = `slideout-${options?.id ?? fallbackId}`;
 
 	// Get default attributes for slideout
-	const width = options?.width ? options.width : config.values.width;
-	const direction = options?.direction ? options.direction : config.values.direction;
+	const width = options?.width ?? config.values.width;
+	const direction = options?.direction ?? config.values.direction;
 	const orientation = get.orientation(direction);
 	const styles = {
 		width: width,
@@ -83,7 +83,7 @@ export const Slideout = (props: SlideoutProps) => {
 						}}
 						role="presentation"
 					>
-						{options?.content ? options?.content : null}
+						{options?.content}
 					</div>
 				</div>
 			</div>

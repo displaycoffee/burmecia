@@ -32,7 +32,7 @@ export const navigationUtils = {
 			});
 
 			// Return final navigation
-			return navigationClone && navigationClone.length !== 0 ? navigationUtils.sort(navigationClone) : [];
+			return navigationClone.length !== 0 ? navigationUtils.sort(navigationClone) : [];
 		},
 		children: (listId: number) => {
 			// Create navigation clone
@@ -51,7 +51,7 @@ export const navigationUtils = {
 			});
 
 			// Return final navigation
-			return navigationClone && navigationClone.length !== 0 ? navigationUtils.sort(navigationClone) : [];
+			return navigationClone.length !== 0 ? navigationUtils.sort(navigationClone) : [];
 		},
 	},
 	routes: {
