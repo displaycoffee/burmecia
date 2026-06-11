@@ -21,7 +21,7 @@ export const utils: UtilsType = {
 			.replace(/[^\w\s]/g, '')
 			.replace(/\s/g, '-');
 	},
-	isSticky: (element: HTMLElement, stickyClass: string) => {
+	isSticky: (element: HTMLElement | null, stickyClass: string) => {
 		if (element) {
 			// Create options and callback for observer
 			const stickyOptions = { threshold: [1] };

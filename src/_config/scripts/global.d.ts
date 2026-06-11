@@ -38,7 +38,7 @@ type Utils = {
 	getLast: (value: string | string[], delimeter?: string) => string | number;
 	getPage: () => string;
 	handleize: (value: string) => string;
-	isSticky: (element: HTMLElement, stickyClass: string) => void;
+	isSticky: (element: HTMLElement | null, stickyClass: string) => void;
 	scrollTo: (e?: EventsType, selector?: string, offset?: number) => void;
 	setAttributes: (element: HTMLElement, attributes: ObjectString) => void;
 };
