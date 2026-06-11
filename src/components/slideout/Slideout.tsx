@@ -14,7 +14,7 @@ import { slideout } from './scripts/slideout';
 import { Icon } from '../icons/Icons';
 
 export const Slideout = (props: SlideoutProps) => {
-	const { options } = props;
+	const { children, options } = props;
 	const { config, get, toggle } = slideout;
 	const fallbackId = useFormattedId();
 	const slideoutId = `slideout-${options?.id ?? fallbackId}`;
@@ -83,7 +83,7 @@ export const Slideout = (props: SlideoutProps) => {
 						}}
 						role="presentation"
 					>
-						{options?.content}
+						{children}
 					</div>
 				</div>
 			</div>

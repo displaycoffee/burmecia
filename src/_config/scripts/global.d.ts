@@ -57,9 +57,9 @@ declare global {
 
 	type ObjectPrimitiveType = ObjectPrimitive;
 
-	type UtilsType = Utils;
-
 	type ThemeType = Theme;
+
+	type UtilsType = Utils;
 
 	type VariablesType = Variables;
 

@@ -36,7 +36,6 @@ export const Container = () => {
 		id: 'menu',
 		isDesktop: isDesktop,
 		label: 'Menu',
-		content: <Navigation disableTransition={true} />,
 		closeOnClick: true,
 		button: {
 			outside: false,
@@ -51,7 +50,13 @@ export const Container = () => {
 
 				<Header />
 
-				{isDesktop ? <Navigation /> : <Slideout options={slideoutOptions} />}
+				{isDesktop ? (
+					<Navigation />
+				) : (
+					<Slideout options={slideoutOptions}>
+						<Navigation disableTransition={true} />
+					</Slideout>
+				)}
 
 				<main className="main">
 					<div className="main-layout flex-wrap">
