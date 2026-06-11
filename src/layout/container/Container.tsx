@@ -57,7 +57,7 @@ export const Container = () => {
 					<div className="main-layout flex-wrap">
 						<Content />
 
-						<Sidebar show={sidebar && isDesktop} />
+						<Sidebar show={sidebar} />
 					</div>
 				</main>
 

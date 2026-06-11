@@ -57,11 +57,11 @@ export const navigationUtils = {
 	routes: {
 		build: (nav: NavigationType) => {
 			// Build route config
-			const config = {
+			const config: NavigationRoutesType = {
 				id: nav.id,
 				element: nav.element,
 				path: nav.url,
-			} as NavigationRoutesType;
+			};
 
 			// Add props if there are any
 			if (nav?.props) {

@@ -68,7 +68,7 @@ export const PageTwoContent = () => {
 			{{
 				'child-page-one': <ChildPageOne />,
 				'child-page-two': <ChildPageTwo />,
-			}[last as string] || defaultContent}
+			}[last] || defaultContent}
 		</>
 	);
 };
