@@ -39,7 +39,7 @@ type Utils = {
 	getPage: () => string;
 	handleize: (value: string) => string;
 	isSticky: (element: HTMLElement | null, stickyClass: string) => void;
-	scrollTo: (e?: EventsType, selector?: string, offset?: number) => void;
+	scrollTo: (e?: Events, selector?: string, offset?: number) => void;
 	setAttributes: (element: HTMLElement, attributes: ObjectString) => void;
 };
 

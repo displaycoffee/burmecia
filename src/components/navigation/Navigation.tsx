@@ -103,7 +103,7 @@ export const NavigationRoutes = () => {
 		<Suspense fallback={null}>
 			<Routes>
 				{navigationRoutes.map((nav: NavigationRoutesProps) => {
-					const navProps = nav?.props ?? false;
+					const navProps = nav?.props ?? {};
 
 					return (
 						<Fragment key={nav.id}>
@@ -112,7 +112,7 @@ export const NavigationRoutes = () => {
 									<Route path={`${nav.path}/*`} element={<nav.element {...navProps} />} />
 
 									{nav.children.map((child: NavigationRoutesProps) => {
-										const childProps = child?.props ?? false;
+										const childProps = child?.props ?? {};
 										return <Route path={child.path} element={<child.element {...childProps} />} key={child.id} />;
 									})}
 								</>
