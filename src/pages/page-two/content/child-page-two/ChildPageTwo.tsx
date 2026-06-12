@@ -8,7 +8,7 @@ export const ChildPageTwo = () => {
 	const { utils } = useAppContext();
 
 	return (
-		<div className="page-child-page-two spacing-reset">
+		<div className="page-child-page-two margin-trim">
 			<h2>Child Page Two</h2>
 
 			<p>

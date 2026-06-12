@@ -29,7 +29,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 		utils.scrollTo();
 	}, [pathname, utils]);
 
-	return navigationList && navigationList.length != 0 ? (
+	return navigationList.length != 0 ? (
 		<nav className="navigation">
 			<ul className="navigation-list unstyled">
 				{navigationList.map((nav) => {
@@ -93,17 +93,17 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 				</a>
 			)}
 
-			{children ? children : null}
+			{children}
 		</li>
 	);
 };
 
 export const NavigationRoutes = () => {
-	return navigationRoutes && navigationRoutes.length != 0 ? (
+	return navigationRoutes.length != 0 ? (
 		<Suspense fallback={null}>
 			<Routes>
 				{navigationRoutes.map((nav: NavigationRoutesProps) => {
-					const navProps = nav?.props ? nav.props : false;
+					const navProps = nav?.props ?? {};
 
 					return (
 						<Fragment key={nav.id}>
@@ -112,7 +112,7 @@ export const NavigationRoutes = () => {
 									<Route path={`${nav.path}/*`} element={<nav.element {...navProps} />} />
 
 									{nav.children.map((child: NavigationRoutesProps) => {
-										const childProps = child?.props ? child.props : false;
+										const childProps = child?.props ?? {};
 										return <Route path={child.path} element={<child.element {...childProps} />} key={child.id} />;
 									})}
 								</>

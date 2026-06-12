@@ -9,7 +9,7 @@ const Home = lazy(() => import('../../../pages/home/Home').then((m) => ({ defaul
 const PageOne = lazy(() => import('../../../pages/page-one/PageOne').then((m) => ({ default: m.PageOne })));
 const PageTwo = lazy(() => import('../../../pages/page-two/PageTwo').then((m) => ({ default: m.PageTwo })));
 
-export const navigation = [
+export const navigation: NavigationType[] = [
 	{
 		id: 0,
 		alt: 'Home',
@@ -57,4 +57,4 @@ export const navigation = [
 			},
 		],
 	},
-] as NavigationType[];
+];

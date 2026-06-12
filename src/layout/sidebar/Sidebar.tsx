@@ -8,7 +8,7 @@ export const Sidebar = (props: SidebarProps) => {
 	const { show } = props;
 
 	return show ? (
-		<aside className="sidebar">
+		<aside className="sidebar margin-trim">
 			<h3>Sidebar</h3>
 
 			<p>this is sidebar content.</p>

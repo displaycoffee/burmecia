@@ -24,7 +24,7 @@ export const PageTwo = () => {
 
 export const PageTwoIndex = () => {
 	return (
-		<div className="page-two spacing-reset">
+		<div className="page-two margin-trim">
 			<h2>Page Two</h2>
 
 			<h3>Child Pages</h3>
@@ -68,7 +68,7 @@ export const PageTwoContent = () => {
 			{{
 				'child-page-one': <ChildPageOne />,
 				'child-page-two': <ChildPageTwo />,
-			}[last as string] || defaultContent}
+			}[last] || defaultContent}
 		</>
 	);
 };

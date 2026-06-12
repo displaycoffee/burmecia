@@ -8,4 +8,11 @@
 
 	// Style block
 
-	.header {}
+	.header {
+		& > * {
+			margin: 0 0 theme.$spacing-x4 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}

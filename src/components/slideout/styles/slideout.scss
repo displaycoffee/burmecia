@@ -8,8 +8,8 @@
 
 	// Colors
 
-	$slideout-color-01: theme.$color-07; // overlay
-	$slideout-color-02: theme.$color-01; // menu background
+	$slideout-color-01: theme.$color-09; // overlay
+	$slideout-color-02: theme.$color-03; // menu background
 
 	// Configuration
 
@@ -38,9 +38,9 @@
 		visibility: hidden;
 	}
 	.slideout-button {
-		margin: 0 0 $slideout-spacing 0;
 		@include mixins.flex-layout((align-items: center));
 		@include mixins.gap(theme.$spacing-x2);
+		margin: 0;
 	}
 	.slideout {
 		&.slideout-vertical {
