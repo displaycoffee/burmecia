@@ -19,7 +19,7 @@ import { Dropdown } from '../dropdown/Dropdown';
 const navigationList = navigationUtils.get.list();
 
 export const Navigation = (props: NavigationComponentProps) => {
-	const { disableTransition } = props;
+	const { disableTransition, label } = props;
 	const { pathname } = useLocation();
 	const { utils } = useAppContext();
 	const navigationLinkClass = 'navigation-link';
@@ -30,7 +30,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 	}, [pathname, utils]);
 
 	return navigationList.length != 0 ? (
-		<nav className="navigation">
+		<nav className="navigation" aria-label={label}>
 			<ul className="navigation-list unstyled">
 				{navigationList.map((nav) => {
 					return (
@@ -41,7 +41,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 									navigationLinkClass={navigationLinkClass}
 									nav={nav}
 								>
-									<Dropdown closeOnClick={true}>
+									<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} showLabel={false}>
 										<ul className="navigation-list-submenu unstyled">
 											{nav.children.map((child) => {
 												return (
@@ -81,14 +81,13 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 			{nav.isRoute ? (
 				<NavLink
 					to={nav.url}
-					title={nav.alt || nav.label}
 					onClick={disableTransition ? undefined : (e) => handleTransition(e, nav.url)}
 					className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}
 				>
 					{nav.label}
 				</NavLink>
 			) : (
-				<a href={nav.url} title={nav.alt || nav.label} target="_blank" rel="noreferrer">
+				<a href={nav.url} target="_blank" rel="noreferrer">
 					{nav.label}
 				</a>
 			)}
