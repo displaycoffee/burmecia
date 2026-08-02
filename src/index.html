@@ -103,13 +103,27 @@
 				margin: -1px;
 				overflow: hidden;
 			}
+			.hide-mobile {
+				display: none;
+			}
+			.hide-desktop {
+				display: block;
+			}
+			@media only screen and (min-width: 768px) {
+				.hide-mobile {
+					display: block;
+				}
+				.hide-desktop {
+					display: none;
+				}
+			}
 		</style>
 	</head>
 
 	<body class="scrollbar">
 		<div id="index"></div>
 		<div id="portal"></div>
-		<svg id="svg-map" class="svg-hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+		<svg id="svg-map" class="svg-hidden" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
 			<defs>
 				<!-- Angles (thin chevron) -->
 				<symbol id="icon-angle-down" viewBox="0 0 21 32">

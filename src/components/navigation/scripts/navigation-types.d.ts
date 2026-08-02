@@ -1,6 +1,5 @@
 /* Type definitions */
 type Navigation = {
-	alt?: string;
 	children?: Navigation[];
 	element?: JSX.Element;
 	id: number;
@@ -13,6 +12,7 @@ type Navigation = {
 
 type NavigationComponent = {
 	disableTransition?: boolean;
+	label: string;
 };
 
 type NavigationListItem = {

@@ -12,7 +12,6 @@ const PageTwo = lazy(() => import('../../../pages/page-two/PageTwo').then((m) =>
 export const navigation: NavigationType[] = [
 	{
 		id: 0,
-		alt: 'Home',
 		element: Home,
 		isRoute: true,
 		label: 'Home',
@@ -21,7 +20,6 @@ export const navigation: NavigationType[] = [
 	},
 	{
 		id: 1,
-		alt: 'Page One',
 		element: PageOne,
 		isRoute: true,
 		label: 'Page One',
@@ -30,7 +28,6 @@ export const navigation: NavigationType[] = [
 	},
 	{
 		id: 2,
-		alt: 'Page Two',
 		element: PageTwo,
 		isRoute: true,
 		label: 'Page Two',
@@ -39,7 +36,6 @@ export const navigation: NavigationType[] = [
 		children: [
 			{
 				id: 1,
-				alt: 'Child Page One',
 				element: PageTwo,
 				isRoute: true,
 				label: 'Child Page One',
@@ -48,7 +44,6 @@ export const navigation: NavigationType[] = [
 			},
 			{
 				id: 2,
-				alt: 'Child Page Two',
 				element: PageTwo,
 				isRoute: true,
 				label: 'Child Page Two',

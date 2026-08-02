@@ -1,4 +1,4 @@
-﻿# Burmecia - version 3.7.1
+﻿# Burmecia - version 3.8.0
 
 React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better. [Preview here.](https://burmecia.display.coffee)
 
@@ -18,7 +18,7 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 - `_config` directory configures "global" settings
 - Organized other directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `pages` ("major" content), and `targets`
 - `targets` directory contains code that targets elements in index.html (`#index` and `#portal`)
-- index.html contains a `style` block with `@font-face` rules for faster rendering of font families and defining system fonts as fallbacks
+- index.html contains a `style` block with important style rules for rendering things faster on page load
 
 ### other
 
