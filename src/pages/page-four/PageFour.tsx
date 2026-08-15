@@ -1,15 +1,15 @@
 /* Styles */
-import './styles/page-one.scss';
+import './styles/page-four.scss';
 
 /* Components */
 import { Image } from '../../components/image/Image';
 
-export const PageOne = () => {
+export const PageFour = () => {
 	return (
-		<div className="page-one margin-trim">
-			<h2>Page One</h2>
+		<div className="page-four margin-trim">
+			<h2>Page Four</h2>
 
-			<p>This is the first page.</p>
+			<p>this is the first page.</p>
 
 			<Image alt={'Cat 01'} hasBg={true} hasLazy={true} image={'/assets/images/test/test-image-01.jpg'} wrapperClasses={['bg']} />
 

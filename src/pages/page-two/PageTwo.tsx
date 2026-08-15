@@ -11,6 +11,7 @@ import { navigationUtils } from '../../components/navigation/scripts/navigation-
 /* Components */
 import { ChildPageOne } from './content/child-page-one/ChildPageOne';
 import { ChildPageTwo } from './content/child-page-two/ChildPageTwo';
+import { List } from '../../components/blocks/Blocks';
 
 /* Get navigation menu */
 const navigationList = navigationUtils.get.children(2);
@@ -28,7 +29,7 @@ export const PageTwoIndex = () => {
 			<h2>Page Two</h2>
 
 			<h3>Child Pages</h3>
-			<ul>
+			<List>
 				{navigationList.map((nav) => {
 					return (
 						<li key={nav.url}>
@@ -36,19 +37,19 @@ export const PageTwoIndex = () => {
 						</li>
 					);
 				})}
-			</ul>
+			</List>
 
-			<p>this is the second page.</p>
+			<p>This is the second page.</p>
 
 			<div className="row row-auto row-spacing-20 row-wrap">
-				<div className="column column-width-33">column 01</div>
+				<div className="column column-width-33">Column 01</div>
 
-				<div className="column column-width-33">column 02</div>
+				<div className="column column-width-33">Column 02</div>
 
-				<div className="column column-width-33">column 03</div>
+				<div className="column column-width-33">Column 03</div>
 			</div>
 
-			<p>an element below the row example.</p>
+			<p>An element below the row example.</p>
 		</div>
 	);
 };

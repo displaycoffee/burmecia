@@ -10,6 +10,7 @@ import { useClickOutside } from './scripts/dropdown-hooks';
 import { useFormattedId } from '../../_config/scripts/hooks';
 
 /* Components */
+import { Button } from '../forms/Forms';
 import { Icon } from '../icons/Icons';
 
 export const Dropdown = (props: DropdownProps) => {
@@ -83,11 +84,13 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 
 	// Set button attributes
 	const buttonAttributes: DropdownButtonAttributesType = {
-		className: 'dropdown-button-toggle unstyled',
-		type: 'button',
 		['aria-controls']: contentId,
 		['aria-expanded']: isExpanded,
+		className: 'dropdown-button-toggle',
 		onClick: toggleDropdown,
+		ref: buttonRef,
+		type: 'button',
+		variant: 'unstyled',
 	};
 
 	// Add aria-label if no button label is set
@@ -97,10 +100,10 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 
 	return (
 		<div className="dropdown-button">
-			<button {...buttonAttributes} ref={buttonRef}>
+			<Button {...buttonAttributes}>
 				{showLabel ? buttonLabel : ''}
 				{icon}
-			</button>
+			</Button>
 		</div>
 	);
 };

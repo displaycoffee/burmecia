@@ -12,6 +12,7 @@ import { useBodyClass } from './scripts/container-hooks';
 /* Components */
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
 import { Navigation } from '../../components/navigation/Navigation';
+import { LinkScroll } from '../../components/blocks/Blocks';
 import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';
 import { Header } from '../header/Header';
 import { Content } from '../content/Content';
@@ -23,7 +24,7 @@ import { Portal } from '../../targets/portal/Portal';
 const excludeSidebar: string[] = ['/page-two'];
 
 export const Container = () => {
-	const { theme, utils } = useAppContext();
+	const { theme } = useAppContext();
 	const location = useLocation();
 	const isDesktop = useRespond(theme.bps.bp02 as number);
 	const sidebar = !excludeSidebar.includes(location.pathname);
@@ -36,7 +37,6 @@ export const Container = () => {
 		id: 'menu',
 		isDesktop: isDesktop,
 		label: 'Menu',
-		closeOnClick: true,
 		button: {
 			outside: false,
 			show: true,
@@ -72,9 +72,7 @@ export const Container = () => {
 
 				<Footer />
 
-				<button className="pointer unstyled a" type="button" aria-label="Scroll to top button" onClick={(e) => utils.scrollTo(e, '#index')}>
-					Scroll to top
-				</button>
+				<LinkScroll target={'#index'}>Scroll to top</LinkScroll>
 
 				<Portal element={'#portal'}>
 					<p>

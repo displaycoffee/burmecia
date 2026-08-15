@@ -2,6 +2,7 @@
 import './styles/home.scss';
 
 /* Components */
+import { List } from '../../components/blocks/Blocks';
 import { Dropdown } from '../../components/dropdown/Dropdown';
 
 export const Home = () => {
@@ -12,41 +13,27 @@ export const Home = () => {
 			<p>this is an index page.</p>
 
 			<Dropdown buttonLabel={'Label'}>
-				<ul>
+				<List>
 					<li>Item 1</li>
 					<li>Item 2</li>
 					<li>Item 3</li>
 					<li>Item 4</li>
-				</ul>
+				</List>
 			</Dropdown>
 
-			<ul>
+			<List>
 				<li>Item 1</li>
 				<li>Item 2</li>
 				<li>Item 3</li>
 				<li>Item 4</li>
-			</ul>
+			</List>
 
-			<ul className="unstyled">
+			<List variant="ol">
 				<li>Item 1</li>
 				<li>Item 2</li>
 				<li>Item 3</li>
 				<li>Item 4</li>
-			</ul>
-
-			<ol>
-				<li>Item 1</li>
-				<li>Item 2</li>
-				<li>Item 3</li>
-				<li>Item 4</li>
-			</ol>
-
-			<ol className="unstyled">
-				<li>Item 1</li>
-				<li>Item 2</li>
-				<li>Item 3</li>
-				<li>Item 4</li>
-			</ol>
+			</List>
 		</div>
 	);
 };

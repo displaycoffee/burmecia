@@ -12,7 +12,7 @@ export const ChildPageTwo = () => {
 			<h2>Child Page Two</h2>
 
 			<p>
-				this is <strong>child page two</strong> of page two.
+				This is <strong>child page two</strong> of page two.
 			</p>
 
 			<p>

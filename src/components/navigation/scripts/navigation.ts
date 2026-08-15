@@ -8,6 +8,8 @@ import { NavigationType } from './navigation-types';
 const Home = lazy(() => import('../../../pages/home/Home').then((m) => ({ default: m.Home })));
 const PageOne = lazy(() => import('../../../pages/page-one/PageOne').then((m) => ({ default: m.PageOne })));
 const PageTwo = lazy(() => import('../../../pages/page-two/PageTwo').then((m) => ({ default: m.PageTwo })));
+const PageThree = lazy(() => import('../../../pages/page-three/PageThree').then((m) => ({ default: m.PageThree })));
+const PageFour = lazy(() => import('../../../pages/page-four/PageFour').then((m) => ({ default: m.PageFour })));
 
 export const navigation: NavigationType[] = [
 	{
@@ -51,5 +53,21 @@ export const navigation: NavigationType[] = [
 				showInNav: true,
 			},
 		],
+	},
+	{
+		id: 3,
+		element: PageThree,
+		isRoute: true,
+		label: 'Page Three',
+		showInNav: true,
+		url: '/page-three',
+	},
+	{
+		id: 4,
+		element: PageFour,
+		isRoute: true,
+		label: 'Page Four',
+		showInNav: true,
+		url: '/page-four',
 	},
 ];

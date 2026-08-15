@@ -1,0 +1,76 @@
+// Use utils and theme variables
+@use '../../../_config/styles/utils/_functions';
+@use '../../../_config/styles/utils/_mixins';
+@use '../../../_config/styles/theme/_theme';
+
+//// FORMS
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$forms-color-01: theme.$color-04; // primary button background
+	$forms-color-02: theme.$color-04; // primary button border
+	$forms-color-03: theme.$color-03; // primary button color	
+	$forms-color-04: theme.$color-05; // secondary button background
+	$forms-color-05: theme.$color-05; // secondary button border
+	$forms-color-06: theme.$color-03; // secondary button color	
+	$forms-color-07: theme.$color-03; // tertiary button background
+	$forms-color-08: theme.$color-04; // tertiary button border
+	$forms-color-09: theme.$color-04; // tertiary button color
+
+	// Configuration
+	
+	$forms-button-height: 35px; // button height
+	$forms-button-border-width: 1px; // button border width
+
+	// Style block
+
+	.button {
+		padding: 0 theme.$spacing-x4;
+		border: $forms-button-border-width solid transparent;
+		height: $forms-button-height;
+		line-height: $forms-button-height - calc($forms-button-border-width * 2);
+		@include mixins.ellipsis;
+	}
+	.button-primary {
+		background-color: $forms-color-01;
+		border-color: $forms-color-02;
+		color: $forms-color-03;
+		&:hover {
+			@include mixins.if-exists((
+				background-color: $forms-color-03,
+				color: $forms-color-01,
+			));
+		}
+	}
+	.button-secondary {
+		@include mixins.if-exists((
+			background-color: $forms-color-04,
+			border-color: $forms-color-05,
+			color: $forms-color-06,
+		));
+		&:hover {
+			@include mixins.if-exists((
+				background-color: $forms-color-06,
+				color: $forms-color-04,
+			));
+		}
+	}
+	.button-tertiary {
+		@include mixins.if-exists((
+			background-color: $forms-color-07,
+			border-color: $forms-color-08,
+			color: $forms-color-09,
+		));
+		&:hover {
+			@include mixins.if-exists((
+				background-color: $forms-color-09,
+				color: $forms-color-07,
+			));
+		}
+	}
+	.button-unstyled {
+		padding: 0;
+		border: 0;
+		background-color: transparent;
+	}
