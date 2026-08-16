@@ -1,5 +1,16 @@
 /* Packages */
-import { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, FormHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react';
+
+/* Shared field concerns for form controls with a label / error / required state */
+type Field = {
+	className?: string;
+	description?: string;
+	error?: string;
+	hideLabel?: boolean;
+	id: string;
+	label: string;
+	required?: boolean;
+};
 
 /* Type definitions */
 type Button = {
@@ -9,30 +20,83 @@ type Button = {
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;
 
-/* Shared field concerns for form controls with a label / error / required state */
-type FormField = {
+type Description = {
+	description?: string;
+	id?: string;
+};
+
+type ErrorField = {
 	error?: string;
+	id?: string;
+};
+
+type Form = {
+	children: ReactNode;
+	className?: string;
+} & Omit<FormHTMLAttributes<HTMLFormElement>, 'children' | 'className'>;
+
+type FormField = {
+	children: ReactNode;
+	className?: string;
+	hideLabel?: boolean;
+	id: string;
 	label: string;
 	required?: boolean;
 };
 
-type Input = FormField & {
-	className?: string;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'className' | 'required'>;
+type FormFieldDetails = {
+	description?: string;
+	descriptionId?: string;
+	error?: string;
+	errorId?: string;
+};
 
-type Select = FormField & {
+type Input = Field & {
+	type?:
+		| 'color'
+		| 'date'
+		| 'datetime-local'
+		| 'email'
+		| 'file'
+		| 'month'
+		| 'number'
+		| 'password'
+		| 'range'
+		| 'search'
+		| 'tel'
+		| 'text'
+		| 'time'
+		| 'url'
+		| 'week';
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'className' | 'required' | 'type'>;
+
+type Required = {
+	isRequired: boolean;
+};
+
+type Select = Field & {
 	children: ReactNode;
-	className?: string;
+	icon?: string;
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children' | 'className' | 'required'>;
 
-type Textarea = FormField & {
-	className?: string;
-} & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'className' | 'required'>;
+type Textarea = Field & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'className' | 'required'>;
 
 /* Export prop types */
 export type ButtonProps = Button;
 
+export type DescriptionProps = Description;
+
+export type ErrorFieldProps = ErrorField;
+
+export type FormProps = Form;
+
+export type FormFieldProps = FormField;
+
+export type FormFieldDetailsProps = FormFieldDetails;
+
 export type InputProps = Input;
+
+export type RequiredProps = Required;
 
 export type SelectProps = Select;
 

@@ -11,10 +11,6 @@
 	*, *:after,	*:before {
 		box-sizing: border-box;
 	}
-	:focus-visible {
-		outline: 1px solid theme.$color-04;
-		outline-offset: 2px;
-	}
 	@media (prefers-reduced-motion: reduce) {
 		*, *:before, *:after {
 			animation-duration: 0.01ms !important;

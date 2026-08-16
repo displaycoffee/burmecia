@@ -315,7 +315,7 @@
 }
 
 // Placeholder
-// Examples: @include placeholder {}, :focus{@include placeholder {}}, or input {@include placeholder {}}
+// Examples: @include mixins.placeholder {}, :focus{ @include mixins.placeholder {} }, or input { @include mixins.placeholder {} }
 @mixin placeholder {
 	&::-webkit-input-placeholder {@content}
 	&::-ms-input-placeholder {@content}
