@@ -1,9 +1,13 @@
 /* Styles */
 import './styles/forms.scss';
 
+/* Packages */
+import { Children, isValidElement } from 'react';
+
 /* Scripts */
 import {
 	ButtonProps,
+	ChoiceProps,
 	DescriptionProps,
 	ErrorFieldProps,
 	FormProps,
@@ -30,6 +34,36 @@ export const Button = (props: ButtonProps) => {
 	);
 };
 
+export const Choice = (props: ChoiceProps) => {
+	const { active = false, className: propClassName, hideLabel = false, id, label, type = 'checkbox', ...rest } = props;
+	const className = forms.build.className(`choice choice-${type} sr-only`, propClassName);
+
+	return (
+		<div className={`choice-wrapper choice-wrapper-${type}${active ? ' choice-wrapper-active' : ''}`}>
+			{active ? (
+				type == 'radio' ? (
+					<div className="icon-wrapper">
+						<div className="icon icon-circle"></div>
+					</div>
+				) : (
+					<Icon id={'check-thin'} />
+				)
+			) : (
+				<div className="icon-wrapper"></div>
+			)}
+
+			<input id={id} className={className} name={id} type={type} {...rest} />
+
+			<label className={`label pointer${hideLabel ? ' sr-only' : ''}`} htmlFor={id}>
+				{label}
+			</label>
+		</div>
+	);
+};
+
+/* Display name for identifying choice elements */
+Choice.displayName = 'Choice';
+
 export const Form = (props: FormProps) => {
 	const { children, className: propClassName, ...rest } = props;
 	const className = forms.build.className(`form margin-trim`, propClassName);
@@ -44,23 +78,39 @@ export const Form = (props: FormProps) => {
 export const FormField = (props: FormFieldProps) => {
 	const { children, hideLabel, id, label, required } = props;
 	const className = forms.build.className(`form-field`, props?.className);
+	const isChoice = Children.toArray(children).some(
+		(child) => isValidElement(child) && (child.type as { displayName?: string })?.displayName === 'Choice',
+	);
+
+	// Create elements for form field
+	const Tag = isChoice ? 'fieldset' : 'div';
+	const Label = isChoice ? 'span' : 'label';
+
+	// Determine attributes for label
+	const labelAttributes = {
+		className: `label${!hideLabel && !isChoice ? ' pointer' : ''}${hideLabel ? ' sr-only' : ''}`,
+		htmlFor: isChoice ? undefined : id,
+	};
 
 	return (
-		<div className={className}>
+		<Tag className={className}>
+			{isChoice ? <legend className="sr-only">{label}</legend> : null}
+
 			{hideLabel ? (
-				<label className="label sr-only" htmlFor={id}>
-					{label}
-				</label>
+				isChoice ? null : (
+					<Label {...labelAttributes}>{label}</Label>
+				)
 			) : (
 				<div className="form-field-label">
-					<label className="label" htmlFor={id}>
+					<Label {...labelAttributes} aria-hidden={isChoice ? 'true' : undefined}>
 						{label}
 						<Required isRequired={required ?? false} />
-					</label>
+					</Label>
 				</div>
 			)}
+
 			<div className="form-field-control">{children}</div>
-		</div>
+		</Tag>
 	);
 };
 

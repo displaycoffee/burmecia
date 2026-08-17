@@ -16,8 +16,15 @@
 		outline: 1px solid $forms-color-01;
 		outline-offset: 2px;
 	}
-	label, .label {
+	fieldset, label, .label, legend {
 		margin: 0;
+	}
+	fieldset { 
+		padding: 0;
+		border: 0;
+	}
+	legend {
+		display: inline;
 	}
 
 //// FORMS - BUTTON
@@ -107,6 +114,81 @@
 		background-color: transparent;
 	}
 
+//// FORMS - CHOICE
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$forms-choice-color-01: theme.$color-03; // choice background
+	$forms-choice-color-02: theme.$color-04; // choice border
+	$forms-choice-color-03: theme.$color-03; // active choice background
+	$forms-choice-color-04: theme.$color-04; // active choice border
+	$forms-choice-color-05: theme.$color-04; // active choice color
+
+	// Configuration
+	
+	$forms-choice-size: 16px; // choice height
+	$forms-choice-vertical: 3px; // vertical position of choice
+	$forms-choice-horizontal: 0; // horizontal position of choice
+	$forms-choice-alignment: left; // choice aligned left or right
+	$forms-choice-spacing: theme.$spacing-x2; // spacing between checkbox and label
+	$forms-choice-border-width: 1px; // choice border width
+	$forms-choice-active-border-width: false; // active choice border width
+
+	// Variables
+
+	$forms-choice-align: if($forms-choice-alignment == left or $forms-choice-alignment == right, $forms-choice-alignment, left);
+
+	// Style block
+
+	.choice-wrapper {
+		position: relative;
+		padding: 0;
+		padding-#{$forms-choice-align}: $forms-choice-size + $forms-choice-horizontal + $forms-choice-spacing;
+		.icon-wrapper {
+			@include mixins.sizing($forms-choice-size, $forms-choice-size);
+			@include mixins.position($type: absolute, $top: $forms-choice-vertical);
+			#{$forms-choice-align}: $forms-choice-horizontal;
+			padding: 3px;
+			@include mixins.if-exists((
+				background-color: $forms-choice-color-01,
+			));
+			@if $forms-choice-border-width != false and $forms-choice-color-02 != false {
+				border: $forms-choice-border-width solid $forms-choice-color-02;
+			}
+			.icon {
+				@include mixins.sizing(100%, 100%);
+			}
+		}
+	}
+	.choice-wrapper-checkbox {
+		.icon-wrapper {}
+	}
+	.choice-wrapper-radio {
+		.icon-wrapper {
+			&, .icon {
+				@include mixins.border-radius(50%);
+			}
+		}
+	}
+	.choice-wrapper-active {
+		&.choice-wrapper-radio {
+			.icon-wrapper .icon {
+				@include mixins.if-exists((
+					background-color: $forms-choice-color-05,
+				));
+			}
+		}
+		.icon-wrapper {
+			@include mixins.if-exists((
+				background-color: $forms-choice-color-03,
+				border-color: $forms-choice-color-04,
+				border-width: $forms-choice-active-border-width,
+				color: $forms-choice-color-05,
+			));
+		}
+	}
+
 //// FORMS - DESCRIPTION
 //// --------------------------------------------------------------------------
 
@@ -143,42 +225,65 @@
 
 	// Style block
 
-	.form {}
+	.form {
+		&.margin-trim > fieldset {
+			margin: 0 0 theme.$spacing-x4 0;
+		}
+	}
 
 //// FORMS - FORM FIELD
 //// --------------------------------------------------------------------------
 
 	// Configuration
 	
+	$forms-form-field-bp: theme.$bp-01; // breakpoint
 	$forms-form-field-spacing: theme.$spacing-x4; // spacing for input field wrapper
 	$forms-form-field-label-width: 100px; // width for input field label
-	$forms-form-field-label-vertical: 6px; // position for label inside input field wrapper
+	$forms-form-field-label-vertical: 5px; // position for label inside input field wrapper
+
+	// Variables
+
+	$forms-form-field-spacing-half: calc($forms-form-field-spacing / 2);
 
 	// Style block
 
 	.form-field {
-		@include mixins.flex-layout((flex-flow: row nowrap));
-		@include mixins.gap($forms-form-field-spacing);
+		@include mixins.flex-layout((flex-flow: row wrap));
+		@include mixins.gap($forms-form-field-spacing-half $forms-form-field-spacing);
+		&:has(.choice-wrapper) {
+			.form-field-label {
+				top: 0;
+			}
+		}
 		.form-field-label, .form-field-control {
+			@include mixins.flex(1 1 100%);
 			min-width: 1px;
 		}
 		.form-field-label {
-			@include mixins.flex(0 1 auto);
-			@include mixins.if-exists((
-				width: $forms-form-field-label-width,
-			));
 			@include mixins.position($type: relative, $top: $forms-form-field-label-vertical);
 		}
 		.form-field-control {
-			@include mixins.flex;
 			& > * {
-				margin: 0 0 theme.$spacing-x2 0;
+				margin: 0 0 $forms-form-field-spacing-half 0;
 				&:last-child {
 					margin-bottom: 0;
 				}
 			}
 		}
-	}	
+	}
+	@include mixins.respond-min($forms-form-field-bp) {
+		.form-field {
+			.form-field-label {
+				@include mixins.flex(0 1 auto);
+				@include mixins.if-exists((
+					width: $forms-form-field-label-width,
+				));
+			}
+			.form-field-control {
+				@include mixins.flex;
+			}
+		}
+	}
 
 //// FORMS - INPUT
 //// --------------------------------------------------------------------------

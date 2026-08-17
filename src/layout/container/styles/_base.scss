@@ -72,6 +72,9 @@
 	.sr-only {
 		@include mixins.sr-only;
 	}
+	.sr-only-important {
+		@include mixins.sr-only(true);
+	}
 	.pointer {
 		cursor: pointer;
 	}

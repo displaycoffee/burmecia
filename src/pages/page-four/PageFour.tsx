@@ -2,7 +2,7 @@
 import './styles/page-four.scss';
 
 /* Components */
-import { Form, Input, Select, Textarea } from '../../components/forms/Forms';
+import { Choice, Form, FormField, Input, Select, Textarea } from '../../components/forms/Forms';
 
 export const PageFour = () => {
 	// Sample content
@@ -17,6 +17,22 @@ export const PageFour = () => {
 			<p>This is an example of form fields.</p>
 
 			<Form>
+				<FormField id={'checkboxes-01'} label={'Checkboxes 01'}>
+					<Choice label="Checkbox option 01" id={'checkbox-option-01'} />
+
+					<Choice label="Checkbox option 02" id={'checkbox-option-02'} active={true} />
+
+					<Choice label="Checkbox option 03" id={'checkbox-option-03'} />
+				</FormField>
+
+				<FormField id={'radios-01'} label={'Radios 01'}>
+					<Choice label="Radio option 01" id={'radio-option-01'} type={'radio'} />
+
+					<Choice label="Radio option 02" id={'radio-option-02'} type={'radio'} active={true} />
+
+					<Choice label="Radio option 03" id={'radio-option-03'} type={'radio'} />
+				</FormField>
+
 				<Input hideLabel={true} id={'input-01'} label={'Input 01'} placeholder="Example with hidden label." />
 
 				<Input id={'input-02'} label={'Input 02'} placeholder={placeholder} required={true} />

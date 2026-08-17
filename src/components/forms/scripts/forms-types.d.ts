@@ -20,6 +20,15 @@ type Button = {
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;
 
+type Choice = {
+	active?: boolean;
+	className?: string;
+	hideLabel?: boolean;
+	id: string;
+	label: string;
+	type?: 'checkbox' | 'radio';
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'required' | 'type'>;
+
 type Description = {
 	description?: string;
 	id?: string;
@@ -83,6 +92,8 @@ type Textarea = Field & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'child
 
 /* Export prop types */
 export type ButtonProps = Button;
+
+export type ChoiceProps = Choice;
 
 export type DescriptionProps = Description;
 
