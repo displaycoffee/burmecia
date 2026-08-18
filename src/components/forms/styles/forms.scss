@@ -51,6 +51,9 @@
 	// Style block
 
 	.button {
+		max-width: 100%;
+		@include mixins.flex-layout((display: inline-flex, flex-flow: row nowrap, align-items: center, justify-content: center));
+		@include mixins.gap(theme.$spacing-x1);
 		@include mixins.if-exists((
 			padding: $forms-button-spacing,
 		));
@@ -58,12 +61,10 @@
 			border: $forms-button-border-width solid transparent;
 		}
 		height: $forms-button-height;
-		@if $forms-button-border-width != false {
-			line-height: $forms-button-height - calc($forms-button-border-width * 2);
-		} @else {
-			line-height: $forms-button-height;
-		}		
-		@include mixins.ellipsis;
+		line-height: $forms-button-height;
+		.button-label {
+			@include mixins.ellipsis;
+		}
 	}
 	.button-primary {
 		@if $forms-button-border-width != false and $forms-button-color-02 != false {
@@ -231,15 +232,29 @@
 		}
 	}
 
+//// FORMS - FORM ACTIONS
+//// --------------------------------------------------------------------------
+
+	// Configuration
+
+	$forms-form-actions-spacing: theme.$spacing-x2; // spacing for actions wrapper
+
+	// Style block
+
+	.form-actions {
+		@include mixins.flex-layout((flex-flow: row wrap));
+		@include mixins.gap($forms-form-actions-spacing);
+	}
+
 //// FORMS - FORM FIELD
 //// --------------------------------------------------------------------------
 
 	// Configuration
 	
 	$forms-form-field-bp: theme.$bp-01; // breakpoint
-	$forms-form-field-spacing: theme.$spacing-x4; // spacing for input field wrapper
-	$forms-form-field-label-width: 100px; // width for input field label
-	$forms-form-field-label-vertical: 5px; // position for label inside input field wrapper
+	$forms-form-field-spacing: theme.$spacing-x4; // spacing for field wrapper
+	$forms-form-field-label-width: 100px; // width for field label
+	$forms-form-field-label-vertical: 5px; // position for label inside field wrapper
 
 	// Variables
 

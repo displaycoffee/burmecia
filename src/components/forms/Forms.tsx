@@ -2,7 +2,7 @@
 import './styles/forms.scss';
 
 /* Packages */
-import { Children, isValidElement } from 'react';
+import { Children, createContext, isValidElement, useContext } from 'react';
 
 /* Scripts */
 import {
@@ -11,6 +11,7 @@ import {
 	DescriptionProps,
 	ErrorFieldProps,
 	FormProps,
+	FormActionsProps,
 	FormFieldProps,
 	FormFieldDetailsProps,
 	InputProps,
@@ -23,13 +24,17 @@ import { forms } from './scripts/forms';
 /* Components */
 import { Icon } from '../icons/Icons';
 
+/* Shares the enclosing FormField's id so grouped radios share a name without a Choice prop */
+const ChoiceGroupContext = createContext<string | undefined>(undefined);
+
 export const Button = (props: ButtonProps) => {
-	const { children, className: propClassName, type = 'button', variant = 'primary', ...rest } = props;
+	const { children, className: propClassName, hideLabel = false, label, type = 'button', variant = 'primary', ...rest } = props;
 	const className = forms.build.className(`${variant != 'unstyled' ? 'button ' : ''}button-${variant} pointer`, propClassName);
 
 	return (
-		<button className={className} type={type} {...rest}>
+		<button className={className} type={type} aria-label={hideLabel ? label : undefined} {...rest}>
 			{children}
+			{hideLabel ? null : <span className="button-label">{label}</span>}
 		</button>
 	);
 };
@@ -37,6 +42,10 @@ export const Button = (props: ButtonProps) => {
 export const Choice = (props: ChoiceProps) => {
 	const { active = false, className: propClassName, hideLabel = false, id, label, type = 'checkbox', ...rest } = props;
 	const className = forms.build.className(`choice choice-${type} sr-only`, propClassName);
+
+	// Radios must share a name to behave as a mutually exclusive group; checkboxes stay independent
+	const groupId = useContext(ChoiceGroupContext);
+	const name = type === 'radio' ? (groupId ?? id) : id;
 
 	return (
 		<div className={`choice-wrapper choice-wrapper-${type}${active ? ' choice-wrapper-active' : ''}`}>
@@ -52,7 +61,7 @@ export const Choice = (props: ChoiceProps) => {
 				<div className="icon-wrapper"></div>
 			)}
 
-			<input id={id} className={className} name={id} type={type} {...rest} />
+			<input id={id} className={className} name={name} type={type} {...rest} />
 
 			<label className={`label pointer${hideLabel ? ' sr-only' : ''}`} htmlFor={id}>
 				{label}
@@ -75,9 +84,18 @@ export const Form = (props: FormProps) => {
 	);
 };
 
+export const FormActions = (props: FormActionsProps) => {
+	const { children, className: propClassName } = props;
+	const className = forms.build.className(`form-actions`, propClassName);
+
+	return <div className={className}>{children}</div>;
+};
+
 export const FormField = (props: FormFieldProps) => {
 	const { children, hideLabel, id, label, required } = props;
 	const className = forms.build.className(`form-field`, props?.className);
+
+	// Determine if children contain choice fields (checkboxes or radios)
 	const isChoice = Children.toArray(children).some(
 		(child) => isValidElement(child) && (child.type as { displayName?: string })?.displayName === 'Choice',
 	);
@@ -109,7 +127,9 @@ export const FormField = (props: FormFieldProps) => {
 				</div>
 			)}
 
-			<div className="form-field-control">{children}</div>
+			<div className="form-field-control">
+				{isChoice ? <ChoiceGroupContext.Provider value={id}>{children}</ChoiceGroupContext.Provider> : children}
+			</div>
 		</Tag>
 	);
 };
@@ -119,22 +139,15 @@ export const Input = (props: InputProps) => {
 	const className = forms.build.className(`input input-${type}`, propClassName);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 
-	// Props for form field
-	const formFieldProps = forms.build.fieldProps({ hideLabel, id, label, required });
+	// Form field attributes
+	const formFieldAttributes = forms.build.formFieldAttributes({ hideLabel, id, label, required });
+
+	// Input attributes
+	const inputAttributes = forms.build.fieldAttributes(id, className, descriptionId, error, errorId, required);
 
 	return (
-		<FormField {...formFieldProps}>
-			<input
-				id={id}
-				className={className}
-				name={id}
-				type={type}
-				required={required}
-				aria-required={required || undefined}
-				aria-invalid={!!error || undefined}
-				aria-describedby={forms.get.describedBy(descriptionId, errorId)}
-				{...rest}
-			/>
+		<FormField {...formFieldAttributes}>
+			<input {...inputAttributes} type={type} {...rest} />
 			<FormFieldDetails description={description} descriptionId={descriptionId} error={error} errorId={errorId} />
 		</FormField>
 	);
@@ -145,22 +158,16 @@ export const Select = (props: SelectProps) => {
 	const className = forms.build.className(`select pointer`, propClassName);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 
-	// Props for form field
-	const formFieldProps = forms.build.fieldProps({ hideLabel, id, label, required });
+	// Form field attributes
+	const formFieldAttributes = forms.build.formFieldAttributes({ hideLabel, id, label, required });
+
+	// Select attributes
+	const selectAttributes = forms.build.fieldAttributes(id, className, descriptionId, error, errorId, required);
 
 	return (
-		<FormField {...formFieldProps}>
+		<FormField {...formFieldAttributes}>
 			<div className="select-wrapper">
-				<select
-					id={id}
-					className={className}
-					name={id}
-					required={required}
-					aria-required={required || undefined}
-					aria-invalid={!!error || undefined}
-					aria-describedby={forms.get.describedBy(descriptionId, errorId)}
-					{...rest}
-				>
+				<select {...selectAttributes} {...rest}>
 					{children}
 				</select>
 				<Icon id={icon ?? 'angle-down'} />
@@ -175,21 +182,15 @@ export const Textarea = (props: TextareaProps) => {
 	const className = forms.build.className(`textarea`, propClassName);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 
-	// Props for form field
-	const formFieldProps = forms.build.fieldProps({ hideLabel, id, label, required });
+	// Form field attributes
+	const formFieldAttributes = forms.build.formFieldAttributes({ hideLabel, id, label, required });
+
+	// Textarea attributes
+	const textareaAttributes = forms.build.fieldAttributes(id, className, descriptionId, error, errorId, required);
 
 	return (
-		<FormField {...formFieldProps}>
-			<textarea
-				id={id}
-				className={className}
-				name={id}
-				required={required}
-				aria-required={required || undefined}
-				aria-invalid={!!error || undefined}
-				aria-describedby={forms.get.describedBy(descriptionId, errorId)}
-				{...rest}
-			/>
+		<FormField {...formFieldAttributes}>
+			<textarea {...textareaAttributes} {...rest} />
 			<FormFieldDetails description={description} descriptionId={descriptionId} error={error} errorId={errorId} />
 		</FormField>
 	);

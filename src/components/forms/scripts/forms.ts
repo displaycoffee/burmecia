@@ -4,7 +4,20 @@ export const forms = {
 			// Create className value for form fields
 			return className ? `${className} ${classes}` : classes;
 		},
-		fieldProps: (props: { hideLabel: boolean; id: string; label: string; required: boolean }) => {
+		fieldAttributes: (id: string, className: string, descriptionId?: string, error?: string, errorId?: string, required?: boolean) => {
+			// Set common attributes for form fields
+			const describedBy = [descriptionId, errorId].filter(Boolean).join(' ') || undefined;
+			return {
+				id: id,
+				className: className,
+				name: id,
+				required: required,
+				'aria-required': required || undefined,
+				'aria-invalid': !!error || undefined,
+				'aria-describedby': describedBy,
+			};
+		},
+		formFieldAttributes: (props: { hideLabel: boolean; id: string; label: string; required: boolean }) => {
 			// Build common form field props
 			const { hideLabel, id, label, required } = props;
 			return {
@@ -16,10 +29,6 @@ export const forms = {
 		},
 	},
 	get: {
-		describedBy: (descriptionId?: string, errorId?: string) => {
-			// Get string for aria-describedby attribute
-			return [descriptionId, errorId].filter(Boolean).join(' ') || undefined;
-		},
 		ids: (props: { description: string; error: string; id: string }) => {
 			// Get ids for form field
 			const { description, error, id } = props;

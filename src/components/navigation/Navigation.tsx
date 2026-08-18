@@ -42,7 +42,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 									navigationLinkClass={navigationLinkClass}
 									nav={nav}
 								>
-									<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} showLabel={false}>
+									<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} hideLabel={true}>
 										<List className="navigation-list-submenu" variant="ul-unstyled">
 											{nav.children.map((child) => {
 												return (

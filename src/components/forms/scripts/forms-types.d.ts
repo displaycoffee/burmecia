@@ -14,8 +14,10 @@ type Field = {
 
 /* Type definitions */
 type Button = {
-	children: ReactNode;
+	children?: ReactNode;
 	className?: string;
+	hideLabel?: boolean;
+	label: string;
 	type?: 'button' | 'submit';
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;
@@ -43,6 +45,11 @@ type Form = {
 	children: ReactNode;
 	className?: string;
 } & Omit<FormHTMLAttributes<HTMLFormElement>, 'children' | 'className'>;
+
+type FormActions = {
+	children: ReactNode;
+	className?: string;
+};
 
 type FormField = {
 	children: ReactNode;
@@ -100,6 +107,8 @@ export type DescriptionProps = Description;
 export type ErrorFieldProps = ErrorField;
 
 export type FormProps = Form;
+
+export type FormActionsProps = FormActions;
 
 export type FormFieldProps = FormField;
 

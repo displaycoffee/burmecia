@@ -2,7 +2,8 @@
 import './styles/page-four.scss';
 
 /* Components */
-import { Choice, Form, FormField, Input, Select, Textarea } from '../../components/forms/Forms';
+import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea } from '../../components/forms/Forms';
+import { Icon } from '../../components/icons/Icons';
 
 export const PageFour = () => {
 	// Sample content
@@ -50,6 +51,17 @@ export const PageFour = () => {
 				</Select>
 
 				<Textarea id={'textarea-01'} label={'Textarea 01'} placeholder={placeholder} error={error} description={description} rows={3} />
+
+				<FormActions>
+					<Button label={'Primary Button with Children'}>
+						<Icon id={'angle-down'} />
+					</Button>
+					<Button label={'Secondary Button'} variant="secondary" />
+					<Button label={'Tertiary Button'} variant="tertiary" />
+					<Button label={'Button with Hidden Label'} hideLabel={true}>
+						<Icon id={'star'} />
+					</Button>
+				</FormActions>
 			</Form>
 		</div>
 	);

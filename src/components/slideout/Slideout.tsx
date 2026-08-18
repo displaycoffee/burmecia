@@ -29,9 +29,8 @@ export const Slideout = (props: SlideoutProps) => {
 
 	// Create shared slideout button
 	const slideoutButton = (
-		<Button className="slideout-button" onClick={(e) => toggle(e, id)}>
+		<Button className="slideout-button" label={options.label} onClick={(e) => toggle(e, id)}>
 			<Icon id={'equalizer'} size={'large'} />
-			{options.label}
 		</Button>
 	);
 
@@ -98,7 +97,13 @@ export const Slideout = (props: SlideoutProps) => {
 						{options.label}
 					</h2>
 
-					<Button aria-label="Slideout Close Button" className="slideout-close" onClick={(e) => toggle(e, false)} variant="unstyled">
+					<Button
+						className="slideout-close"
+						hideLabel={true}
+						label="Slideout Close Button"
+						onClick={(e) => toggle(e, false)}
+						variant="unstyled"
+					>
 						<Icon id={'close-thin'} />
 					</Button>
 				</header>

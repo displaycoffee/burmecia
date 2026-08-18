@@ -63,10 +63,9 @@ export const List = (props: ListProps) => {
 };
 
 export const Section = (props: SectionProps) => {
-	const { children, className: propClassName, id, label } = props;
+	const { children, className: propClassName, contentOnly = false, id, label } = props;
 	const classes = 'section margin-trim';
 	const className = propClassName ? `${propClassName} ${classes}` : classes;
-	const contentOnly = props?.contentOnly ?? false;
 	const sectionRef = useRef<HTMLElement>(null);
 
 	// Reveal section with a fade / scroll transition once it comes into view
