@@ -10,11 +10,11 @@ import { useClickOutside } from './scripts/dropdown-hooks';
 import { useFormattedId } from '../../_config/scripts/hooks';
 
 /* Components */
+import { Button } from '../forms/Forms';
 import { Icon } from '../icons/Icons';
 
 export const Dropdown = (props: DropdownProps) => {
-	const { buttonLabel, children, closeOnClick } = props;
-	const showLabel = props.showLabel ?? true;
+	const { buttonLabel, children, closeOnClick, hideLabel = false } = props;
 	const dropdownId = `dropdown-${useFormattedId()}`;
 	const contentId = `${dropdownId}-content`;
 	const [dropdown, setDropdown] = useState('');
@@ -65,7 +65,7 @@ export const Dropdown = (props: DropdownProps) => {
 				closeContent={closeContent}
 				contentId={contentId}
 				isExpanded={isExpanded}
-				showLabel={showLabel}
+				hideLabel={hideLabel}
 				toggleDropdown={toggleDropdown}
 			/>
 			<DropdownContent closeContent={closeContent} contentId={contentId}>
@@ -76,31 +76,27 @@ export const Dropdown = (props: DropdownProps) => {
 };
 
 export const DropdownButton = (props: DropdownButtonProps) => {
-	const { buttonLabel, buttonRef, contentId, isExpanded, showLabel, toggleDropdown } = props;
+	const { buttonLabel, buttonRef, contentId, hideLabel, isExpanded, toggleDropdown } = props;
 
 	// Create dropdown icon
 	const icon = <Icon id={'angle-down'} />;
 
 	// Set button attributes
 	const buttonAttributes: DropdownButtonAttributesType = {
-		className: 'dropdown-button-toggle unstyled',
-		type: 'button',
 		['aria-controls']: contentId,
 		['aria-expanded']: isExpanded,
+		className: 'dropdown-button-toggle',
 		onClick: toggleDropdown,
+		ref: buttonRef,
+		type: 'button',
+		variant: 'unstyled',
 	};
-
-	// Add aria-label if no button label is set
-	if (!showLabel) {
-		buttonAttributes['aria-label'] = buttonLabel;
-	}
 
 	return (
 		<div className="dropdown-button">
-			<button {...buttonAttributes} ref={buttonRef}>
-				{showLabel ? buttonLabel : ''}
+			<Button {...buttonAttributes} label={buttonLabel} hideLabel={hideLabel}>
 				{icon}
-			</button>
+			</Button>
 		</div>
 	);
 };

@@ -3,7 +3,7 @@ type Dropdown = {
 	buttonLabel: string;
 	children: ReactNode;
 	closeOnClick?: boolean;
-	showLabel?: boolean;
+	hideLabel?: boolean;
 };
 
 type DropdownButton = {
@@ -14,7 +14,7 @@ type DropdownButton = {
 	closeContent: MouseEvent<HTMLAnchorElement>;
 	contentId: string;
 	isExpanded: boolean;
-	showLabel?: boolean;
+	hideLabel?: boolean;
 	toggleDropdown: MouseEvent<HTMLButtonElement>;
 };
 
