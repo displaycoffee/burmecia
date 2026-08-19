@@ -5,24 +5,13 @@ import './styles/blocks.scss';
 import { useEffect, useRef } from 'react';
 
 /* Scripts */
-import { LinkButtonProps, LinkExternalProps, LinkScrollProps, ListProps, SectionProps } from './scripts/blocks-types';
-import { blocks } from './scripts/blocks';
+import { useFormattedId } from '../../_config/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
+import { LinkExternalProps, ListProps, SectionProps } from './scripts/blocks-types';
+import { blocks } from './scripts/blocks';
 
 /* Components */
-import { Icon } from '../icons/Icons';
-
-export const LinkButton = (props: LinkButtonProps) => {
-	const { children, className: propClassName, ...rest } = props;
-	const classes = 'link-button pointer a';
-	const className = propClassName ? `${propClassName} ${classes}` : classes;
-
-	return (
-		<button className={className} type="button" {...rest}>
-			{children}
-		</button>
-	);
-};
+import { ButtonScroll } from '../forms/Forms';
 
 export const LinkExternal = (props: LinkExternalProps) => {
 	const { children, className, href, ...rest } = props;
@@ -32,17 +21,6 @@ export const LinkExternal = (props: LinkExternalProps) => {
 			{children}
 			<span className="sr-only"> (opens in a new tab)</span>
 		</a>
-	);
-};
-
-export const LinkScroll = (props: LinkScrollProps) => {
-	const { children, className, target, ...rest } = props;
-	const { utils } = useAppContext();
-
-	return (
-		<LinkButton className={className} onClick={(e) => utils.scrollTo(e, target)} {...rest}>
-			{children}
-		</LinkButton>
 	);
 };
 
@@ -63,8 +41,11 @@ export const List = (props: ListProps) => {
 };
 
 export const Section = (props: SectionProps) => {
-	const { children, className: propClassName, contentOnly = false, id, label } = props;
-	const classes = 'section margin-trim';
+	const { children, className: propClassName, hasScroll = true, id, title } = props;
+	const { utils } = useAppContext();
+	const fallbackId = useFormattedId();
+	const sectionId = `section-${id ? id : title ? utils.handleize(title) : fallbackId}`;
+	const classes = `section ${sectionId} margin-trim`;
 	const className = propClassName ? `${propClassName} ${classes}` : classes;
 	const sectionRef = useRef<HTMLElement>(null);
 
@@ -74,18 +55,16 @@ export const Section = (props: SectionProps) => {
 	}, []);
 
 	return (
-		<section id={id} className={className} ref={sectionRef}>
-			{contentOnly ? null : <h3>{label}</h3>}
+		<section id={sectionId} className={className} tabIndex={-1} ref={sectionRef}>
+			{title ? <h3 className="section-title">{title}</h3> : null}
 
 			<div className="section-content margin-trim">{children}</div>
 
-			{contentOnly ? null : (
+			{hasScroll ? (
 				<div className="section-button">
-					<LinkScroll target="#index">
-						<Icon id={'angle-up'} /> Back to top
-					</LinkScroll>
+					<ButtonScroll target="#index" label="Back to top" />
 				</div>
-			)}
+			) : null}
 		</section>
 	);
 };

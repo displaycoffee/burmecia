@@ -18,9 +18,14 @@ type Button = {
 	className?: string;
 	hideLabel?: boolean;
 	label: string;
-	type?: 'button' | 'submit';
-	variant?: 'primary' | 'secondary' | 'tertiary' | 'unstyled';
+	type?: 'button' | 'reset' | 'submit';
+	variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;
+
+type ButtonScroll = Omit<Button, 'onClick' | 'type' | 'variant'> & {
+	offset?: number;
+	target: string;
+};
 
 type Choice = {
 	active?: boolean;
@@ -99,6 +104,8 @@ type Textarea = Field & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'child
 
 /* Export prop types */
 export type ButtonProps = Button;
+
+export type ButtonScrollProps = ButtonScroll;
 
 export type ChoiceProps = Choice;
 

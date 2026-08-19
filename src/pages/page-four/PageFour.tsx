@@ -54,7 +54,7 @@ export const PageFour = () => {
 
 				<FormActions>
 					<Button label={'Primary Button with Children'}>
-						<Icon id={'angle-down'} />
+						<Icon id={'heart'} />
 					</Button>
 					<Button label={'Secondary Button'} variant="secondary" />
 					<Button label={'Tertiary Button'} variant="tertiary" />

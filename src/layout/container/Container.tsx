@@ -12,7 +12,7 @@ import { useBodyClass } from './scripts/container-hooks';
 /* Components */
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
 import { Navigation } from '../../components/navigation/Navigation';
-import { LinkScroll } from '../../components/blocks/Blocks';
+import { ButtonScroll } from '../../components/forms/Forms';
 import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';
 import { Header } from '../header/Header';
 import { Content } from '../content/Content';
@@ -72,7 +72,7 @@ export const Container = () => {
 
 				<Footer />
 
-				<LinkScroll target={'#index'}>Scroll to top</LinkScroll>
+				<ButtonScroll target={'#index'} label="Scroll to top" />
 
 				<Portal element={'#portal'}>
 					<p>
