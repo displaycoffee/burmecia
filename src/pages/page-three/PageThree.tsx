@@ -11,7 +11,7 @@ export const PageThree = () => {
 
 			<p>This is an example of sections that reveal themselves.</p>
 
-			<Section id={'section-01'} label={'Section 01'}>
+			<Section id={'01'} title={'Section 01'}>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros lorem, consequat vitae ultricies in, mattis consequat
 					dui. Etiam a sodales est. Etiam a tortor condimentum, pellentesque nibh sed, suscipit lacus. Vestibulum ante ipsum primis in
@@ -27,7 +27,7 @@ export const PageThree = () => {
 				</p>
 			</Section>
 
-			<Section id={'section-02'} label={'Section 02'}>
+			<Section id={'02'} title={'Section 02'}>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros lorem, consequat vitae ultricies in, mattis consequat
 					dui. Etiam a sodales est. Etiam a tortor condimentum, pellentesque nibh sed, suscipit lacus. Vestibulum ante ipsum primis in
@@ -43,7 +43,7 @@ export const PageThree = () => {
 				</p>
 			</Section>
 
-			<Section id={'section-03'} label={'Section 03'}>
+			<Section id={'03'} title={'Section 03'}>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros lorem, consequat vitae ultricies in, mattis consequat
 					dui. Etiam a sodales est. Etiam a tortor condimentum, pellentesque nibh sed, suscipit lacus. Vestibulum ante ipsum primis in
@@ -59,7 +59,7 @@ export const PageThree = () => {
 				</p>
 			</Section>
 
-			<Section id={'section-04'} label={'Section 04'}>
+			<Section id={'04'} title={'Section 04'}>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros lorem, consequat vitae ultricies in, mattis consequat
 					dui. Etiam a sodales est. Etiam a tortor condimentum, pellentesque nibh sed, suscipit lacus. Vestibulum ante ipsum primis in
@@ -75,7 +75,7 @@ export const PageThree = () => {
 				</p>
 			</Section>
 
-			<Section contentOnly={true} id={'section-05'} label={'Section 05'}>
+			<Section hasScroll={false} id={'05'}>
 				<p>
 					<strong>Content only example.</strong>
 				</p>

@@ -1,4 +1,4 @@
-﻿# Burmecia - version 3.9.0
+﻿# Burmecia - version 3.9.5
 
 React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better. [Preview here.](https://burmecia.display.coffee)
 

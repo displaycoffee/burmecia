@@ -50,10 +50,12 @@
 
 	// Style block
 
-	.button {
-		max-width: 100%;
+	button, .button {
 		@include mixins.flex-layout((display: inline-flex, flex-flow: row nowrap, align-items: center, justify-content: center));
 		@include mixins.gap(theme.$spacing-x1);
+	}
+	.button {
+		max-width: 100%;
 		@include mixins.if-exists((
 			padding: $forms-button-spacing,
 		));
@@ -317,7 +319,7 @@
 
 	// Style block
 
-	.input {
+	.input-freeform {
 		@include mixins.sizing(100%, $forms-input-height);
 		@include mixins.if-exists((
 			padding: $forms-input-spacing,
@@ -332,6 +334,12 @@
 				color: rgba($forms-input-color-03, 50%);
 			}
 		}
+	}
+	.input-color {
+		@include mixins.sizing(30px, 30px);
+		border: 0;
+		background-color: theme.$color-03;
+		cursor: pointer;
 	}
 
 //// FORMS - REQUIRED
