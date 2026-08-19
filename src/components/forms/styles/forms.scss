@@ -65,6 +65,7 @@
 		height: $forms-button-height;
 		line-height: $forms-button-height;
 		.button-label {
+			line-height: 1.5;
 			@include mixins.ellipsis;
 		}
 	}
