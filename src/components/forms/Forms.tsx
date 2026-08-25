@@ -33,8 +33,7 @@ export const Button = (props: ButtonProps) => {
 	const { children, className: propClassName, hideLabel = false, label, type = 'button', variant = 'primary', ...rest } = props;
 	const buttonClass = variant != 'unstyled' && variant != 'link' ? 'button ' : '';
 	const variantClass = variant == 'link' ? `button-${variant} button-unstyled a` : `button-${variant}`;
-	const disabledClass = rest?.disabled ? ' button-disabled' : '';
-	const className = forms.build.className(`${buttonClass}${variantClass}${disabledClass} pointer`, propClassName);
+	const className = forms.build.className(`${buttonClass}${variantClass}`, propClassName, rest?.disabled, true);
 
 	return (
 		<button className={className} type={type} aria-label={hideLabel ? label : undefined} {...rest}>
@@ -53,7 +52,7 @@ export const ButtonScroll = (props: ButtonScrollProps) => {
 
 export const Choice = (props: ChoiceProps) => {
 	const { active = false, className: propClassName, hideLabel = false, id, label, type = 'checkbox', ...rest } = props;
-	const className = forms.build.className(`choice choice-${type} sr-only`, propClassName);
+	const className = forms.build.className(`choice choice-${type}`, propClassName, rest?.disabled, false, true);
 
 	// Radios must share a name to behave as a mutually exclusive group; checkboxes stay independent
 	const groupId = useContext(ChoiceGroupContext);
@@ -149,7 +148,8 @@ export const FormField = (props: FormFieldProps) => {
 export const Input = (props: InputProps) => {
 	const { className: propClassName, description = '', error = '', hideLabel = false, id, label, required = false, type = 'text', ...rest } = props;
 	const freeformFields = ['email', 'number', 'password', 'search', 'tel', 'text', 'url'];
-	const className = forms.build.className(`input input-${type}${freeformFields.includes(type) ? ' input-freeform' : ''}`, propClassName);
+	const inputClass = `input input-${type}${freeformFields.includes(type) ? ' input-freeform' : ''}`;
+	const className = forms.build.className(inputClass, propClassName, rest?.disabled);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 
 	// Form field attributes
@@ -168,7 +168,7 @@ export const Input = (props: InputProps) => {
 
 export const Select = (props: SelectProps) => {
 	const { children, className: propClassName, description = '', error = '', hideLabel = false, icon, id, label, required = false, ...rest } = props;
-	const className = forms.build.className(`select pointer`, propClassName);
+	const className = forms.build.className(`select`, propClassName, rest?.disabled, true);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 
 	// Form field attributes
@@ -192,7 +192,7 @@ export const Select = (props: SelectProps) => {
 
 export const Textarea = (props: TextareaProps) => {
 	const { className: propClassName, description = '', error = '', hideLabel = false, id, label, required = false, ...rest } = props;
-	const className = forms.build.className(`textarea`, propClassName);
+	const className = forms.build.className(`textarea`, propClassName, rest?.disabled);
 	const { descriptionId, errorId } = forms.get.ids({ description, error, id });
 
 	// Form field attributes
@@ -210,7 +210,6 @@ export const Textarea = (props: TextareaProps) => {
 };
 
 /* Components for forms only; not exported */
-
 const Description = (props: DescriptionProps) => {
 	const { description, id } = props;
 
