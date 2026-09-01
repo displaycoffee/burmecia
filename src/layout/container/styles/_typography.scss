@@ -38,6 +38,14 @@
 			color: theme.$color-04;
 			text-decoration: underline;
 		}
+		&:has(.button-label) {
+			&:active, &:hover {
+				text-decoration: none;
+				.button-label {
+					text-decoration: underline;
+				}
+			}
+		}
 	}
 	mark {
 		background: theme.$color-12;
