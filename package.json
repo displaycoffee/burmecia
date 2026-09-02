@@ -9,11 +9,14 @@
 	"license": "ISC",
 	"homepage": "https://burmecia.display.coffee",
 	"scripts": {
+		"prebuild": "npm run tokens:build",
 		"build": "vite build && node optimize-html.js && npx prettier --write dist/index.html --ignore-path /dev/null",
+		"predev": "npm run tokens:build",
 		"dev": "vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"tokens:build": "style-dictionary build --config style-dictionary.config.js"
 	},
 	"devDependencies": {
 		"@types/react": "^19.2.14",
@@ -31,6 +34,7 @@
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"prettier": "^3.8.1",
 		"sass": "1.78.0",
+		"style-dictionary": "^5.5.2",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.58.0",
 		"vite": "^7.3.1",

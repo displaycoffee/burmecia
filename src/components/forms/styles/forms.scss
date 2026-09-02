@@ -128,6 +128,9 @@
 	.button-unstyled {
 		padding: 0;
 		background-color: transparent;
+		&:not(.a) {
+			color: theme.$color-04;
+		}
 	}
 
 //// FORMS - CHOICE
@@ -231,7 +234,7 @@
 			border: $forms-error-border-width solid $forms-error-color-01;
 		}
 		@include mixins.if-exists((
-			background-color: rgba($forms-error-color-01, 50%),
+			background-color: rgba(var(--color-12-rgb), 50%),
 			padding: $forms-error-spacing,
 		));
 	}
@@ -344,7 +347,7 @@
 		}
 		@if $forms-input-color-03 != false {
 			@include mixins.placeholder {
-				color: rgba($forms-input-color-03, 50%);
+				color: rgba(var(--color-04-rgb), 50%);
 			}
 		}
 	}
@@ -448,7 +451,7 @@
 		}
 		@if $forms-textarea-color-03 != false {
 			@include mixins.placeholder {
-				color: rgba($forms-textarea-color-03, 50%);
+				color: rgba(var(--color-04-rgb), 50%);
 			}
 		}
 	}

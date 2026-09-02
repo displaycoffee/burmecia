@@ -1,0 +1,5 @@
+{
+	"container": {
+		"base": { "$value": "1600px", "$type": "dimension" }
+	}
+}

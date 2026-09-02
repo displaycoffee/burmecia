@@ -1,3 +1,41 @@
+:root {
+	--color-01: #ffffff;
+	--color-01-rgb: 255, 255, 255;
+	--color-02: #000000;
+	--color-02-rgb: 0, 0, 0;
+	--color-03: #fdfdfd;
+	--color-03-rgb: 253, 253, 253;
+	--color-04: #333333;
+	--color-04-rgb: 51, 51, 51;
+	--color-05: #6a5acd;
+	--color-05-rgb: 106, 90, 205;
+	--color-09: rgba(0, 0, 0, 0.75);
+	--color-12: #f7f79e;
+	--color-12-rgb: 247, 247, 158;
+}
+
+/* Follows the OS/browser preference by default... */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--color-03: #1a1a1a;
+		--color-03-rgb: 26, 26, 26;
+		--color-04: #e6e6e6;
+		--color-04-rgb: 230, 230, 230;
+		--color-05: #aa9fef;
+		--color-05-rgb: 170, 159, 239;
+	}
+}
+
+/* ...but an explicit data-theme attribute (e.g. a manual toggle) always wins over that preference. */
+[data-theme='dark'] {
+	--color-03: #1a1a1a;
+	--color-03-rgb: 26, 26, 26;
+	--color-04: #e6e6e6;
+	--color-04-rgb: 230, 230, 230;
+	--color-05: #aa9fef;
+	--color-05-rgb: 170, 159, 239;
+}
+
 //// BREAKPOINTS
 //// --------------------------------------------------------------------------
 //// Note: set without unit
@@ -16,31 +54,31 @@
 //// --------------------------------------------------------------------------
 
 	$spacing-x1: 5px;
-	$spacing-x2: $spacing-x1 * 2;
-	$spacing-x3: $spacing-x1 * 3;
-	$spacing-x4: $spacing-x1 * 4;
-	$spacing-x5: $spacing-x1 * 5;
-	$spacing-x6: $spacing-x1 * 6;
-	$spacing-x7: $spacing-x1 * 7;
-	$spacing-x8: $spacing-x1 * 8;
-	$spacing-x10: $spacing-x1 * 10;  
-	$spacing-x12: $spacing-x1 * 12;
+	$spacing-x2: 10px;
+	$spacing-x3: 15px;
+	$spacing-x4: 20px;
+	$spacing-x5: 25px;
+	$spacing-x6: 30px;
+	$spacing-x7: 35px;
+	$spacing-x8: 40px;
+	$spacing-x10: 50px;
+	$spacing-x12: 60px;
 
 //// COLORS
 //// --------------------------------------------------------------------------
 
-	$color-01: #ffffff; // white
-	$color-02: #000000; // black
-	$color-03: #fdfdfd; // main background
-	$color-04: #333333; // light text
-	$color-05: #6a5acd; // links
+	$color-01: var(--color-01); // white
+	$color-02: var(--color-02); // black
+	$color-03: var(--color-03); // main background
+	$color-04: var(--color-04); // light text
+	$color-05: var(--color-05); // links
 	$color-06: false;
 	$color-07: false;
 	$color-08: false;
-	$color-09: rgba(#000000, 0.75); // overlay
+	$color-09: var(--color-09); // overlay
 	$color-10: false;
 	$color-11: false;
-	$color-12: #f7f79e; // error and highlights
+	$color-12: var(--color-12); // error and highlights
 
 //// FONTS
 //// --------------------------------------------------------------------------
@@ -53,7 +91,7 @@
 	$font-style: false;
 	$font-transform: uppercase;
 	$font-size-global: 14px;
-	$font-size-base: 16px;	
+	$font-size-base: 16px;
 
 //// ICONS
 //// --------------------------------------------------------------------------

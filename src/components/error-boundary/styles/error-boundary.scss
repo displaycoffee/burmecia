@@ -18,7 +18,7 @@
 	.error-boundary {
 		@include mixins.if-exists((
 			padding: $error-boundary-spacing,
-			background-color: rgba($error-boundary-color-01, 50%),
+			background-color: rgba(var(--color-12-rgb), 50%),
 		));
 		@if $error-boundary-border-width != false {
 			border: $error-boundary-border-width solid $error-boundary-color-01;

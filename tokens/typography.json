@@ -1,0 +1,13 @@
+{
+	"font": {
+		"path": { "$value": "/assets/fonts/", "$type": "string" },
+		"family-01": { "$value": "'Open Sans', 'Fallback', san-serif", "$description": "main font family: used for most text elements" },
+		"family-02": { "$value": "'Montserrat', 'Fallback Bold', san-serif", "$description": "header font family: used in header elements" },
+		"weight-01": { "$value": 700, "$type": "fontWeight", "$description": "main font weight: used for things like bold text and active selections" },
+		"weight-02": { "$value": 700, "$type": "fontWeight", "$description": "header font weight: used in header elements" },
+		"style": { "$value": false },
+		"transform": { "$value": "uppercase" },
+		"size-global": { "$value": "14px", "$type": "dimension" },
+		"size-base": { "$value": "16px", "$type": "dimension" }
+	}
+}

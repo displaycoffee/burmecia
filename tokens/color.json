@@ -1,0 +1,16 @@
+{
+	"color": {
+		"01": { "$value": "#ffffff", "$type": "color", "$description": "white" },
+		"02": { "$value": "#000000", "$type": "color", "$description": "black" },
+		"03": { "$value": "#fdfdfd", "$type": "color", "$description": "main background", "$extensions": { "dark": "#1a1a1a" } },
+		"04": { "$value": "#333333", "$type": "color", "$description": "light text", "$extensions": { "dark": "#e6e6e6" } },
+		"05": { "$value": "#6a5acd", "$type": "color", "$description": "links", "$extensions": { "dark": "#aa9fef" } },
+		"06": { "$value": false },
+		"07": { "$value": false },
+		"08": { "$value": false },
+		"09": { "$value": "rgba(0, 0, 0, 0.75)", "$description": "overlay" },
+		"10": { "$value": false },
+		"11": { "$value": false },
+		"12": { "$value": "#f7f79e", "$type": "color", "$description": "error and highlights" }
+	}
+}
