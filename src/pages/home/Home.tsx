@@ -10,7 +10,7 @@ export const Home = () => {
 		<div className="home margin-trim">
 			<h2>Home</h2>
 
-			<p>this is an index page.</p>
+			<p>This is an index page.</p>
 
 			<Dropdown buttonLabel={'Label'}>
 				<List>
