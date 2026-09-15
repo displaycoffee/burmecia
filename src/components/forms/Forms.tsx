@@ -5,7 +5,7 @@ import './styles/forms.scss';
 import { Children, createContext, isValidElement, useContext } from 'react';
 
 /* Scripts */
-import {
+import type {
 	ButtonProps,
 	ButtonScrollProps,
 	ChoiceProps,

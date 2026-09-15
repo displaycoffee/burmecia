@@ -1,5 +1,13 @@
 /* Packages */
-import { ButtonHTMLAttributes, FormHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import type {
+	ButtonHTMLAttributes,
+	FormHTMLAttributes,
+	InputHTMLAttributes,
+	ReactNode,
+	Ref,
+	SelectHTMLAttributes,
+	TextareaHTMLAttributes,
+} from 'react';
 
 /* Shared field concerns for form controls with a label / error / required state */
 type Field = {
@@ -18,6 +26,7 @@ type Button = {
 	className?: string;
 	hideLabel?: boolean;
 	label: string;
+	ref?: Ref<HTMLButtonElement>;
 	type?: 'button' | 'reset' | 'submit';
 	variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;

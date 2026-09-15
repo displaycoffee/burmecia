@@ -2,7 +2,7 @@
 import './styles/sidebar.scss';
 
 /* Scripts */
-import { SidebarProps } from './scripts/sidebar-types';
+import type { SidebarProps } from './scripts/sidebar-types';
 
 export const Sidebar = (props: SidebarProps) => {
 	const { show } = props;

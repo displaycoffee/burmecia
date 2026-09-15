@@ -1,5 +1,6 @@
 /* Packages */
-import { RefObject, useEffect, useRef } from 'react';
+import type { RefObject } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const useClickOutside = (callback: () => void) => {
 	const clickRef: RefObject<HTMLDivElement | null> = useRef(null);
