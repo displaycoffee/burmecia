@@ -15,7 +15,7 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 ### src
 
 - Dev environment is started with `npm run dev`
-- `_config` directory configures "global" settings
+- `_core` directory holds global functions, variables, and hooks used throughout the app
 - Organized other directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `pages` ("major" content), and `targets`
 - `targets` directory contains code that targets elements in index.html (`#index` and `#portal`)
 - index.html contains a `style` block with important style rules for rendering things faster on page load

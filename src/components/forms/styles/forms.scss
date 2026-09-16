@@ -1,7 +1,7 @@
 // Use utils and theme variables
-@use '../../../_config/styles/utils/_functions';
-@use '../../../_config/styles/utils/_mixins';
-@use '../../../_config/styles/theme/_theme';
+@use '../../../_core/styles/utils/_functions';
+@use '../../../_core/styles/utils/_mixins';
+@use '../../../_core/styles/theme/_theme';
 
 //// FORMS
 //// --------------------------------------------------------------------------
@@ -153,7 +153,7 @@
 
 	// Variables
 
-	$forms-choice-align: if($forms-choice-alignment == left or $forms-choice-alignment == right, $forms-choice-alignment, left);
+	$forms-choice-align: if(sass($forms-choice-alignment == left or $forms-choice-alignment == right): $forms-choice-alignment; else: left);
 
 	// Style block
 

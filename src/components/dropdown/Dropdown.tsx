@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 /* Scripts */
 import type { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside } from './scripts/dropdown-hooks';
-import { useFormattedId } from '../../_config/scripts/hooks';
+import { useFormattedId } from '../../_core/scripts/hooks';
 
 /* Components */
 import { Button } from '../forms/Forms';
