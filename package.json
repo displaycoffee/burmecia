@@ -1,7 +1,8 @@
 {
 	"name": "burmecia",
+	"displayName": "Burmecia",
 	"version": "4.0.0",
-	"description": "Custom react template build.",
+	"description": "Burmecia - A React/TypeScript Boilerplate.",
 	"main": "bundle.js",
 	"type": "module",
 	"keywords": [],
@@ -10,7 +11,7 @@
 	"homepage": "https://burmecia.display.coffee",
 	"scripts": {
 		"build": "vite build && node optimize-html.js && npx prettier --write dist/index.html --ignore-path /dev/null",
-		"dev": "vite --host",
+		"dev": "node scripts/src-build.js && npx prettier --write src/index.html && vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
 		"preview": "vite preview"
