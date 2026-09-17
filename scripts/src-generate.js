@@ -1,10 +1,13 @@
+/* Packages */
 import fs from 'fs';
 import path from 'path';
-import { config } from './config.js';
-const { site, targets, theme } = config;
-const { fonts } = theme;
 
-// Path to your built index.html
+/* Scripts */
+import { config } from './config.js';
+
+/* Variables */
+const { site, targets, theme } = config;
+const { bps, colors, favicons, fonts } = theme;
 const templatePath = path.resolve('./scripts/src-template.html');
 const htmlPath = path.resolve('./src/index.html');
 
@@ -31,11 +34,16 @@ if (fs.existsSync(templatePath)) {
 	const targetElements = [];
 
 	targets.forEach((target) => {
-		if (target.isScript) {
+		if (target?.isScript) {
 			targetScripts.push(`<script type="module" src="${target.file}"></script>`);
 		}
-		targetElements.push(target.hasTabindex ? `<div id="${target.name}" tabindex="-1"></div>` : `<div id="${target.name}"></div>`);
+		targetElements.push(target?.hasTabindex ? `<div id="${target.name}" tabindex="-1"></div>` : `<div id="${target.name}"></div>`);
 	});
+
+	// Function to create favicon link tag
+	const createFavicon = (favicon) => {
+		return `<link href="${favicon.file}" rel="${favicon.rel}" sizes="${favicon.size}" type="${favicon.type}" />`;
+	};
 
 	// Update head
 	// Create head meta, links and scripts
@@ -51,12 +59,12 @@ if (fs.existsSync(templatePath)) {
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:description" content="${site.description}" />
 		<meta property="og:type" content="website" />
-		<meta name="theme-color" content="${theme.colors.color03}" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="${theme.colors.color04}" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="${colors.color03}" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="${colors.color04}" media="(prefers-color-scheme: dark)" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="icon" href="/favicon-92x92.png" type="image/png" sizes="92x92" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		${createFavicon(favicons.favicon32)}
+		${createFavicon(favicons.favicon92)}
+		${createFavicon(favicons.favicon180)}
 		<link rel="manifest" href="/manifest.json" />
 		${fontLinks.join('')}
 		${targetScripts.join('')}
@@ -86,7 +94,7 @@ if (fs.existsSync(templatePath)) {
 			.hide-desktop {
 				display: block;
 			}
-			@media only screen and (min-width: ${theme.bps.bp02}px) {
+			@media only screen and (min-width: ${bps.bp02}px) {
 				.hide-mobile {
 					display: block;
 				}
