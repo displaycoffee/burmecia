@@ -1,5 +1,7 @@
 /* Packages */ 
 import { defineConfig } from 'vite';
+
+/* Scripts */
 import { viteUtils } from './vite.utils.js';
 
 /* Variables */ 
