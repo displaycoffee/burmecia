@@ -28,7 +28,7 @@ export const Home = () => {
 				<li>Item 4</li>
 			</List>
 
-			<List variant="ol">
+			<List variant={'ol'}>
 				<li>Item 1</li>
 				<li>Item 2</li>
 				<li>Item 3</li>

@@ -11,7 +11,7 @@ export const Sidebar = (props: SidebarProps) => {
 		<aside className="sidebar margin-trim">
 			<h3>Sidebar</h3>
 
-			<p>this is sidebar content.</p>
+			<p>This is sidebar content.</p>
 		</aside>
 	) : null;
 };

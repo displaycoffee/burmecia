@@ -72,7 +72,7 @@ export const Container = () => {
 
 				<Footer />
 
-				<ButtonScroll target={'#index'} label="Scroll to top" />
+				<ButtonScroll target={'#index'} label={'Scroll to top'} />
 
 				<Portal element={'#portal'}>
 					<p>
