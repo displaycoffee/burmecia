@@ -52,9 +52,7 @@ export const Dropdown = (props: DropdownProps) => {
 
 	// Determine if we should close dropdown when clicked inside
 	const closeContent = () => {
-		if (closeOnClick) {
-			setDropdown('');
-		}
+		if (closeOnClick) setDropdown('');
 	};
 
 	return (

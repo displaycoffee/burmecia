@@ -8,9 +8,7 @@ export const useClickOutside = (callback: () => void) => {
 	// Determine if a click has been performed outside an element
 	useEffect(() => {
 		const handleClickOutside = (e: Event) => {
-			if (clickRef.current && !clickRef.current.contains(e.target as Node)) {
-				callback();
-			}
+			if (clickRef.current && !clickRef.current.contains(e.target as Node)) callback();
 		};
 
 		document.addEventListener('mousedown', handleClickOutside);

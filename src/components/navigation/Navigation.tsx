@@ -6,9 +6,9 @@ import { Fragment, Suspense, useEffect } from 'react';
 import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 /* Scripts */
+import type { NavigationComponentProps, NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
 import { useViewTransition } from '../../_core/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
-import type { NavigationComponentProps, NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
 import { navigationRoutes } from './scripts/navigation-routes';
 
@@ -32,7 +32,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 
 	return navigationList.length != 0 ? (
 		<nav className="navigation" aria-label={label}>
-			<List className="navigation-list" variant="ul-unstyled">
+			<List className={'navigation-list'} variant={'ul-unstyled'}>
 				{navigationList.map((nav) => {
 					return (
 						<Fragment key={nav.id}>
@@ -43,7 +43,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 									nav={nav}
 								>
 									<Dropdown buttonLabel={`${nav.label} Menu`} closeOnClick={true} hideLabel={true}>
-										<List className="navigation-list-submenu" variant="ul-unstyled">
+										<List className={'navigation-list-submenu'} variant={'ul-unstyled'}>
 											{nav.children.map((child) => {
 												return (
 													<NavigationListItem
@@ -120,7 +120,7 @@ export const NavigationRoutes = () => {
 					);
 				})}
 
-				<Route path="*" element={<Navigate to="/" />} />
+				<Route path={'*'} element={<Navigate to={'/'} />} />
 			</Routes>
 		</Suspense>
 	) : null;
