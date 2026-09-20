@@ -3,6 +3,7 @@ import './styles/dropdown.scss';
 
 /* Packages */
 import { useEffect, useRef, useState } from 'react';
+import IconChevronDown from '~icons/lucide/chevron-down';
 
 /* Scripts */
 import type { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
@@ -77,7 +78,7 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 	const { buttonLabel, buttonRef, contentId, hideLabel, isExpanded, toggleDropdown } = props;
 
 	// Create dropdown icon
-	const icon = <Icon id={'angle-down'} />;
+	const icon = <Icon icon={IconChevronDown} />;
 
 	// Set button attributes
 	const buttonAttributes: DropdownButtonAttributesType = {

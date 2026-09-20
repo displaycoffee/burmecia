@@ -1,6 +1,10 @@
 /* Styles */
 import './styles/page-four.scss';
 
+/* Packages */
+import IconHeart from '~icons/lucide/heart';
+import IconStar from '~icons/lucide/star';
+
 /* Components */
 import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea } from '../../components/forms/Forms';
 import { Icon } from '../../components/icons/Icons';
@@ -54,12 +58,12 @@ export const PageFour = () => {
 
 				<FormActions>
 					<Button label={'Primary Button with Children'}>
-						<Icon id={'heart'} />
+						<Icon icon={IconHeart} />
 					</Button>
 					<Button label={'Secondary Button'} variant={'secondary'} />
 					<Button label={'Tertiary Button'} variant={'tertiary'} />
 					<Button label={'Button with Hidden Label'} hideLabel={true}>
-						<Icon id={'star'} />
+						<Icon icon={IconStar} />
 					</Button>
 				</FormActions>
 			</Form>

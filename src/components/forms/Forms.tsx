@@ -3,6 +3,9 @@ import './styles/forms.scss';
 
 /* Packages */
 import { useLayoutEffect, useRef, useState } from 'react';
+import IconChevronDown from '~icons/lucide/chevron-down';
+import IconCheck from '~icons/lucide/check';
+import IconDot from '~icons/lucide/dot';
 
 /* Scripts */
 import type {
@@ -63,7 +66,7 @@ export const Choice = (props: ChoiceProps) => {
 
 	return (
 		<div className={`choice-wrapper choice-wrapper-${type}${active ? ' choice-wrapper-active' : ''}`} ref={choiceRef}>
-			{active ? <Icon id={type == 'radio' ? 'circle' : 'check-thin'} /> : <div className="icon-wrapper"></div>}
+			{active ? <Icon icon={type == 'radio' ? IconDot : IconCheck} /> : <div className="icon-wrapper"></div>}
 
 			<input id={id} className={className} name={name} type={type} {...rest} />
 
@@ -168,7 +171,7 @@ export const Select = (props: SelectProps) => {
 				<select {...selectAttributes} {...rest}>
 					{children}
 				</select>
-				<Icon id={icon ?? 'angle-down'} />
+				<Icon icon={icon ?? IconChevronDown} />
 			</div>
 			<FormFieldDetails description={description} descriptionId={descriptionId} error={error} errorId={errorId} />
 		</FormField>

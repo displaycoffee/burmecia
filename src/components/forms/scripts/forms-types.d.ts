@@ -1,11 +1,13 @@
 /* Packages */
 import type {
 	ButtonHTMLAttributes,
+	ComponentType,
 	FormHTMLAttributes,
 	InputHTMLAttributes,
 	ReactNode,
 	Ref,
 	SelectHTMLAttributes,
+	SVGProps,
 	TextareaHTMLAttributes,
 } from 'react';
 
@@ -107,7 +109,7 @@ type Required = {
 
 type Select = Field & {
 	children: ReactNode;
-	icon?: string;
+	icon?: ComponentType<SVGProps<SVGSVGElement>>;
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children' | 'className' | 'required'>;
 
 type Textarea = Field & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'className' | 'required'>;

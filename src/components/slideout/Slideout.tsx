@@ -3,6 +3,8 @@ import './styles/slideout.scss';
 
 /* Packages */
 import { useEffect, useRef, useState } from 'react';
+import IconX from '~icons/lucide/x';
+import IconSlidersVertical from '~icons/lucide/sliders-vertical';
 
 /* Scripts */
 import type { SlideoutOverlayProps, SlideoutProps, SlideoutTouchType, SlideoutTouchRefType, SlideoutOverlayRefType } from './scripts/slideout-types';
@@ -37,7 +39,7 @@ export const Slideout = (props: SlideoutProps) => {
 			aria-expanded={isActive}
 			aria-label={`Open ${options.label}`}
 		>
-			<Icon id={'equalizer'} size={'large'} />
+			<Icon icon={IconSlidersVertical} size={'large'} />
 		</Button>
 	);
 
@@ -149,7 +151,7 @@ export const Slideout = (props: SlideoutProps) => {
 						onClick={(e) => toggle(e, false)}
 						variant={'unstyled'}
 					>
-						<Icon id={'close-thin'} />
+						<Icon icon={IconX} size={'xx-large'} />
 					</Button>
 				</header>
 

@@ -165,7 +165,7 @@
 			@include mixins.sizing($forms-choice-size, $forms-choice-size);
 			@include mixins.position($type: absolute, $top: $forms-choice-vertical);
 			#{$forms-choice-align}: $forms-choice-horizontal;
-			padding: 3px;
+			padding: 2px;
 			@include mixins.if-exists((
 				background-color: $forms-choice-color-01,
 			));
@@ -183,6 +183,9 @@
 	.choice-wrapper-radio {
 		.icon-wrapper {
 			@include mixins.border-radius(50%);
+			.icon circle {
+				stroke-width: 16;
+			}
 		}
 	}
 	.choice-wrapper-active {
