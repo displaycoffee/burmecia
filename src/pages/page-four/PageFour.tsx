@@ -18,7 +18,7 @@ export const PageFour = () => {
 			<p>This is an example of form fields.</p>
 
 			<Form>
-				<FormField id={'checkboxes-01'} label={'Checkboxes 01'}>
+				<FormField id={'checkboxes-01'} label={'Checkboxes 01'} isChoice={true}>
 					<Choice label={'Checkbox option 01'} id={'checkbox-option-01'} />
 
 					<Choice label={'Checkbox option 02'} id={'checkbox-option-02'} active={true} />
@@ -26,7 +26,7 @@ export const PageFour = () => {
 					<Choice label={'Checkbox option 03'} id={'checkbox-option-03'} />
 				</FormField>
 
-				<FormField id={'radios-01'} label={'Radios 01'}>
+				<FormField id={'radios-01'} label={'Radios 01'} isChoice={true}>
 					<Choice label={'Radio option 01'} id={'radio-option-01'} type={'radio'} />
 
 					<Choice label={'Radio option 02'} id={'radio-option-02'} type={'radio'} active={true} />
