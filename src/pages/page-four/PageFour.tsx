@@ -12,7 +12,7 @@ import { Icon } from '../../components/icons/Icons';
 export const PageFour = () => {
 	// Sample content
 	const description = 'This is a description explaning what the field does.';
-	const error = 'This is an error message.';
+	const error = <p>This is an error message.</p>;
 	const placeholder = 'Enter your text, please.';
 
 	return (
