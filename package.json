@@ -13,17 +13,17 @@
 		"generate:dev": "node scripts/src-generate.js && npx prettier --write src/index.html",
 		"generate:dist": "node scripts/dist-generate.js && npx prettier --write dist/index.html --ignore-path /dev/null",
 		"generate:public": "node scripts/public-generate.js && npx prettier --write public/manifest.json",
-		"build": "vite build && npm run generate:dist && npm run generate:public",
-		"dev": "npm run generate:public && npm run generate:dev && vite --host",
+		"build": "cross-env VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite build && npm run generate:dist && npm run generate:public",
+		"dev": "npm run generate:public && npm run generate:dev && cross-env VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
-		"preview": "vite preview"
+		"preview": "cross-env VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite preview"
 	},
 	"devDependencies": {
 		"@iconify-json/lucide": "^1.2.135",
 		"@svgr/core": "^8.1.0",
 		"@svgr/plugin-jsx": "^8.1.0",
-		"@tanstack/router-devtools": "^1.167.2",
+		"@tanstack/react-router-devtools": "^1.167.2",
 		"@tanstack/router-plugin": "^1.168.40",
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
@@ -31,6 +31,7 @@
 		"@typescript-eslint/parser": "^8.70.0",
 		"@vitejs/plugin-basic-ssl": "^2.3.0",
 		"@vitejs/plugin-react": "^6.1.1",
+		"cross-env": "^10.1.0",
 		"eslint": "^9.39.5",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-import-resolver-typescript": "^4.4.5",
@@ -51,8 +52,7 @@
 		"@tanstack/react-router": "^1.170.38",
 		"react": "^19.3.0",
 		"react-dom": "^19.3.0",
-		"react-error-boundary": "^6.1.6",
-		"react-router-dom": "^7.18.3"
+		"react-error-boundary": "^6.1.6"
 	},
 	"repository": {
 		"type": "git",

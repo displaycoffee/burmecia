@@ -8,45 +8,142 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as PageFourIndexRouteImport } from './routes/page-four/index'
+import { createFileRoute } from '@tanstack/react-router'
 
-const IndexRoute = IndexRouteImport.update({
+import { Route as rootRouteImport } from './routes/__root'
+
+const IndexLazyRouteImport = createFileRoute('/')()
+const PageFourIndexLazyRouteImport = createFileRoute('/page-four/')()
+const PageOneIndexLazyRouteImport = createFileRoute('/page-one/')()
+const PageThreeIndexLazyRouteImport = createFileRoute('/page-three/')()
+const PageTwoIndexLazyRouteImport = createFileRoute('/page-two/')()
+const PageTwochildrenChildPageOneIndexLazyRouteImport = createFileRoute(
+  '/page-two/(children)/child-page-one/',
+)()
+const PageTwochildrenChildPageTwoIndexLazyRouteImport = createFileRoute(
+  '/page-two/(children)/child-page-two/',
+)()
+
+const IndexLazyRoute = IndexLazyRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any)
-const PageFourIndexRoute = PageFourIndexRouteImport.update({
+} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+const PageFourIndexLazyRoute = PageFourIndexLazyRouteImport.update({
   id: '/page-four/',
   path: '/page-four/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/page-four/index.lazy').then((d) => d.Route),
+)
+const PageOneIndexLazyRoute = PageOneIndexLazyRouteImport.update({
+  id: '/page-one/',
+  path: '/page-one/',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/page-one/index.lazy').then((d) => d.Route),
+)
+const PageThreeIndexLazyRoute = PageThreeIndexLazyRouteImport.update({
+  id: '/page-three/',
+  path: '/page-three/',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/page-three/index.lazy').then((d) => d.Route),
+)
+const PageTwoIndexLazyRoute = PageTwoIndexLazyRouteImport.update({
+  id: '/page-two/',
+  path: '/page-two/',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/page-two/index.lazy').then((d) => d.Route),
+)
+const PageTwochildrenChildPageOneIndexLazyRoute =
+  PageTwochildrenChildPageOneIndexLazyRouteImport.update({
+    id: '/page-two/(children)/child-page-one/',
+    path: '/page-two/child-page-one/',
+    getParentRoute: () => rootRouteImport,
+  } as any).lazy(() =>
+    import('./routes/page-two/(children)/child-page-one/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+const PageTwochildrenChildPageTwoIndexLazyRoute =
+  PageTwochildrenChildPageTwoIndexLazyRouteImport.update({
+    id: '/page-two/(children)/child-page-two/',
+    path: '/page-two/child-page-two/',
+    getParentRoute: () => rootRouteImport,
+  } as any).lazy(() =>
+    import('./routes/page-two/(children)/child-page-two/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/page-four/': typeof PageFourIndexRoute
+  '/': typeof IndexLazyRoute
+  '/page-four/': typeof PageFourIndexLazyRoute
+  '/page-one/': typeof PageOneIndexLazyRoute
+  '/page-three/': typeof PageThreeIndexLazyRoute
+  '/page-two/': typeof PageTwoIndexLazyRoute
+  '/page-two/child-page-one/': typeof PageTwochildrenChildPageOneIndexLazyRoute
+  '/page-two/child-page-two/': typeof PageTwochildrenChildPageTwoIndexLazyRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/page-four': typeof PageFourIndexRoute
+  '/': typeof IndexLazyRoute
+  '/page-four': typeof PageFourIndexLazyRoute
+  '/page-one': typeof PageOneIndexLazyRoute
+  '/page-three': typeof PageThreeIndexLazyRoute
+  '/page-two': typeof PageTwoIndexLazyRoute
+  '/page-two/child-page-one': typeof PageTwochildrenChildPageOneIndexLazyRoute
+  '/page-two/child-page-two': typeof PageTwochildrenChildPageTwoIndexLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/page-four/': typeof PageFourIndexRoute
+  '/': typeof IndexLazyRoute
+  '/page-four/': typeof PageFourIndexLazyRoute
+  '/page-one/': typeof PageOneIndexLazyRoute
+  '/page-three/': typeof PageThreeIndexLazyRoute
+  '/page-two/': typeof PageTwoIndexLazyRoute
+  '/page-two/(children)/child-page-one/': typeof PageTwochildrenChildPageOneIndexLazyRoute
+  '/page-two/(children)/child-page-two/': typeof PageTwochildrenChildPageTwoIndexLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/page-four/'
+  fullPaths:
+    | '/'
+    | '/page-four/'
+    | '/page-one/'
+    | '/page-three/'
+    | '/page-two/'
+    | '/page-two/child-page-one/'
+    | '/page-two/child-page-two/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/page-four'
-  id: '__root__' | '/' | '/page-four/'
+  to:
+    | '/'
+    | '/page-four'
+    | '/page-one'
+    | '/page-three'
+    | '/page-two'
+    | '/page-two/child-page-one'
+    | '/page-two/child-page-two'
+  id:
+    | '__root__'
+    | '/'
+    | '/page-four/'
+    | '/page-one/'
+    | '/page-three/'
+    | '/page-two/'
+    | '/page-two/(children)/child-page-one/'
+    | '/page-two/(children)/child-page-two/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  PageFourIndexRoute: typeof PageFourIndexRoute
+  IndexLazyRoute: typeof IndexLazyRoute
+  PageFourIndexLazyRoute: typeof PageFourIndexLazyRoute
+  PageOneIndexLazyRoute: typeof PageOneIndexLazyRoute
+  PageThreeIndexLazyRoute: typeof PageThreeIndexLazyRoute
+  PageTwoIndexLazyRoute: typeof PageTwoIndexLazyRoute
+  PageTwochildrenChildPageOneIndexLazyRoute: typeof PageTwochildrenChildPageOneIndexLazyRoute
+  PageTwochildrenChildPageTwoIndexLazyRoute: typeof PageTwochildrenChildPageTwoIndexLazyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -55,22 +152,64 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof IndexLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/page-four/': {
       id: '/page-four/'
       path: '/page-four'
       fullPath: '/page-four/'
-      preLoaderRoute: typeof PageFourIndexRouteImport
+      preLoaderRoute: typeof PageFourIndexLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page-one/': {
+      id: '/page-one/'
+      path: '/page-one'
+      fullPath: '/page-one/'
+      preLoaderRoute: typeof PageOneIndexLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page-three/': {
+      id: '/page-three/'
+      path: '/page-three'
+      fullPath: '/page-three/'
+      preLoaderRoute: typeof PageThreeIndexLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page-two/': {
+      id: '/page-two/'
+      path: '/page-two'
+      fullPath: '/page-two/'
+      preLoaderRoute: typeof PageTwoIndexLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page-two/(children)/child-page-one/': {
+      id: '/page-two/(children)/child-page-one/'
+      path: '/page-two/child-page-one'
+      fullPath: '/page-two/child-page-one/'
+      preLoaderRoute: typeof PageTwochildrenChildPageOneIndexLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page-two/(children)/child-page-two/': {
+      id: '/page-two/(children)/child-page-two/'
+      path: '/page-two/child-page-two'
+      fullPath: '/page-two/child-page-two/'
+      preLoaderRoute: typeof PageTwochildrenChildPageTwoIndexLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  PageFourIndexRoute: PageFourIndexRoute,
+  IndexLazyRoute: IndexLazyRoute,
+  PageFourIndexLazyRoute: PageFourIndexLazyRoute,
+  PageOneIndexLazyRoute: PageOneIndexLazyRoute,
+  PageThreeIndexLazyRoute: PageThreeIndexLazyRoute,
+  PageTwoIndexLazyRoute: PageTwoIndexLazyRoute,
+  PageTwochildrenChildPageOneIndexLazyRoute:
+    PageTwochildrenChildPageOneIndexLazyRoute,
+  PageTwochildrenChildPageTwoIndexLazyRoute:
+    PageTwochildrenChildPageTwoIndexLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,10 +1,14 @@
 /* Packages */
-import { Link } from 'react-router-dom';
+import { createLazyFileRoute, Link } from '@tanstack/react-router';
 
 /* Scripts */
 import { useAppContext } from '../../../../context/scripts/context-hooks';
 
-export const ChildPageTwo = () => {
+export const Route = createLazyFileRoute('/page-two/(children)/child-page-two/')({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	const { utils } = useAppContext();
 
 	return (
@@ -20,4 +24,4 @@ export const ChildPageTwo = () => {
 			</p>
 		</div>
 	);
-};
+}

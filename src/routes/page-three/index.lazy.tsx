@@ -1,10 +1,14 @@
-/* Styles */
-import './styles/page-three.scss';
+/* Packages */
+import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
 import { Section } from '../../components/blocks/Blocks';
 
-export const PageThree = () => {
+export const Route = createLazyFileRoute('/page-three/')({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	return (
 		<div className="page-three margin-trim">
 			<h2>Page Three</h2>
@@ -95,4 +99,4 @@ export const PageThree = () => {
 			</Section>
 		</div>
 	);
-};
+}

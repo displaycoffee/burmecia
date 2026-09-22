@@ -1,10 +1,14 @@
-/* Styles */
-import './styles/page-one.scss';
+/* Packages */
+import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
 import { Image } from '../../components/image/Image';
 
-export const PageOne = () => {
+export const Route = createLazyFileRoute('/page-one/')({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	return (
 		<div className="page-one margin-trim">
 			<h2>Page One</h2>
@@ -18,4 +22,4 @@ export const PageOne = () => {
 			<Image alt={'Cat 03'} hasLazy={true} image={'/assets/images/test/test-image-03.jpg'} wrapperClasses={['fluid']} />
 		</div>
 	);
-};
+}

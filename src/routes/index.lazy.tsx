@@ -1,11 +1,18 @@
 /* Styles */
-import './styles/home.scss';
+import './index/styles/index.scss';
+
+/* Packages */
+import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
-import { List } from '../../components/blocks/Blocks';
-import { Dropdown } from '../../components/dropdown/Dropdown';
+import { List } from '../components/blocks/Blocks';
+import { Dropdown } from '../components/dropdown/Dropdown';
 
-export const Home = () => {
+export const Route = createLazyFileRoute('/')({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	return (
 		<div className="home margin-trim">
 			<h2>Home</h2>
@@ -36,4 +43,4 @@ export const Home = () => {
 			</List>
 		</div>
 	);
-};
+}

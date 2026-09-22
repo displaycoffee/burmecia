@@ -184,9 +184,12 @@ export const SlideoutOverlay = (props: SlideoutOverlayProps) => {
 	const { config, set, toggle } = slideout;
 	const elementRef: SlideoutOverlayRefType = useRef(null);
 
-	// Create overlay element and append to body on mount, remove on unmount
+	// Create overlay element and append to #index on mount, remove on unmount
+	// Note: appended to #index (not body) so it shares its isolated stacking context — otherwise
+	// its z-index is compared against #index as a whole rather than against .slideout-content
+	// nested inside it, and the overlay (correctly lower) still ends up appearing on top
 	useEffect(() => {
-		const slideoutTarget = document.querySelector('body');
+		const slideoutTarget = document.querySelector('#index');
 		if (!slideoutTarget) return;
 
 		// Create overlay

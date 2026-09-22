@@ -1,7 +1,5 @@
-/* Styles */
-import './styles/page-four.scss';
-
 /* Packages */
+import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import IconHeart from '~icons/lucide/heart';
 import IconStar from '~icons/lucide/star';
@@ -10,7 +8,11 @@ import IconStar from '~icons/lucide/star';
 import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea, Toggle } from '../../components/forms/Forms';
 import { Icon } from '../../components/icons/Icons';
 
-export const PageFour = () => {
+export const Route = createLazyFileRoute('/page-four/')({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	// Sample content
 	const description = 'This is a description explaning what the field does.';
 	const error = <p>This is an error message.</p>;
@@ -91,4 +93,4 @@ export const PageFour = () => {
 			</Form>
 		</div>
 	);
-};
+}

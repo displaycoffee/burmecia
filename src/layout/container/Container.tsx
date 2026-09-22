@@ -9,6 +9,7 @@ import { Link, useLocation } from '@tanstack/react-router';
 import { useRespond } from '../../_core/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
 import { useAvailableMinHeight, useBodyClass } from './scripts/container-hooks';
+import { navigationHeader } from '../../components/navigation/scripts/navigation';
 
 /* Components */
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
@@ -58,10 +59,10 @@ export const Container = () => {
 				<Header />
 
 				{isDesktop ? (
-					<Navigation label={'Header Navigation'} />
+					<Navigation data={navigationHeader} label={'Header Navigation'} />
 				) : (
 					<Slideout options={slideoutOptions}>
-						<Navigation disableTransition={true} label={'Mobile Navigation'} />
+						<Navigation data={navigationHeader} disableTransition={true} label={'Mobile Navigation'} />
 					</Slideout>
 				)}
 

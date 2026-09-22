@@ -2,29 +2,24 @@
 import './styles/navigation.scss';
 
 /* Packages */
-import { Fragment, Suspense, useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
-// TODO: NavigationRoutes below still targets react-router-dom; it's unused until the remaining pages get route files
-import { Navigate, Route, Routes } from 'react-router-dom';
 
 /* Scripts */
-import type { NavigationComponentProps, NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
+import type { NavigationComponentProps, NavigationItemComponentProps } from './scripts/navigation-types';
+import { navigationUtils } from './scripts/navigation-utils';
 import { useViewTransition } from '../../_core/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
-import { navigationUtils } from './scripts/navigation-utils';
-import { navigationRoutes } from './scripts/navigation-routes';
 
 /* Components */
 import { LinkExternal, List } from '../blocks/Blocks';
 import { Dropdown } from '../dropdown/Dropdown';
 
-/* Get navigation menu */
-const navigationList = navigationUtils.get.list();
-
 export const Navigation = (props: NavigationComponentProps) => {
-	const { disableTransition, label } = props;
+	const { data, disableTransition, label } = props;
 	const { pathname } = useLocation();
 	const { utils } = useAppContext();
+	const navigationList = navigationUtils.get.list(data);
 	const navigationLinkClass = 'navigation-link';
 
 	// Scroll to top when navigation link is clicked on
@@ -74,7 +69,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 	) : null;
 };
 
-export const NavigationListItem = (props: NavigationListItemProps) => {
+export const NavigationListItem = (props: NavigationItemComponentProps) => {
 	const { children, disableTransition, nav, navigationLinkClass } = props;
 	const handleTransition = useViewTransition();
 
@@ -95,35 +90,4 @@ export const NavigationListItem = (props: NavigationListItemProps) => {
 			{children}
 		</li>
 	);
-};
-
-export const NavigationRoutes = () => {
-	return navigationRoutes.length != 0 ? (
-		<Suspense fallback={null}>
-			<Routes>
-				{navigationRoutes.map((nav: NavigationRoutesProps) => {
-					const navProps = nav?.props ?? {};
-
-					return (
-						<Fragment key={nav.id}>
-							{nav?.children && nav.children.length !== 0 ? (
-								<>
-									<Route path={`${nav.path}/*`} element={<nav.element {...navProps} />} />
-
-									{nav.children.map((child: NavigationRoutesProps) => {
-										const childProps = child?.props ?? {};
-										return <Route path={child.path} element={<child.element {...childProps} />} key={child.id} />;
-									})}
-								</>
-							) : (
-								<Route path={nav.path} element={<nav.element {...navProps} />} />
-							)}
-						</Fragment>
-					);
-				})}
-
-				<Route path={'*'} element={<Navigate to={'/'} />} />
-			</Routes>
-		</Suspense>
-	) : null;
 };

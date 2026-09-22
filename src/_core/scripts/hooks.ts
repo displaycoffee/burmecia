@@ -44,7 +44,6 @@ export const useViewTransition = () => {
 				.startViewTransition(() => {
 					flushSync(() => {
 						if (isUrl) {
-							// href (not to) since target may be a nav.url that isn't a registered route yet
 							void navigate({ href: target });
 						} else {
 							target();
