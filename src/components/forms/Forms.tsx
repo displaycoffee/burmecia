@@ -22,6 +22,7 @@ import type {
 	RequiredProps,
 	SelectProps,
 	TextareaProps,
+	ToggleProps,
 } from './scripts/forms-types';
 import { forms } from './scripts/forms';
 import { useAppContext } from '../../context/scripts/context-hooks';
@@ -53,8 +54,9 @@ export const ButtonScroll = (props: ButtonScrollProps) => {
 
 export const Choice = (props: ChoiceProps) => {
 	const { active = false, className: propClassName, hideLabel = false, id, label, type = 'checkbox', ...rest } = props;
-	const className = forms.build.className(`choice choice-${type}`, propClassName, rest?.disabled, false, true);
-	const choiceRef = useRef<HTMLDivElement>(null);
+	const choiceClass = `choice choice-${type}${active ? ' choice-active' : ''} pointer`;
+	const className = forms.build.className(choiceClass, propClassName, rest?.disabled);
+	const choiceRef = useRef<HTMLLabelElement>(null);
 	const [name, setName] = useState(id);
 
 	// Get group id for radios
@@ -66,15 +68,13 @@ export const Choice = (props: ChoiceProps) => {
 	}, [type]);
 
 	return (
-		<div className={`choice-wrapper choice-wrapper-${type}${active ? ' choice-wrapper-active' : ''}`} ref={choiceRef}>
-			{active ? <Icon icon={type == 'radio' ? IconDot : IconCheck} /> : <div className="icon-wrapper"></div>}
+		<label className={className} htmlFor={id} ref={choiceRef}>
+			{active ? <Icon icon={type == 'radio' ? IconDot : IconCheck} /> : <span className="icon-wrapper"></span>}
 
-			<input id={id} className={className} name={name} type={type} {...rest} />
+			<input id={id} className={`choice-input choice-input-${type} sr-only`} checked={active} name={name} type={type} {...rest} />
 
-			<label className={`label pointer${hideLabel ? ' sr-only' : ''}`} htmlFor={id}>
-				{label}
-			</label>
-		</div>
+			<span className={`choice-label${hideLabel ? ' sr-only' : ''}`}>{label}</span>
+		</label>
 	);
 };
 
@@ -195,6 +195,24 @@ export const Textarea = (props: TextareaProps) => {
 			<textarea {...textareaAttributes} {...rest} />
 			<FormFieldDetails description={description} descriptionId={descriptionId} error={error} errorId={errorId} />
 		</FormField>
+	);
+};
+
+export const Toggle = (props: ToggleProps) => {
+	const { active = false, className: propClassName, hideLabel = false, id, label, ...rest } = props;
+	const toggleClass = `toggle${active ? ' toggle-active' : ''}`;
+	const className = forms.build.className(`${toggleClass} flex-nowrap flex-align-items-center pointer`, propClassName, rest?.disabled);
+
+	return (
+		<label className={className} htmlFor={id}>
+			<span className="toggle-slider" aria-hidden="true">
+				<span className="toggle-slider-circle"></span>
+			</span>
+
+			<span className={`toggle-label${hideLabel ? ' sr-only' : ''}`}>{label}</span>
+
+			<input id={id} className="sr-only" checked={active} name={id} role="switch" type="checkbox" {...rest} />
+		</label>
 	);
 };
 

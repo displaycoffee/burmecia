@@ -12,7 +12,7 @@
 
 	// Style block
 	
-	:focus-visible {
+	:focus-visible, .choice:has(input:focus-visible), .toggle:has(input:focus-visible) .toggle-slider {
 		outline: 1px solid $forms-color-01;
 		outline-offset: 2px;
 	}
@@ -28,7 +28,9 @@
 	}
 	.disabled {
 		opacity: 0.65;
-		cursor: not-allowed;
+		&, &.pointer, .pointer {
+			cursor: not-allowed;
+		}
 	}
 
 //// FORMS - BUTTON
@@ -144,7 +146,7 @@
 	// Configuration
 	
 	$forms-choice-size: 16px; // choice height
-	$forms-choice-vertical: 3px; // vertical position of choice
+	$forms-choice-vertical: 2.5px; // vertical position of choice
 	$forms-choice-horizontal: 0; // horizontal position of choice
 	$forms-choice-alignment: left; // choice aligned left or right
 	$forms-choice-spacing: theme.$spacing-x2; // spacing between checkbox and label
@@ -157,10 +159,11 @@
 
 	// Style block
 
-	.choice-wrapper {
+	.choice {
 		position: relative;
 		padding: 0;
 		padding-#{$forms-choice-align}: $forms-choice-size + $forms-choice-horizontal + $forms-choice-spacing;
+		display: block;
 		.icon-wrapper {
 			@include mixins.sizing($forms-choice-size, $forms-choice-size);
 			@include mixins.position($type: absolute, $top: $forms-choice-vertical);
@@ -177,10 +180,10 @@
 			}
 		}
 	}
-	.choice-wrapper-checkbox {
+	.choice-checkbox {
 		.icon-wrapper {}
 	}
-	.choice-wrapper-radio {
+	.choice-radio {
 		.icon-wrapper {
 			@include mixins.border-radius(50%);
 			.icon circle {
@@ -188,7 +191,7 @@
 			}
 		}
 	}
-	.choice-wrapper-active {
+	.choice-active {
 		.icon-wrapper {
 			@include mixins.if-exists((
 				background-color: $forms-choice-color-03,
@@ -250,7 +253,7 @@
 	.form-field {
 		@include mixins.flex-layout((flex-flow: row wrap));
 		@include mixins.gap($forms-form-field-spacing-half $forms-form-field-spacing);
-		&:has(.choice-wrapper) {
+		&:has(.choice) {
 			.form-field-label {
 				top: 0;
 			}
@@ -419,6 +422,90 @@
 		@if $forms-textarea-color-03 != false {
 			@include mixins.placeholder {
 				color: rgba($forms-textarea-color-03, 50%);
+			}
+		}
+	}
+
+//// FORMS - TOGGLE
+//// --------------------------------------------------------------------------
+
+	// Colors
+
+	$forms-toggle-color-01: theme.$color-04; // toggle background
+	$forms-toggle-color-02: false; // toggle border
+	$forms-toggle-color-03: theme.$color-03; // toggle circle
+	$forms-toggle-color-04: theme.$color-05; // active toggle background
+	$forms-toggle-color-05: false; // active toggle border
+	$forms-toggle-color-06: false; // active toggle circle
+
+	// Configuration
+	
+	$forms-toggle-spacing: theme.$spacing-x2; // spacing between toggle and label
+	$forms-toggle-width: 100px; // toggle width
+	$forms-toggle-height: 25px; // toggle height
+	$forms-toggle-border-radius: 25px; // toggle radius
+	$forms-toggle-border-width: false; // toggle border width
+	$forms-toggle-circle-offset: 4px; // position of toggle circle
+
+	// Variables
+
+	$forms-toggle-border-width-calc: if(sass($forms-toggle-border-width != false): calc($forms-toggle-border-width * 2); else: 0);
+	$forms-toggle-circle-size: $forms-toggle-height - $forms-toggle-border-width-calc;
+
+	// Style block
+
+	.toggle {
+		@include mixins.gap($forms-toggle-spacing);
+		&, .toggle-slider {
+			position: relative;
+		}
+		.toggle-slider, .toggle-slider .toggle-slider-circle, .toggle-slider .toggle-slider-circle:after, .toggle-label {
+			display: block;
+		}
+		.toggle-label, .toggle-slider {
+			min-width: 1px;
+		}
+		.toggle-slider {
+			@include mixins.flex(0 0 auto);
+			@include mixins.sizing($forms-toggle-width, $forms-toggle-height);
+			background-color: $forms-toggle-color-01;
+			@if $forms-toggle-border-width != false and $forms-toggle-color-02 != false {
+				border: $forms-toggle-border-width solid $forms-toggle-color-02;
+			}
+			@if $forms-toggle-border-radius != false {
+				@include mixins.border-radius($forms-toggle-border-radius);
+			}
+			@include mixins.transition(background-color 0.35s ease);
+			.toggle-slider-circle {
+				@include mixins.sizing($forms-toggle-circle-size, auto);
+				@include mixins.position($type: absolute, $left: 0, $top: 0, $bottom: 0);
+				padding: $forms-toggle-circle-offset;
+				@include mixins.transition(transform 0.35s ease);
+				&:after {
+					content: '';
+					@include mixins.sizing(100%, 100%);
+					background-color: $forms-toggle-color-03;
+					@include mixins.border-radius(50%);
+				}
+			}
+		}
+		.toggle-label {
+			min-width: 1px;
+		}
+	}
+	.toggle-active {
+		.toggle-slider {
+			background-color: $forms-toggle-color-04;
+			@if $forms-toggle-border-width != false and $forms-toggle-color-05 != false {
+				border-color: $forms-toggle-color-05;
+			}
+			.toggle-slider-circle {
+				transform: translateX($forms-toggle-width - $forms-toggle-circle-size - $forms-toggle-border-width-calc);
+				&:after {
+					@include mixins.if-exists((
+						background-color: $forms-toggle-color-06
+					));
+				}
 			}
 		}
 	}

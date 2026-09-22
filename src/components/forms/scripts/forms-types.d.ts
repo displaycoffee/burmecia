@@ -114,6 +114,14 @@ type Select = Field & {
 
 type Textarea = Field & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'className' | 'required'>;
 
+type Toggle = {
+	active?: boolean;
+	className?: string;
+	hideLabel?: boolean;
+	id: string;
+	label: string;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'required' | 'type'>;
+
 /* Export prop types */
 export type ButtonProps = Button;
 
@@ -140,3 +148,5 @@ export type RequiredProps = Required;
 export type SelectProps = Select;
 
 export type TextareaProps = Textarea;
+
+export type ToggleProps = Toggle;

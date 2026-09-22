@@ -2,11 +2,12 @@
 import './styles/page-four.scss';
 
 /* Packages */
+import { useState } from 'react';
 import IconHeart from '~icons/lucide/heart';
 import IconStar from '~icons/lucide/star';
 
 /* Components */
-import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea } from '../../components/forms/Forms';
+import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea, Toggle } from '../../components/forms/Forms';
 import { Icon } from '../../components/icons/Icons';
 
 export const PageFour = () => {
@@ -14,6 +15,19 @@ export const PageFour = () => {
 	const description = 'This is a description explaning what the field does.';
 	const error = <p>This is an error message.</p>;
 	const placeholder = 'Enter your text, please.';
+
+	// Sample state for choice and toggle fields
+	const [checkboxes, setCheckboxes] = useState(['checkbox-option-01']);
+	const [radio, setRadio] = useState('radio-option-02');
+	const [toggles, setToggles] = useState(['toggle-option-03']);
+
+	// Add or remove an id from a multi-select group
+	const updateGroup = (group: string[], id: string) => (group.includes(id) ? group.filter((value) => value != id) : [...group, id]);
+
+	// Build state props for each group
+	const checkboxProps = (id: string) => ({ id: id, active: checkboxes.includes(id), onChange: () => setCheckboxes(updateGroup(checkboxes, id)) });
+	const radioProps = (id: string) => ({ id: id, active: radio == id, onChange: () => setRadio(id) });
+	const toggleProps = (id: string) => ({ id: id, active: toggles.includes(id), onChange: () => setToggles(updateGroup(toggles, id)) });
 
 	return (
 		<div className="page-four margin-trim">
@@ -23,19 +37,27 @@ export const PageFour = () => {
 
 			<Form>
 				<FormField id={'checkboxes-01'} label={'Checkboxes 01'} isChoice={true}>
-					<Choice label={'Checkbox option 01'} id={'checkbox-option-01'} />
+					<Choice label={'Checkbox option 01'} {...checkboxProps('checkbox-option-01')} />
 
-					<Choice label={'Checkbox option 02'} id={'checkbox-option-02'} active={true} />
+					<Choice label={'Checkbox option 02'} {...checkboxProps('checkbox-option-02')} />
 
-					<Choice label={'Checkbox option 03'} id={'checkbox-option-03'} />
+					<Choice label={'Checkbox option 03'} {...checkboxProps('checkbox-option-03')} />
 				</FormField>
 
 				<FormField id={'radios-01'} label={'Radios 01'} isChoice={true}>
-					<Choice label={'Radio option 01'} id={'radio-option-01'} type={'radio'} />
+					<Choice label={'Radio option 01'} type={'radio'} {...radioProps('radio-option-01')} />
 
-					<Choice label={'Radio option 02'} id={'radio-option-02'} type={'radio'} active={true} />
+					<Choice label={'Radio option 02'} type={'radio'} {...radioProps('radio-option-02')} />
 
-					<Choice label={'Radio option 03'} id={'radio-option-03'} type={'radio'} />
+					<Choice label={'Radio option 03'} type={'radio'} {...radioProps('radio-option-03')} />
+				</FormField>
+
+				<FormField id={'toggles-01'} label={'Toggles 01'} isChoice={true}>
+					<Toggle label={'Toggle option 01'} {...toggleProps('toggle-option-01')} />
+
+					<Toggle label={'Toggle option 02'} {...toggleProps('toggle-option-02')} />
+
+					<Toggle label={'Toggle option 03'} {...toggleProps('toggle-option-03')} />
 				</FormField>
 
 				<Input hideLabel={true} id={'input-01'} label={'Input 01'} placeholder={'Example with hidden label.'} />
