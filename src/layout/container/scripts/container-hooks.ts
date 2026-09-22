@@ -1,7 +1,7 @@
 /* Packages */
 import type { RefObject } from 'react';
 import { useEffect, useLayoutEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from '@tanstack/react-router';
 
 export const useAvailableMinHeight = (ref: RefObject<HTMLElement | null>) => {
 	// Reserves exactly the viewport space around this element — regardless of what surrounds it,

@@ -129,4 +129,20 @@ export const utils: UtilsType = {
 			element.setAttribute(attribute, attributes[attribute]);
 		}
 	},
+	stripHTML: (string: string) => {
+		// Remove HTML from string
+		if (!string) return '';
+		return string
+			.replace(/\n/g, ' ')
+			.replace(/<[^>]*>/g, '')
+			.trim();
+	},
+	truncate: (string: string, limit: number) => {
+		// Limit characters in string
+		if (string.length > limit) {
+			return `${string.slice(0, limit - 3)}...`;
+		} else {
+			return string;
+		}
+	},
 };

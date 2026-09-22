@@ -3,7 +3,9 @@ import './styles/navigation.scss';
 
 /* Packages */
 import { Fragment, Suspense, useEffect } from 'react';
-import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Link, useLocation } from '@tanstack/react-router';
+// TODO: NavigationRoutes below still targets react-router-dom; it's unused until the remaining pages get route files
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 /* Scripts */
 import type { NavigationComponentProps, NavigationListItemProps, NavigationRoutesProps } from './scripts/navigation-types';
@@ -75,18 +77,18 @@ export const Navigation = (props: NavigationComponentProps) => {
 export const NavigationListItem = (props: NavigationListItemProps) => {
 	const { children, disableTransition, nav, navigationLinkClass } = props;
 	const handleTransition = useViewTransition();
-	const navigationActiveClass = `${navigationLinkClass} ${navigationLinkClass}-active`;
 
 	return (
 		<li className="navigation-list-item">
 			{nav.isRoute ? (
-				<NavLink
+				<Link
 					to={nav.url}
 					onClick={disableTransition ? undefined : (e) => handleTransition(e, nav.url)}
-					className={({ isActive }) => (isActive ? navigationActiveClass : navigationLinkClass)}
+					className={navigationLinkClass}
+					activeProps={{ className: `${navigationLinkClass}-active` }}
 				>
 					{nav.label}
-				</NavLink>
+				</Link>
 			) : (
 				<LinkExternal href={nav.url}>{nav.label}</LinkExternal>
 			)}

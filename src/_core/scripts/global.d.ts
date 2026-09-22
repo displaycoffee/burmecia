@@ -48,6 +48,8 @@ type Utils = {
 	isSticky: (element: HTMLElement | null, stickyClass: string) => void;
 	scrollTo: (e?: Events, selector?: string, offset?: number) => void;
 	setAttributes: (element: HTMLElement, attributes: ObjectString) => void;
+	stripHTML: (string: string) => string;
+	truncate: (string: string, limit: number) => string;
 };
 
 type Variables = {

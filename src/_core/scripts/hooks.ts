@@ -2,7 +2,7 @@
 import type { MouseEvent } from 'react';
 import { useEffect, useId, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 
 export const useFormattedId = () => {
 	// Updates the format of useId hook
@@ -44,7 +44,8 @@ export const useViewTransition = () => {
 				.startViewTransition(() => {
 					flushSync(() => {
 						if (isUrl) {
-							void navigate(target);
+							// href (not to) since target may be a nav.url that isn't a registered route yet
+							void navigate({ href: target });
 						} else {
 							target();
 						}
