@@ -18,7 +18,7 @@ type NavigationItemComponent = {
 type NavigationFlatItem = {
 	children?: NavigationFlatItem[];
 	id: string;
-	includeInSiteMap: boolean;
+	includeInSitemap: boolean;
 	isRoute: boolean;
 	label: string;
 	showInNav: boolean;
@@ -28,7 +28,7 @@ type NavigationFlatItem = {
 type NavigationMapItem = {
 	children?: NavigationMap;
 	id: string;
-	includeInSiteMap: boolean;
+	includeInSitemap: boolean;
 	isRoute: boolean;
 	label: string;
 	showInNav: boolean;
@@ -41,7 +41,7 @@ type NavigationMap = {
 
 type NavigationMapItemOptions = {
 	children?: NavigationMap;
-	includeInSiteMap?: boolean;
+	includeInSitemap?: boolean;
 	isRoute?: boolean;
 	key: string;
 	label: string;
