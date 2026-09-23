@@ -10,7 +10,6 @@ export const navigationHeader: NavigationMapType = {
 	...create({
 		key: 'page-two',
 		label: 'Page Two',
-		includeInSiteMap: false,
 		children: {
 			...create({ key: 'child-page-one', label: 'Child Page One' }),
 			...create({ key: 'child-page-two', label: 'Child Page Two' }),
