@@ -85,7 +85,7 @@ export const Container = () => {
 const ContainerError = () => {
 	return (
 		<p>
-			Something went wrong. <Link to={'/'}>Go back.</Link>
+			Something went wrong. <Link to={'/'}>Go back</Link>.
 		</p>
 	);
 };
