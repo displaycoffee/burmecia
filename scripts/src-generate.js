@@ -18,7 +18,8 @@ if (fs.existsSync(templatePath)) {
 	const fontFaces = [];
 
 	fonts.forEach((font) => {
-		fontLinks.push(`<link rel="preload" href="${font.file}" as="font" type="font/woff2" crossorigin="anonymous" />`);
+		// Only preload fonts needed for the first render; the rest load on demand through their @font-face rule
+		if (font?.preload) fontLinks.push(`<link rel="preload" href="${font.file}" as="font" type="font/woff2" crossorigin="anonymous" />`);
 		fontFaces.push(`@font-face {
 			font-family: '${font.family}';
 			src: url('${font.file}') format('woff2');
@@ -58,8 +59,8 @@ if (fs.existsSync(templatePath)) {
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:description" content="${site.description}" />
 		<meta property="og:type" content="website" />
-		<meta name="theme-color" content="${colors.color03}" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="${colors.color04}" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="${colors.bg}" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="${colors.bgDark}" media="(prefers-color-scheme: dark)" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		${createFavicon(favicons.favicon32)}
 		${createFavicon(favicons.favicon92)}

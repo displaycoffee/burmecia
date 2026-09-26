@@ -2,13 +2,14 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// FORMS
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$forms-color-01: theme.$color-04; // focus visible border color
+	$forms-color-01: tokens.$color-border; // focus visible border color
 
 	// Style block
 	
@@ -38,24 +39,24 @@
 
 	// Colors
 
-	$forms-button-color-01: theme.$color-04; // primary button background
-	$forms-button-color-02: theme.$color-04; // primary button border
-	$forms-button-color-03: theme.$color-03; // primary button color
-	$forms-button-color-04: theme.$color-03; // primary hover button background
-	$forms-button-color-05: theme.$color-04; // primary hover button border
-	$forms-button-color-06: theme.$color-04; // primary hover button color
-	$forms-button-color-07: theme.$color-05; // secondary button background
-	$forms-button-color-08: theme.$color-05; // secondary button border
-	$forms-button-color-09: theme.$color-03; // secondary button color
-	$forms-button-color-10: theme.$color-03; // secondary hover button background
-	$forms-button-color-11: theme.$color-05; // secondary hover button border
-	$forms-button-color-12: theme.$color-05; // secondary hover button color
-	$forms-button-color-13: theme.$color-03; // tertiary button background
-	$forms-button-color-14: theme.$color-04; // tertiary button border
-	$forms-button-color-15: theme.$color-04; // tertiary button color
-	$forms-button-color-16: theme.$color-04; // tertiary hover button background
-	$forms-button-color-17: theme.$color-04; // tertiary hover button border
-	$forms-button-color-18: theme.$color-03; // tertiary hover button color
+	$forms-button-color-01: tokens.$color-button-primary-bg; // primary button background
+	$forms-button-color-02: tokens.$color-button-primary-border; // primary button border
+	$forms-button-color-03: tokens.$color-button-primary-text; // primary button color
+	$forms-button-color-04: tokens.$color-button-primary-bg-hover; // primary hover button background
+	$forms-button-color-05: false; // primary hover button border
+	$forms-button-color-06: tokens.$color-button-primary-text-hover; // primary hover button color
+	$forms-button-color-07: tokens.$color-button-secondary-bg; // secondary button background
+	$forms-button-color-08: tokens.$color-button-secondary-border; // secondary button border
+	$forms-button-color-09: tokens.$color-button-secondary-text; // secondary button color
+	$forms-button-color-10: tokens.$color-button-secondary-bg-hover; // secondary hover button background
+	$forms-button-color-11: false; // secondary hover button border
+	$forms-button-color-12: tokens.$color-button-secondary-text-hover; // secondary hover button color
+	$forms-button-color-13: tokens.$color-button-tertiary-bg; // tertiary button background
+	$forms-button-color-14: tokens.$color-button-tertiary-border; // tertiary button border
+	$forms-button-color-15: tokens.$color-button-tertiary-text; // tertiary button color
+	$forms-button-color-16: tokens.$color-button-tertiary-bg-hover; // tertiary hover button background
+	$forms-button-color-17: false; // tertiary hover button border
+	$forms-button-color-18: tokens.$color-button-tertiary-text-hover; // tertiary hover button color
 
 	// Configuration
 	
@@ -137,11 +138,11 @@
 
 	// Colors
 
-	$forms-choice-color-01: theme.$color-03; // choice background
-	$forms-choice-color-02: theme.$color-04; // choice border
-	$forms-choice-color-03: theme.$color-03; // active choice background
-	$forms-choice-color-04: theme.$color-04; // active choice border
-	$forms-choice-color-05: theme.$color-04; // active choice color
+	$forms-choice-color-01: tokens.$color-bg; // choice background
+	$forms-choice-color-02: tokens.$color-border; // choice border
+	$forms-choice-color-03: false; // active choice background
+	$forms-choice-color-04: false; // active choice border
+	$forms-choice-color-05: false; // active choice color
 
 	// Configuration
 	
@@ -293,9 +294,9 @@
 
 	// Colors
 
-	$forms-input-color-01: theme.$color-03; // input background
-	$forms-input-color-02: theme.$color-04; // input border
-	$forms-input-color-03: theme.$color-04; // input color
+	$forms-input-color-01: tokens.$color-bg; // input background
+	$forms-input-color-02: tokens.$color-border; // input border
+	$forms-input-color-03: tokens.$color-text; // input color
 
 	// Configuration
 	
@@ -317,14 +318,14 @@
 		}
 		@if $forms-input-color-03 != false {
 			@include mixins.placeholder {
-				color: rgba($forms-input-color-03, 50%);
+				color: color-mix(in srgb, #{$forms-input-color-03} 50%, transparent);
 			}
 		}
 	}
 	.input-color {
 		@include mixins.sizing(30px, 30px);
 		border: 0;
-		background-color: theme.$color-03;
+		background-color: tokens.$color-bg;
 		cursor: pointer;
 	}
 
@@ -353,9 +354,9 @@
 
 	// Colors
 
-	$forms-select-color-01: theme.$color-03; // input background
-	$forms-select-color-02: theme.$color-04; // input border
-	$forms-select-color-03: theme.$color-04; // input color
+	$forms-select-color-01: tokens.$color-bg; // input background
+	$forms-select-color-02: tokens.$color-border; // input border
+	$forms-select-color-03: tokens.$color-text; // input color
 
 	// Configuration
 	
@@ -396,9 +397,9 @@
 
 	// Colors
 
-	$forms-textarea-color-01: theme.$color-03; // textarea background
-	$forms-textarea-color-02: theme.$color-04; // textarea border
-	$forms-textarea-color-03: theme.$color-04; // textarea color
+	$forms-textarea-color-01: tokens.$color-bg; // textarea background
+	$forms-textarea-color-02: tokens.$color-border; // textarea border
+	$forms-textarea-color-03: tokens.$color-text; // textarea color
 
 	// Configuration
 	
@@ -421,7 +422,7 @@
 		}
 		@if $forms-textarea-color-03 != false {
 			@include mixins.placeholder {
-				color: rgba($forms-textarea-color-03, 50%);
+				color: color-mix(in srgb, #{$forms-textarea-color-03} 50%, transparent);
 			}
 		}
 	}
@@ -431,10 +432,10 @@
 
 	// Colors
 
-	$forms-toggle-color-01: theme.$color-04; // toggle background
+	$forms-toggle-color-01: tokens.$color-inactive; // toggle background
 	$forms-toggle-color-02: false; // toggle border
-	$forms-toggle-color-03: theme.$color-03; // toggle circle
-	$forms-toggle-color-04: theme.$color-05; // active toggle background
+	$forms-toggle-color-03: tokens.$color-bg; // toggle circle
+	$forms-toggle-color-04: tokens.$color-active; // active toggle background
 	$forms-toggle-color-05: false; // active toggle border
 	$forms-toggle-color-06: false; // active toggle circle
 

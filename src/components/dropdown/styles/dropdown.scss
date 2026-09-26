@@ -2,22 +2,28 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// DROPDOWN
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$dropdown-color-01: theme.$color-04; // button border
-	$dropdown-color-02: theme.$color-03; // button background
-	$dropdown-color-03: false; // content border
-	$dropdown-color-04: false; // content background
+	$dropdown-color-01: tokens.$color-border; // dropdown button border
+	$dropdown-color-02: tokens.$color-bg; // dropdown button background
+	$dropdown-color-03: tokens.$color-text; // dropdown button label
+	$dropdown-color-04: false; // dropdown content border
+	$dropdown-color-05: false; // dropdown content background
 
 	// Configuration
 
 	$dropdown-height: 35px; // height of dropdown button
 	$dropdown-spacing: theme.$spacing-x2; // overall spacing of dropdown
 	$dropdown-content-gap: -1px; // spacing between dropdown button and content
+	$dropdown-duration: 0.35s; // duration of open / close transitions
+	$dropdown-transform-closed: translateY(-4px) scale(0.98); // content position when closed - slides and grows slightly from the button
+	$dropdown-transition-closed: opacity $dropdown-duration ease, transform $dropdown-duration ease, visibility $dropdown-duration, z-index 0s $dropdown-duration; // transition properties for closing - z-index drop is delayed until the close finishes
+	$dropdown-transition-open: opacity $dropdown-duration ease, transform $dropdown-duration ease, visibility $dropdown-duration; // transition properties for opening
 
 	// Style block
 
@@ -30,17 +36,19 @@
 				}
 			}
 			.dropdown-content {
+				@include mixins.transition($dropdown-transition-open);
 				z-index: 1;
 				opacity: 1;
 				visibility: visible;
+				transform: none;
 			}
 		}
 		.dropdown-button, .dropdown-content {
 			border: 1px solid transparent;
-			@if $dropdown-color-03 == false or $dropdown-color-01 == $dropdown-color-03 {
+			@if $dropdown-color-04 == false or $dropdown-color-01 == $dropdown-color-04 {
 				border-color: $dropdown-color-01;
 			}
-			@if  $dropdown-color-04 == false $dropdown-color-02 == $dropdown-color-04 {
+			@if $dropdown-color-05 == false or $dropdown-color-02 == $dropdown-color-05 {
 				background-color: $dropdown-color-02;
 			}
 		}
@@ -49,10 +57,10 @@
 			line-height: $dropdown-height;
 			@include mixins.gap($dropdown-spacing);
 			padding: 0 $dropdown-spacing;
-			@if $dropdown-color-01 != $dropdown-color-03 {
+			@if $dropdown-color-01 != $dropdown-color-04 {
 				border-color: $dropdown-color-01;
 			}
-			@if $dropdown-color-02 != $dropdown-color-04 {
+			@if $dropdown-color-02 != $dropdown-color-05 {
 				background-color: $dropdown-color-02;
 			}
 			&, .dropdown-button-toggle {
@@ -68,9 +76,12 @@
 			.dropdown-button-toggle {
 				@include mixins.flex;
 				.icon-wrapper {
-					@include mixins.transition(transform ease 0.5s);
+					@include mixins.transition(transform ease $dropdown-duration);
 					margin-left: auto;
 					order: 9999;
+				}
+				.button-label {
+					@include mixins.if-exists((color: $dropdown-color-03));
 				}
 			}
 		}
@@ -79,13 +90,17 @@
 			margin: $dropdown-content-gap 0 0 0;
 			opacity: 0;
 			visibility: hidden;
-			@include mixins.transition(opacity 0.5s ease);
-			padding: $dropdown-spacing;
-			@if $dropdown-color-03 != false and $dropdown-color-01 != $dropdown-color-03 {
-				border-color: $dropdown-color-03;
+			@include mixins.transition($dropdown-transition-closed);
+			transform-origin: top;
+			@media (prefers-reduced-motion: no-preference) {
+				transform: $dropdown-transform-closed;
 			}
-			@if $dropdown-color-04 != false and $dropdown-color-02 != $dropdown-color-04 {
-				background-color: $dropdown-color-04;
+			padding: $dropdown-spacing;
+			@if $dropdown-color-04 != false and $dropdown-color-01 != $dropdown-color-04 {
+				border-color: $dropdown-color-04;
+			}
+			@if $dropdown-color-05 != false and $dropdown-color-02 != $dropdown-color-05 {
+				background-color: $dropdown-color-05;
 			}
 		}
 	}

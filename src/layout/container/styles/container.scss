@@ -2,6 +2,7 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// BASE STYLES
 //// --------------------------------------------------------------------------
@@ -9,6 +10,7 @@
 
 	// Imports
 
+	@use '../../../_core/styles/theme/_root';
 	@use './_reset';
 	@use './_typography';
 	@use './_base';
@@ -35,8 +37,8 @@
 			overflow: visible;
 			clip: unset;
 			white-space: unset;
-			border: 1px solid theme.$color-04;
-			background-color: theme.$color-03;
+			border: 1px solid tokens.$color-border;
+			background-color: tokens.$color-bg;
 		}
 	}
 	.container {

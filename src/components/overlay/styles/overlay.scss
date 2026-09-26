@@ -2,14 +2,15 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// OVERLAY
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$overlay-color-01: theme.$color-09; // backdrop
-	$overlay-color-02: theme.$color-03; // content background
+	$overlay-color-01: tokens.$color-overlay; // backdrop
+	$overlay-color-02: tokens.$color-bg; // content background
 
 	// Configuration
 

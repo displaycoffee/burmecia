@@ -1,0 +1,128 @@
+{
+	"color": {
+		"$type": "color",
+		"white": {
+			"$value": "#ffffff"
+		},
+		"black": {
+			"$value": "#000000"
+		},
+		"bg": {
+			"$value": "#fdfdfd"
+		},
+		"text": {
+			"$value": "#333333"
+		},
+		"header": {
+			"$value": "#333333"
+		},
+		"link": {
+			"$value": "#4762cb"
+		},
+		"link-hover": {
+			"$value": "#333333"
+		},
+		"link-underline": {
+			"$value": "#4762cb"
+		},
+		"active": {
+			"$value": "#4762cb"
+		},
+		"inactive": {
+			"$value": "#333333"
+		},
+		"border": {
+			"$value": "#333333"
+		},
+		"button-primary-bg": {
+			"$value": "#333333"
+		},
+		"button-primary-border": {
+			"$value": "#333333"
+		},
+		"button-primary-text": {
+			"$value": "#fdfdfd"
+		},
+		"button-primary-bg-hover": {
+			"$value": "#fdfdfd"
+		},
+		"button-primary-border-hover": {
+			"$value": "#333333"
+		},
+		"button-primary-text-hover": {
+			"$value": "#333333"
+		},
+		"button-secondary-bg": {
+			"$value": "#4762cb"
+		},
+		"button-secondary-border": {
+			"$value": "#4762cb"
+		},
+		"button-secondary-text": {
+			"$value": "#fdfdfd"
+		},
+		"button-secondary-bg-hover": {
+			"$value": "#fdfdfd"
+		},
+		"button-secondary-border-hover": {
+			"$value": "#4762cb"
+		},
+		"button-secondary-text-hover": {
+			"$value": "#4762cb"
+		},
+		"button-tertiary-bg": {
+			"$value": "#fdfdfd"
+		},
+		"button-tertiary-border": {
+			"$value": "#333333"
+		},
+		"button-tertiary-text": {
+			"$value": "#333333"
+		},
+		"button-tertiary-bg-hover": {
+			"$value": "#333333"
+		},
+		"button-tertiary-border-hover": {
+			"$value": "#333333"
+		},
+		"button-tertiary-text-hover": {
+			"$value": "#fdfdfd"
+		},
+		"overlay": {
+			"$value": "color-mix(in srgb, {color.black} 75%, transparent)"
+		},
+		"highlight": {
+			"$value": "#f7f79e"
+		},
+		"alert-text": {
+			"$value": "#333333"
+		},
+		"alert-link": {
+			"$value": "#000000"
+		},
+		"error-bg": {
+			"$value": "#fee3e1"
+		},
+		"error-border": {
+			"$value": "#cf0902"
+		},
+		"warning-bg": {
+			"$value": "#ffe6c8"
+		},
+		"warning-border": {
+			"$value": "#b57900"
+		},
+		"info-bg": {
+			"$value": "#c2edfe"
+		},
+		"info-border": {
+			"$value": "#0062d6"
+		},
+		"success-bg": {
+			"$value": "#b6ebcb"
+		},
+		"success-border": {
+			"$value": "#007037"
+		}
+	}
+}

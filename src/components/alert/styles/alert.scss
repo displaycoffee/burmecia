@@ -2,14 +2,15 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// ALERT
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$alert-color-01: theme.$color-04; // alert font
-	$alert-color-02: theme.$color-02; // alert link
+	$alert-color-01: tokens.$color-alert-text; // alert font
+	$alert-color-02: tokens.$color-alert-link; // alert link
 
 	// Configuration
 	
@@ -24,8 +25,8 @@
 	.alert {
 		padding: $alert-spacing;
 		@include mixins.gap(calc($alert-spacing / 2));
-		background-color: theme.$color-30;
-		border: 1px solid theme.$color-31;
+		background-color: tokens.$color-error-bg;
+		border: 1px solid tokens.$color-error-border;
 		@include mixins.if-exists((
 			border-left-width: $alert-border-left-width,
 		));
@@ -41,7 +42,7 @@
 			@if $alert-icon-vertical != false {
 				@include mixins.position($type: relative, $top: $alert-icon-vertical);
 			}
-			color: theme.$color-31;
+			color: tokens.$color-error-border;
 			svg {
 				@include mixins.sizing(100%, 100%);
 			}
@@ -61,23 +62,23 @@
 		}
 	}
 	.alert-warning {
-		background-color: theme.$color-32;
-		border-color: theme.$color-33;
+		background-color: tokens.$color-warning-bg;
+		border-color: tokens.$color-warning-border;
 		.alert-icon {
-			color: theme.$color-33;
+			color: tokens.$color-warning-border;
 		}
 	}
 	.alert-info {
-		background-color: theme.$color-34;
-		border-color: theme.$color-35;
+		background-color: tokens.$color-info-bg;
+		border-color: tokens.$color-info-border;
 		.alert-icon {
-			color: theme.$color-35;
+			color: tokens.$color-info-border;
 		}
 	}
 	.alert-success {
-		background-color: theme.$color-36;
-		border-color: theme.$color-37;
+		background-color: tokens.$color-success-bg;
+		border-color: tokens.$color-success-border;
 		.alert-icon {
-			color: theme.$color-37;
+			color: tokens.$color-success-border;
 		}
 	}

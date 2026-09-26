@@ -26,8 +26,8 @@ const jsonManifest = {
 	icons: [createFavicon(favicons.favicon32, 'any'), createFavicon(favicons.favicon192), createFavicon(favicons.favicon512)],
 	start_url: '.',
 	display: 'standalone',
-	theme_color: colors.color03,
-	background_color: colors.color03,
+	theme_color: colors.bg,
+	background_color: colors.bg,
 };
 
 /* Build manifest json */

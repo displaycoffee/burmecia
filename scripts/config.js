@@ -3,6 +3,7 @@ import { createServer } from 'vite';
 
 /* Scripts */
 import packageJSON from '../package.json' with { type: 'json' };
+import colorsJSON from '../tokens/colors.json' with { type: 'json' };
 
 /* Start a vite server to get information from navigation and theme.ts */
 const viteServer = await createServer({
@@ -14,6 +15,7 @@ const { navigationUtils } = await viteServer.ssrLoadModule('/components/navigati
 const { theme } = await viteServer.ssrLoadModule('/_core/scripts/theme.ts');
 await viteServer.close();
 
+const bg = colorsJSON.color.bg;
 const fontsPath = '/assets/fonts/';
 
 /* Set favicons from public folder */
@@ -101,6 +103,10 @@ export const config = {
 	],
 	theme: {
 		...theme,
+		colors: {
+			bg: bg['$value'],
+			bgDark: bg['$extensions'] && bg['$extensions']['dark'] ? bg['$extensions']['dark'] : bg['$value'],
+		},
 		favicons: favicons,
 		fonts: [
 			{
@@ -109,6 +115,7 @@ export const config = {
 				weight: `normal`,
 				style: `normal`,
 				display: `swap`,
+				preload: true,
 			},
 			{
 				family: `Open Sans`,
@@ -151,6 +158,7 @@ export const config = {
 				weight: `700`,
 				style: `normal`,
 				display: `swap`,
+				preload: true,
 			},
 			{
 				family: `Montserrat`,

@@ -2,13 +2,14 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// ELEMENTS
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$base-elements-color-01: theme.$color-03; // body background
+	$base-elements-color-01: tokens.$color-bg; // body background
 
 	// Configuration
 
@@ -39,8 +40,8 @@
 
 	// Colors
 
-	$base-helpers-color-01: theme.$color-03; // scrollbar background
-	$base-helpers-color-02: theme.$color-04; // scrollbar foreground
+	$base-helpers-color-01: tokens.$color-inactive; // scrollbar background
+	$base-helpers-color-02: tokens.$color-active; // scrollbar foreground
 
 	// Configuration
 

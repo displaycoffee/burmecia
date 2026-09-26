@@ -2,6 +2,7 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// GENERAL TEXT ELEMENTS
 //// --------------------------------------------------------------------------
@@ -19,7 +20,7 @@
 	body {
 		font-size: functions.em(theme.$font-size-global, rem);
 		font-weight: normal;
-		color: theme.$color-04;
+		color: tokens.$color-text;
 		line-height: 1.5;
 	}
 	b, strong {
@@ -32,10 +33,10 @@
 		text-decoration: none;
 	}
 	a, .a {
-		color: theme.$color-05;
+		color: tokens.$color-link;
 		@include mixins.transition(color 0.3s ease-in-out);
 		&:active, &:hover {
-			color: theme.$color-04;
+			color: tokens.$color-link-hover;
 			text-decoration: underline;
 		}
 		&:has(.button-label) {
@@ -48,7 +49,7 @@
 		}
 	}
 	mark {
-		background: theme.$color-12;
+		background: tokens.$color-highlight;
 	}
 	small {
 		font-size: 80%;
@@ -78,11 +79,11 @@
 			font-style: theme.$font-style,
 			text-transform: theme.$font-transform
 		));
-		color: theme.$color-04;
+		color: tokens.$color-header;
 		a {
 			color: inherit;
 			&:hover {
-				color: theme.$color-05;
+				color: tokens.$color-link;
 			}
 		}
 	}
@@ -108,11 +109,11 @@
 	// Style block
 	
 	code, kbd, pre, samp {
-		background: theme.$color-04;
+		background: tokens.$color-text;
 		padding: theme.$spacing-x4;
 		font-family: 'Courier New', monospace;
 		font-size: functions.em(16px, rem);
-		color: theme.$color-03;
+		color: tokens.$color-bg;
 		white-space: pre-wrap;
 		word-break: break-word;
 	}
