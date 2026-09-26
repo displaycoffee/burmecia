@@ -31,7 +31,7 @@ StyleDictionary.registerFormat({
 		const prefersDark = `@media (prefers-color-scheme: dark) {\n\t:root:not([data-theme='light']) {\n${dark.replace(/^/gm, '\t')}\n\t}\n}`;
 		const rootDark = `:root[data-theme='dark'] {\n${dark}\n}`;
 		const blocks = hasDark ? [rootLight, prefersDark, rootDark] : [rootLight];
-		return `${comment}\n\n${blocks.join('\n\n')}`;
+		return `${comment}\n${blocks.join('\n\n')}`;
 	},
 });
 
@@ -43,7 +43,7 @@ StyleDictionary.registerFormat({
 		const sassVars = dictionary.allTokens
 			.map((token) => `$${token.name}: ${isBreakpoint(token) ? token.$value : `var(--${token.name})`};`)
 			.join('\n');
-		return `${comment}\n\n${sassVars}`;
+		return `${comment}\n${sassVars}`;
 	},
 });
 
@@ -57,7 +57,6 @@ StyleDictionary.registerFormat({
 			const [category, ...path] = token.path;
 			const key = path.join('-');
 			const dark = getDark(token);
-
 			theme[category] ??= {};
 			theme[category][key] = token.$value;
 			if (dark) theme[category][`${key}-dark`] = dark;
@@ -92,7 +91,7 @@ const sd = new StyleDictionary({
 			files: [
 				{
 					destination: 'theme.json',
-					format: 'json/theme', // Compiles to { "color": { "bg": "#fdfdfd", "bg-dark": "#1a1a1a" } } for scripts/config.js
+					format: 'json/theme', // Compiles to { "color": { "bg": "#fdfdfd", "bg-dark": "#1a1a1a" } }
 				},
 			],
 		},
