@@ -42,9 +42,30 @@ StyleDictionary.registerFormat({
 	},
 });
 
+/* Format resolved token values as JSON for the build scripts, grouped by category (e.g. { color: { bg, bg-dark } }) */
+StyleDictionary.registerFormat({
+	name: 'json/theme',
+	format: ({ dictionary }) => {
+		const theme = {};
+
+		dictionary.allTokens.forEach((token) => {
+			const [category, ...path] = token.path;
+			const key = path.join('-');
+			const dark = getDark(token);
+
+			theme[category] ??= {};
+			theme[category][key] = token.$value;
+			if (dark) theme[category][`${key}-dark`] = dark;
+		});
+
+		return `${JSON.stringify(theme, null, '\t')}\n`;
+	},
+});
+
 const sd = new StyleDictionary({
 	// Path to your raw JSON token files
-	source: ['tokens/*.json'],
+	// Note: theme.json is excluded because it's generated into the same folder by the json platform below
+	source: ['tokens/!(theme).json'],
 	platforms: {
 		scss: {
 			transformGroup: 'scss',
@@ -60,9 +81,19 @@ const sd = new StyleDictionary({
 				},
 			],
 		},
+		json: {
+			transformGroup: 'scss',
+			buildPath: 'tokens/',
+			files: [
+				{
+					destination: 'theme.json',
+					format: 'json/theme', // Compiles to { "color": { "bg": "#fdfdfd", "bg-dark": "#1a1a1a" } } for scripts/config.js
+				},
+			],
+		},
 	},
 });
 
 await sd.buildAllPlatforms();
 
-console.log('🚀 Successfully built tokens into src/_core/styles/theme/_tokens.scss and _root.scss.');
+console.log('🚀 Successfully built tokens into src/_core/styles/theme/_tokens.scss, _root.scss, and tokens/theme.json.');

@@ -15,8 +15,8 @@
 		"generate:public": "node scripts/public-generate.js && npx prettier --write public/manifest.json",
 		"generate:sitemap": "node scripts/sitemap-generate.js && npx prettier --write vite.sitemap.js",
 		"generate:tokens": "node scripts/tokens-build.js",
-		"build": "npm run generate:sitemap && npm run generate:dev && vite build && npm run generate:dist && npm run generate:public",
-		"dev": "npm run generate:sitemap && npm run generate:public && npm run generate:dev && vite --host",
+		"build": "npm run generate:tokens && npm run generate:sitemap && npm run generate:dev && vite build && npm run generate:dist && npm run generate:public",
+		"dev": "npm run generate:tokens && npm run generate:sitemap && npm run generate:public && npm run generate:dev && vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
 		"preview": "vite preview"

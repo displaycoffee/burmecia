@@ -60,7 +60,7 @@ if (fs.existsSync(templatePath)) {
 		<meta property="og:description" content="${site.description}" />
 		<meta property="og:type" content="website" />
 		<meta name="theme-color" content="${colors.bg}" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="${colors.bgDark}" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="${colors['bg-dark'] ?? colors.bg}" media="(prefers-color-scheme: dark)" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		${createFavicon(favicons.favicon32)}
 		${createFavicon(favicons.favicon92)}
