@@ -28,7 +28,7 @@ const excludeSidebar: string[] = ['/page-two'];
 export const Container = () => {
 	const { theme } = useAppContext();
 	const location = useLocation();
-	const isDesktop = useRespond(theme.bps.bp02 as number);
+	const isDesktop = useRespond(theme.breakpoints.md);
 	const sidebar = !excludeSidebar.includes(location.pathname);
 	const mainRef = useRef<HTMLElement>(null);
 	useAvailableMinHeight(mainRef);

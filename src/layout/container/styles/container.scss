@@ -21,7 +21,7 @@
 
 	// Configuration 
 
-	$container-main-bp: theme.$bp-02; // breakpoint
+	$container-main-bp: tokens.$breakpoint-md; // breakpoint
 	$container-main-spacing: theme.$spacing-x8; // spacing for layout
 	$container-main-sidebar-width: 300px; // width of sidebar
 

@@ -1,0 +1,8 @@
+{
+	"breakpoint": {
+		"sm": { "$value": 541 },
+		"md": { "$value": 768 },
+		"lg": { "$value": 992 },
+		"xl": { "$value": 1200 }
+	}
+}

@@ -102,6 +102,7 @@ export const config = {
 	],
 	theme: {
 		...theme,
+		breakpoints: themeJSON.breakpoint,
 		colors: themeJSON.color,
 		favicons: favicons,
 		fonts: [

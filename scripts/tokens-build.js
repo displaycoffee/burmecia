@@ -4,6 +4,9 @@ import StyleDictionary from 'style-dictionary';
 /* Get a token's dark value from $extensions.dark (tokens without one keep their light value) */
 const getDark = (token) => token.$extensions?.dark ?? token.original?.$extensions?.dark;
 
+/* Breakpoints can't be custom properties since var() doesn't work in media queries, so they're output as plain Sass values */
+const isBreakpoint = (token) => token.path[0] === 'breakpoint';
+
 /* Set comment for generated files */
 const comment = `// Do not edit directly, this file was auto-generated.`;
 
@@ -12,7 +15,7 @@ const comment = `// Do not edit directly, this file was auto-generated.`;
 StyleDictionary.registerFormat({
 	name: 'scss/theme-properties',
 	format: ({ dictionary }) => {
-		const tokens = dictionary.allTokens;
+		const tokens = dictionary.allTokens.filter((token) => !isBreakpoint(token));
 		const toProperty = (token, value) => `\t--${token.name}: ${value};`;
 		const light = tokens.map((token) => toProperty(token, token.$value)).join('\n');
 		const dark = tokens
@@ -32,12 +35,14 @@ StyleDictionary.registerFormat({
 	},
 });
 
-/* Format tokens as Sass variables that point to their custom properties */
+/* Format tokens as Sass variables that point to their custom properties (breakpoints get their plain value) */
 /* Note: this outputs no CSS, so it's safe to @use in any stylesheet */
 StyleDictionary.registerFormat({
 	name: 'scss/theme-variables',
 	format: ({ dictionary }) => {
-		const sassVars = dictionary.allTokens.map((token) => `$${token.name}: var(--${token.name});`).join('\n');
+		const sassVars = dictionary.allTokens
+			.map((token) => `$${token.name}: ${isBreakpoint(token) ? token.$value : `var(--${token.name})`};`)
+			.join('\n');
 		return `${comment}\n\n${sassVars}`;
 	},
 });

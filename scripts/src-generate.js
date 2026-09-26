@@ -6,7 +6,7 @@ import path from 'path';
 import { config } from './config.js';
 
 const { site, targets, theme } = config;
-const { bps, colors, favicons, fonts } = theme;
+const { breakpoints, colors, favicons, fonts } = theme;
 const templatePath = path.resolve('./scripts/src-template.html');
 const htmlPath = path.resolve('./src/index.html');
 
@@ -86,7 +86,7 @@ if (fs.existsSync(templatePath)) {
 			.hide-desktop {
 				display: block;
 			}
-			@media only screen and (min-width: ${bps.bp02}px) {
+			@media only screen and (min-width: ${breakpoints.md}px) {
 				.hide-mobile {
 					display: block;
 				}
