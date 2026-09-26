@@ -82,7 +82,7 @@
 		$row-class: calc($row / 1px);
 		.row-spacing-#{$row-class} {
 			@include mixins.gap($row);
-			@include mixins.respond-min(tokens.$breakpoint-md) {
+			@include mixins.respond(tokens.$breakpoint-md) {
 				[class*='column-width-'] {
 					@include mixins.gap-width($row, 2);
 				}
@@ -90,7 +90,7 @@
 					width: 100%;
 				}
 			}
-			@include mixins.respond-min(tokens.$breakpoint-lg) {
+			@include mixins.respond(tokens.$breakpoint-lg) {
 				.column-width-33, .column-width-25 {
 					@include mixins.gap-width($row, 3);
 				}
@@ -98,7 +98,7 @@
 					@include mixins.gap-width($row, 4);
 				}
 			}
-			@include mixins.respond-min(tokens.$breakpoint-xl) {
+			@include mixins.respond(tokens.$breakpoint-xl) {
 				.column-width-25 {
 					@include mixins.gap-width($row, 4);
 				}

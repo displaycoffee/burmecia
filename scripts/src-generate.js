@@ -86,7 +86,7 @@ if (fs.existsSync(templatePath)) {
 			.hide-desktop {
 				display: block;
 			}
-			@media only screen and (min-width: ${breakpoints.md}px) {
+			@media only screen and (min-width: ${breakpoints.md}) {
 				.hide-mobile {
 					display: block;
 				}
