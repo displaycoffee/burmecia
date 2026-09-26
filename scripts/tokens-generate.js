@@ -1,11 +1,34 @@
 /* Packages */
 import StyleDictionary from 'style-dictionary';
+import { getReferences, usesReferences } from 'style-dictionary/utils';
 
 /* Get a token's dark value from $extensions.dark (tokens without one keep their light value) */
 const getDark = (token) => token.$extensions?.dark ?? token.original?.$extensions?.dark;
 
-/* Breakpoints can't be custom properties since var() doesn't work in media queries, so they're output as plain Sass values */
-const isBreakpoint = (token) => token.path[0] === 'breakpoint';
+/* Static tokens are output as plain Sass values instead of custom properties, for values Sass needs at compile time */
+/* Note: breakpoints are static since var() doesn't work in media queries, and spacing since it's used in Sass math (negatives, division, etc.) */
+/* Other tokens can opt in individually with "$extensions": { "static": true } */
+const staticCategories = ['breakpoint', 'spacing'];
+const isStatic = (token) => staticCategories.includes(token.path[0]) || (token.$extensions?.static ?? token.original?.$extensions?.static) === true;
+
+/* Tokens set to false aren't used in this project, so they're left out of :root and output as $name: false in Sass */
+const isUnset = (token) => token.$value === false;
+
+/* Fail the build if a token uses an unset (false) token inside a larger value, e.g. color-mix(in srgb, {color.unused} 50%, transparent) */
+/* Note: a token that is only a reference to an unset token (e.g. "{color.unused}") resolves to false, so it's treated as unset itself */
+const checkUnsetReferences = (dictionary) => {
+	dictionary.allTokens.forEach((token) => {
+		const original = token.original.$value;
+		if (isUnset(token) || typeof original !== 'string' || !usesReferences(original)) return;
+
+		const unsetReferences = getReferences(original, dictionary.tokens).filter(isUnset);
+		if (unsetReferences.length !== 0) {
+			const tokenPath = token.path.join('.');
+			const referencePaths = unsetReferences.map((reference) => reference.path.join('.')).join(', ');
+			throw new Error(`Token "${tokenPath}" references "${referencePaths}", which is set to false. Give it a value or update "${tokenPath}".`);
+		}
+	});
+};
 
 /* Set comment for generated files */
 const comment = `// Do not edit directly, this file was auto-generated.`;
@@ -15,7 +38,8 @@ const comment = `// Do not edit directly, this file was auto-generated.`;
 StyleDictionary.registerFormat({
 	name: 'scss/theme-properties',
 	format: ({ dictionary }) => {
-		const tokens = dictionary.allTokens.filter((token) => !isBreakpoint(token));
+		checkUnsetReferences(dictionary);
+		const tokens = dictionary.allTokens.filter((token) => !isStatic(token) && !isUnset(token));
 		const toProperty = (token, value) => `\t--${token.name}: ${value};`;
 		const light = tokens.map((token) => toProperty(token, token.$value)).join('\n');
 		const dark = tokens
@@ -35,13 +59,13 @@ StyleDictionary.registerFormat({
 	},
 });
 
-/* Format tokens as Sass variables that point to their custom properties (breakpoints get their plain value) */
+/* Format tokens as Sass variables that point to their custom properties (static tokens get their plain value, unset tokens get false) */
 /* Note: this outputs no CSS, so it's safe to @use in any stylesheet */
 StyleDictionary.registerFormat({
 	name: 'scss/theme-variables',
 	format: ({ dictionary }) => {
 		const sassVars = dictionary.allTokens
-			.map((token) => `$${token.name}: ${isBreakpoint(token) ? token.$value : `var(--${token.name})`};`)
+			.map((token) => `$${token.name}: ${isUnset(token) || isStatic(token) ? token.$value : `var(--${token.name})`};`)
 			.join('\n');
 		return `${comment}\n${sassVars}`;
 	},
@@ -59,7 +83,7 @@ StyleDictionary.registerFormat({
 			const dark = getDark(token);
 			theme[category] ??= {};
 			theme[category][key] = token.$value;
-			if (dark) theme[category][`${key}-dark`] = dark;
+			if (dark && !isUnset(token)) theme[category][`${key}-dark`] = dark;
 		});
 
 		return `${JSON.stringify(theme, null, '\t')}\n`;

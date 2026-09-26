@@ -22,7 +22,7 @@
 	// Configuration 
 
 	$container-main-bp: tokens.$breakpoint-md; // breakpoint
-	$container-main-spacing: theme.$spacing-x8; // spacing for layout
+	$container-main-spacing: tokens.$spacing-x8; // spacing for layout
 	$container-main-sidebar-width: 300px; // width of sidebar
 
 	// Style block
@@ -30,10 +30,10 @@
 	.skip-link {
 		z-index: 9999;
 		&:focus {
-			@include mixins.position($type: fixed, $top: theme.$spacing-x4, $left: theme.$spacing-x4);
+			@include mixins.position($type: fixed, $top: tokens.$spacing-x4, $left: tokens.$spacing-x4);
 			@include mixins.sizing(auto, auto);
 			margin: 0;
-			padding: theme.$spacing-x2 theme.$spacing-x4;
+			padding: tokens.$spacing-x2 tokens.$spacing-x4;
 			overflow: visible;
 			clip: unset;
 			white-space: unset;
@@ -42,11 +42,11 @@
 		}
 	}
 	.container {
-		max-width: theme.$container-base;
+		max-width: tokens.$container-width;
 		margin: 0 auto;
-		padding: 0 theme.$spacing-x4;
+		padding: 0 tokens.$spacing-x4;
 		& > * {
-			margin: 0 0 theme.$spacing-x8 0;
+			margin: 0 0 tokens.$spacing-x8 0;
 			&:last-child {
 				margin-bottom: 0;
 			}

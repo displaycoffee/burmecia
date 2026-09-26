@@ -8,7 +8,9 @@ export const Header = () => {
 	return (
 		<header className="header">
 			<h1>
-				<Link to={'/'}>Burmecia</Link>
+				<Link className={'no-decoration'} to={'/'}>
+					Burmecia
+				</Link>
 			</h1>
 		</header>
 	);

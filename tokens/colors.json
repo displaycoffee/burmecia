@@ -1,35 +1,20 @@
 {
 	"color": {
 		"$type": "color",
-		"white": {
-			"$value": "#ffffff"
+		"active": {
+			"$value": "#4762cb"
 		},
-		"black": {
+		"alert-text": {
+			"$value": "#333333"
+		},
+		"alert-link": {
 			"$value": "#000000"
 		},
 		"bg": {
 			"$value": "#fdfdfd"
 		},
-		"text": {
-			"$value": "#333333"
-		},
-		"header": {
-			"$value": "#333333"
-		},
-		"link": {
-			"$value": "#4762cb"
-		},
-		"link-hover": {
-			"$value": "#333333"
-		},
-		"link-underline": {
-			"$value": "#4762cb"
-		},
-		"active": {
-			"$value": "#4762cb"
-		},
-		"inactive": {
-			"$value": "#333333"
+		"black": {
+			"$value": "#000000"
 		},
 		"border": {
 			"$value": "#333333"
@@ -47,7 +32,7 @@
 			"$value": "#fdfdfd"
 		},
 		"button-primary-border-hover": {
-			"$value": "#333333"
+			"$value": false
 		},
 		"button-primary-text-hover": {
 			"$value": "#333333"
@@ -65,7 +50,7 @@
 			"$value": "#fdfdfd"
 		},
 		"button-secondary-border-hover": {
-			"$value": "#4762cb"
+			"$value": false
 		},
 		"button-secondary-text-hover": {
 			"$value": "#4762cb"
@@ -83,22 +68,10 @@
 			"$value": "#333333"
 		},
 		"button-tertiary-border-hover": {
-			"$value": "#333333"
+			"$value": false
 		},
 		"button-tertiary-text-hover": {
 			"$value": "#fdfdfd"
-		},
-		"overlay": {
-			"$value": "color-mix(in srgb, {color.black} 75%, transparent)"
-		},
-		"highlight": {
-			"$value": "#f7f79e"
-		},
-		"alert-text": {
-			"$value": "#333333"
-		},
-		"alert-link": {
-			"$value": "#000000"
 		},
 		"error-bg": {
 			"$value": "#fee3e1"
@@ -106,11 +79,14 @@
 		"error-border": {
 			"$value": "#cf0902"
 		},
-		"warning-bg": {
-			"$value": "#ffe6c8"
+		"header": {
+			"$value": "#333333"
 		},
-		"warning-border": {
-			"$value": "#b57900"
+		"highlight": {
+			"$value": "#f7f79e"
+		},
+		"inactive": {
+			"$value": "#333333"
 		},
 		"info-bg": {
 			"$value": "#c2edfe"
@@ -118,11 +94,44 @@
 		"info-border": {
 			"$value": "#0062d6"
 		},
+		"link": {
+			"$value": "#4762cb"
+		},
+		"link-hover": {
+			"$value": "#333333"
+		},
+		"link-underline": {
+			"$value": "#4762cb"
+		},
+		"link-underline-hover": {
+			"$value": "#333333"
+		},
+		"overlay": {
+			"$value": "color-mix(in srgb, {color.black} 75%, transparent)"
+		},
+		"scrollbar-bg": {
+			"$value": "#fdfdfd"
+		},
+		"scrollbar-foreground": {
+			"$value": "#4762cb"
+		},
 		"success-bg": {
 			"$value": "#b6ebcb"
 		},
 		"success-border": {
 			"$value": "#007037"
+		},
+		"text": {
+			"$value": "#333333"
+		},
+		"warning-bg": {
+			"$value": "#ffe6c8"
+		},
+		"warning-border": {
+			"$value": "#b57900"
+		},
+		"white": {
+			"$value": "#ffffff"
 		}
 	}
 }

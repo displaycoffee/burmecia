@@ -32,22 +32,6 @@
 	a, abbr[title] {
 		text-decoration: none;
 	}
-	a, .a {
-		color: tokens.$color-link;
-		@include mixins.transition(color 0.3s ease-in-out);
-		&:active, &:hover {
-			color: tokens.$color-link-hover;
-			text-decoration: underline;
-		}
-		&:has(.button-label) {
-			&:active, &:hover {
-				text-decoration: none;
-				.button-label {
-					text-decoration: underline;
-				}
-			}
-		}
-	}
 	mark {
 		background: tokens.$color-highlight;
 	}
@@ -67,6 +51,73 @@
 		bottom: -0.25em;
 	}
 
+//// LINKS
+//// --------------------------------------------------------------------------	
+
+	// Configuration 
+
+	$link-has-underline: true; // add underline on link
+	$link-has-underline-hover: true; // add underline on link hover
+	$link-has-underline-offset: true; // decorate link underline
+	$link-transition: color 0.3s ease-in-out, text-decoration-color 0.3s ease-in-out; // value for link transition
+
+	// Link mixin
+
+	@mixin link-default {
+		@if $link-has-underline-offset == true {
+			@if $link-has-underline == true and tokens.$color-link-underline != false {
+				@include mixins.text-decoration(1px, 5px, tokens.$color-link-underline);
+			} @else {
+				text-decoration: none;
+			}
+		} @else {
+			$decoration: if(sass($link-has-underline == true): underline; else: none);
+			text-decoration: $decoration;
+		}
+	}
+	@mixin link-hover {
+		@if $link-has-underline-offset == true {
+			@if $link-has-underline-hover == true and tokens.$color-link-underline-hover != false {
+				@include mixins.text-decoration(1px, 5px, tokens.$color-link-underline-hover);
+			} @else {
+				text-decoration: none;
+			}
+		} @else {
+			$decoration: if(sass($link-has-underline-hover == true): underline; else: none);
+			text-decoration: $decoration;
+		}
+	}
+
+	// Style block
+
+	a, .a {
+		& {
+			color: tokens.$color-link;
+			@include mixins.transition($link-transition);
+			&:active, &:hover {
+				color: tokens.$color-link-hover;
+			}
+		}
+		&:not(.no-decoration) {
+			&:not(:has(.button-label)) {
+				@include link-default;
+				&:active, &:hover {
+					@include link-hover;
+				}
+			}
+			&:has(.button-label) {
+				.button-label {
+					@include link-default;
+				}
+				&:active, &:hover {
+					.button-label {
+						@include link-hover;
+					}
+				}
+			}
+		}
+	}
+
 //// HEADERS
 //// --------------------------------------------------------------------------
 
@@ -80,9 +131,9 @@
 			text-transform: theme.$font-transform
 		));
 		color: tokens.$color-header;
-		a {
+		a, .a {
 			color: inherit;
-			&:hover {
+			&:active, &:hover {
 				color: tokens.$color-link;
 			}
 		}
@@ -110,7 +161,7 @@
 	
 	code, kbd, pre, samp {
 		background: tokens.$color-text;
-		padding: theme.$spacing-x4;
+		padding: tokens.$spacing-x4;
 		font-family: 'Courier New', monospace;
 		font-size: functions.em(16px, rem);
 		color: tokens.$color-bg;
@@ -123,5 +174,5 @@
 	}
 	blockquote {
 		max-width: 90%;
-		margin: 0 auto theme.$spacing-x4 auto;
+		margin: 0 auto tokens.$spacing-x4 auto;
 	}

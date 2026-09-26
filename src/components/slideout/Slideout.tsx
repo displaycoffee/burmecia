@@ -73,7 +73,7 @@ export const Slideout = (props: SlideoutProps) => {
 				aria-haspopup={'dialog'}
 				aria-label={`Open ${options.label}`}
 			>
-				<Icon icon={IconSlidersVertical} size={'large'} />
+				<Icon icon={IconSlidersVertical} size={'lg'} />
 			</Button>
 
 			<Overlay
@@ -99,7 +99,7 @@ export const Slideout = (props: SlideoutProps) => {
 						variant={'unstyled'}
 						data-autofocus
 					>
-						<Icon icon={IconX} size={'xx-large'} />
+						<Icon icon={IconX} size={'2xl'} />
 					</Button>
 				</header>
 

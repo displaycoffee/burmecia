@@ -2,13 +2,14 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// BLOCKS - LIST
 //// --------------------------------------------------------------------------
 
 	// Configuration
 	
-	$blocks-list-spacing: theme.$spacing-x4; // spacing for list elements
+	$blocks-list-spacing: tokens.$spacing-x4; // spacing for list elements
 
 	// Style block
 
@@ -16,7 +17,7 @@
 		padding: 0;
 	}
 	.list-ordered, .list-unordered {
-		margin: 0 0 theme.$spacing-x4 0;
+		margin: 0 0 tokens.$spacing-x4 0;
 		& > li {
 			position: relative;
 			margin: 0 0 calc($blocks-list-spacing / 4) 0;

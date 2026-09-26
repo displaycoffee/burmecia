@@ -13,8 +13,8 @@
 
 	// Configuration
 
-	$base-elements-spacing: theme.$spacing-x4; // overall spacing of theme
-	$base-elements-body-spacing-vertical: theme.$spacing-x8; // top / bottom spacing for body
+	$base-elements-spacing: tokens.$spacing-x4; // overall spacing of theme
+	$base-elements-body-spacing-vertical: tokens.$spacing-x8; // top / bottom spacing for body
 	$base-elements-body-spacing-horizontal: 0; // left / right spacing for body
 
 	// Style block
@@ -40,8 +40,8 @@
 
 	// Colors
 
-	$base-helpers-color-01: tokens.$color-inactive; // scrollbar background
-	$base-helpers-color-02: tokens.$color-active; // scrollbar foreground
+	$base-helpers-color-01: tokens.$color-scrollbar-bg; // scrollbar background
+	$base-helpers-color-02: tokens.$color-scrollbar-foreground; // scrollbar foreground
 
 	// Configuration
 

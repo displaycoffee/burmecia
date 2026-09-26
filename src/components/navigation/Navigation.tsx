@@ -20,7 +20,7 @@ export const Navigation = (props: NavigationComponentProps) => {
 	const { pathname } = useLocation();
 	const { utils } = useAppContext();
 	const navigationList = navigationUtils.get.list(data);
-	const navigationLinkClass = 'navigation-link';
+	const navigationLinkClass = `no-decoration navigation-link`;
 
 	// Scroll to top when navigation link is clicked on
 	useEffect(() => {

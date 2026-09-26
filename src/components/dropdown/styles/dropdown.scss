@@ -18,7 +18,7 @@
 	// Configuration
 
 	$dropdown-height: 35px; // height of dropdown button
-	$dropdown-spacing: theme.$spacing-x2; // overall spacing of dropdown
+	$dropdown-spacing: tokens.$spacing-x2; // overall spacing of dropdown
 	$dropdown-content-gap: -1px; // spacing between dropdown button and content
 	$dropdown-duration: 0.35s; // duration of open / close transitions
 	$dropdown-transform-closed: translateY(-4px) scale(0.98); // content position when closed - slides and grows slightly from the button

@@ -2,6 +2,7 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
+@use '../../../_core/styles/theme/_tokens';
 
 //// ICONS
 //// --------------------------------------------------------------------------
@@ -11,7 +12,7 @@
 	.icon-wrapper {
 		@include mixins.flex-layout((display: inline-flex, flex-flow: column nowrap));
 		@include mixins.flex(0 0 auto);
-		@include mixins.icon-sizing(theme.$icon-size);
+		@include mixins.icon-sizing(tokens.$icon-md);
 		.icon {
 			display: block;
 			margin: auto;
@@ -19,15 +20,15 @@
 			line-height: 1;
 		}
 	}
-	.icon-wrapper-small {
-		@include mixins.icon-sizing(theme.$icon-size - 2);
+	.icon-wrapper-sm {
+		@include mixins.icon-sizing(tokens.$icon-sm);
 	}
-	.icon-wrapper-large {
-		@include mixins.icon-sizing(theme.$icon-size + 2);
+	.icon-wrapper-lg {
+		@include mixins.icon-sizing(tokens.$icon-lg);
 	}
-	.icon-wrapper-x-large {
-		@include mixins.icon-sizing(theme.$icon-size + 4);
+	.icon-wrapper-xl {
+		@include mixins.icon-sizing(tokens.$icon-xl);
 	}
-	.icon-wrapper-xx-large {
-		@include mixins.icon-sizing(theme.$icon-size + 8);
+	.icon-wrapper-2xl {
+		@include mixins.icon-sizing(tokens.$icon-2xl);
 	}
