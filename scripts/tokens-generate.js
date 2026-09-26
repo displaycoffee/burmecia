@@ -6,22 +6,30 @@ import { getReferences, usesReferences } from 'style-dictionary/utils';
 const getDark = (token) => token.$extensions?.dark ?? token.original?.$extensions?.dark;
 
 /* Static tokens are output as plain Sass values instead of custom properties, for values Sass needs at compile time */
-/* Note: breakpoints are static since var() doesn't work in media queries, and spacing since it's used in Sass math (negatives, division, etc.) */
+/* Note: breakpoints are static since var() doesn't work in media queries, and spacing / font since they're used in Sass math (negatives, division, em(), etc.) */
 /* Other tokens can opt in individually with "$extensions": { "static": true } */
-const staticCategories = ['breakpoint', 'spacing'];
+const staticCategories = ['breakpoint', 'font', 'spacing'];
 const isStatic = (token) => staticCategories.includes(token.path[0]) || (token.$extensions?.static ?? token.original?.$extensions?.static) === true;
+
+/* Tokens with "$extensions": { "sass": false } are left out of _root.scss and _theme.scss, but still go to theme.json for the build scripts */
+/* Note: e.g. build-only values like font file paths, or values that are only referenced by other tokens */
+const isSassExcluded = (token) => (token.$extensions?.sass ?? token.original?.$extensions?.sass) === false;
 
 /* Tokens set to false aren't used in this project, so they're left out of :root and output as $name: false in Sass */
 const isUnset = (token) => token.$value === false;
 
 /* Fail the build if a token uses an unset (false) token inside a larger value, e.g. color-mix(in srgb, {color.unused} 50%, transparent) */
 /* Note: a token that is only a reference to an unset token (e.g. "{color.unused}") resolves to false, so it's treated as unset itself */
+/* Note: uses the unfiltered tokens so tokens excluded from this file (e.g. sass: false) are still checked */
 const checkUnsetReferences = (dictionary) => {
-	dictionary.allTokens.forEach((token) => {
+	const allTokens = dictionary.unfilteredAllTokens ?? dictionary.allTokens;
+	const tokens = dictionary.unfilteredTokens ?? dictionary.tokens;
+
+	allTokens.forEach((token) => {
 		const original = token.original.$value;
 		if (isUnset(token) || typeof original !== 'string' || !usesReferences(original)) return;
 
-		const unsetReferences = getReferences(original, dictionary.tokens).filter(isUnset);
+		const unsetReferences = getReferences(original, tokens).filter(isUnset);
 		if (unsetReferences.length !== 0) {
 			const tokenPath = token.path.join('.');
 			const referencePaths = unsetReferences.map((reference) => reference.path.join('.')).join(', ');
@@ -102,10 +110,12 @@ const sd = new StyleDictionary({
 				{
 					destination: '_root.scss',
 					format: 'scss/theme-properties', // Compiles to :root { --variable-name: value; } with dark overrides
+					filter: (token) => !isSassExcluded(token),
 				},
 				{
-					destination: '_tokens.scss',
+					destination: '_theme.scss',
 					format: 'scss/theme-variables', // Compiles to $variable-name: var(--variable-name);
+					filter: (token) => !isSassExcluded(token),
 				},
 			],
 		},
@@ -124,4 +134,4 @@ const sd = new StyleDictionary({
 
 await sd.buildAllPlatforms();
 
-console.log('🚀 Successfully built tokens into src/_core/styles/theme/_tokens.scss, _root.scss, and tokens/theme.json.');
+console.log('🚀 Successfully built tokens into src/_core/styles/theme/_theme.scss, _root.scss, and tokens/theme.json.');

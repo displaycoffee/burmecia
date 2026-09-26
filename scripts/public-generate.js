@@ -3,27 +3,27 @@ import fs from 'fs';
 import path from 'path';
 
 /* Scripts */
-import { config } from './config.js';
-
-const { site, theme } = config;
+import { site, theme } from './data/index.js';
 const { colors, favicons } = theme;
 const jsonPath = path.resolve('./public/manifest.json');
 
-/* Function to create favicon object */
-const createFavicon = (favicon, sizes) => {
-	return {
-		src: favicon.file,
-		type: favicon.type,
-		sizes: sizes ?? favicon.size,
-		purpose: favicon.purpose ?? 'any',
-	};
-};
+/* Format manifest icons */
+const manifestIcons = favicons
+	.filter((favicon) => favicon.isManifest)
+	.map((favicon) => {
+		return {
+			src: favicon.src,
+			type: favicon.type,
+			sizes: favicon.sizes,
+			purpose: favicon.purpose,
+		};
+	});
 
 /* Create manifest json object */
 const jsonManifest = {
 	short_name: site.name,
 	name: site.description,
-	icons: [createFavicon(favicons.favicon32, 'any'), createFavicon(favicons.favicon192), createFavicon(favicons.favicon512)],
+	icons: manifestIcons,
 	start_url: '.',
 	display: 'standalone',
 	theme_color: colors.bg,

@@ -10,7 +10,8 @@ import globals from 'globals';
 
 export default tseslint.config(
 	{
-		ignores: ['**/*.js'],
+		// Note: build scripts in scripts/ are linted (see the scripts block below); other .js files (configs, generated files) are ignored
+		ignores: ['**/*.js', '!scripts/**/*.js'],
 	},
 	{
 		languageOptions: {
@@ -60,5 +61,10 @@ export default tseslint.config(
 			'react/prop-types': 'off',
 			'react-hooks/exhaustive-deps': 'error',
 		},
+	},
+	{
+		// Build scripts run in Node and aren't part of tsconfig.json, so turn off the type-aware rules for them
+		files: ['scripts/**/*.js'],
+		...tseslint.configs.disableTypeChecked,
 	},
 );

@@ -2,14 +2,13 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
-@use '../../../_core/styles/theme/_tokens';
 
 //// FORMS
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$forms-color-01: tokens.$color-border; // focus visible border color
+	$forms-color-01: theme.$color-border; // focus visible border color
 
 	// Style block
 	
@@ -39,28 +38,28 @@
 
 	// Colors
 
-	$forms-button-color-01: tokens.$color-button-primary-bg; // primary button background
-	$forms-button-color-02: tokens.$color-button-primary-border; // primary button border
-	$forms-button-color-03: tokens.$color-button-primary-text; // primary button color
-	$forms-button-color-04: tokens.$color-button-primary-bg-hover; // primary hover button background
-	$forms-button-color-05: tokens.$color-button-primary-border-hover; // primary hover button border
-	$forms-button-color-06: tokens.$color-button-primary-text-hover; // primary hover button color
-	$forms-button-color-07: tokens.$color-button-secondary-bg; // secondary button background
-	$forms-button-color-08: tokens.$color-button-secondary-border; // secondary button border
-	$forms-button-color-09: tokens.$color-button-secondary-text; // secondary button color
-	$forms-button-color-10: tokens.$color-button-secondary-bg-hover; // secondary hover button background
-	$forms-button-color-11: tokens.$color-button-secondary-border-hover; // secondary hover button border
-	$forms-button-color-12: tokens.$color-button-secondary-text-hover; // secondary hover button color
-	$forms-button-color-13: tokens.$color-button-tertiary-bg; // tertiary button background
-	$forms-button-color-14: tokens.$color-button-tertiary-border; // tertiary button border
-	$forms-button-color-15: tokens.$color-button-tertiary-text; // tertiary button color
-	$forms-button-color-16: tokens.$color-button-tertiary-bg-hover; // tertiary hover button background
-	$forms-button-color-17: tokens.$color-button-tertiary-border-hover; // tertiary hover button border
-	$forms-button-color-18: tokens.$color-button-tertiary-text-hover; // tertiary hover button color
+	$forms-button-color-01: theme.$color-button-primary-bg; // primary button background
+	$forms-button-color-02: theme.$color-button-primary-border; // primary button border
+	$forms-button-color-03: theme.$color-button-primary-body; // primary button color
+	$forms-button-color-04: theme.$color-button-primary-bg-hover; // primary hover button background
+	$forms-button-color-05: theme.$color-button-primary-border-hover; // primary hover button border
+	$forms-button-color-06: theme.$color-button-primary-body-hover; // primary hover button color
+	$forms-button-color-07: theme.$color-button-secondary-bg; // secondary button background
+	$forms-button-color-08: theme.$color-button-secondary-border; // secondary button border
+	$forms-button-color-09: theme.$color-button-secondary-body; // secondary button color
+	$forms-button-color-10: theme.$color-button-secondary-bg-hover; // secondary hover button background
+	$forms-button-color-11: theme.$color-button-secondary-border-hover; // secondary hover button border
+	$forms-button-color-12: theme.$color-button-secondary-body-hover; // secondary hover button color
+	$forms-button-color-13: theme.$color-button-tertiary-bg; // tertiary button background
+	$forms-button-color-14: theme.$color-button-tertiary-border; // tertiary button border
+	$forms-button-color-15: theme.$color-button-tertiary-body; // tertiary button color
+	$forms-button-color-16: theme.$color-button-tertiary-bg-hover; // tertiary hover button background
+	$forms-button-color-17: theme.$color-button-tertiary-border-hover; // tertiary hover button border
+	$forms-button-color-18: theme.$color-button-tertiary-body-hover; // tertiary hover button color
 
 	// Configuration
 	
-	$forms-button-spacing: 0 tokens.$spacing-x4; // button spacing
+	$forms-button-spacing: 0 theme.$spacing-x4; // button spacing
 	$forms-button-height: 35px; // button height
 	$forms-button-border-width: 1px; // button border width
 
@@ -68,7 +67,7 @@
 
 	button, .button {
 		@include mixins.flex-layout((display: inline-flex, flex-flow: row nowrap, align-items: center, justify-content: center));
-		@include mixins.gap(tokens.$spacing-x1);
+		@include mixins.gap(theme.$spacing-x1);
 		border: 0;
 	}
 	.button {
@@ -138,8 +137,8 @@
 
 	// Colors
 
-	$forms-choice-color-01: tokens.$color-bg; // choice background
-	$forms-choice-color-02: tokens.$color-border; // choice border
+	$forms-choice-color-01: theme.$color-bg; // choice background
+	$forms-choice-color-02: theme.$color-border; // choice border
 	$forms-choice-color-03: false; // active choice background
 	$forms-choice-color-04: false; // active choice border
 	$forms-choice-color-05: false; // active choice color
@@ -150,7 +149,7 @@
 	$forms-choice-vertical: 2.5px; // vertical position of choice
 	$forms-choice-horizontal: 0; // horizontal position of choice
 	$forms-choice-alignment: left; // choice aligned left or right
-	$forms-choice-spacing: tokens.$spacing-x2; // spacing between checkbox and label
+	$forms-choice-spacing: theme.$spacing-x2; // spacing between checkbox and label
 	$forms-choice-border-width: 1px; // choice border width
 	$forms-choice-active-border-width: false; // active choice border width
 
@@ -217,7 +216,7 @@
 
 	.form {
 		&.margin-trim > fieldset {
-			margin: 0 0 tokens.$spacing-x4 0;
+			margin: 0 0 theme.$spacing-x4 0;
 		}
 	}
 
@@ -226,7 +225,7 @@
 
 	// Configuration
 
-	$forms-form-actions-spacing: tokens.$spacing-x2; // spacing for actions wrapper
+	$forms-form-actions-spacing: theme.$spacing-x2; // spacing for actions wrapper
 
 	// Style block
 
@@ -240,8 +239,8 @@
 
 	// Configuration
 	
-	$forms-form-field-bp: tokens.$breakpoint-sm; // breakpoint
-	$forms-form-field-spacing: tokens.$spacing-x4; // spacing for field wrapper
+	$forms-form-field-bp: theme.$breakpoint-sm; // breakpoint
+	$forms-form-field-spacing: theme.$spacing-x4; // spacing for field wrapper
 	$forms-form-field-label-width: 100px; // width for field label
 	$forms-form-field-label-vertical: 5px; // position for label inside field wrapper
 
@@ -294,13 +293,13 @@
 
 	// Colors
 
-	$forms-input-color-01: tokens.$color-bg; // input background
-	$forms-input-color-02: tokens.$color-border; // input border
-	$forms-input-color-03: tokens.$color-text; // input color
+	$forms-input-color-01: theme.$color-bg; // input background
+	$forms-input-color-02: theme.$color-border; // input border
+	$forms-input-color-03: theme.$color-body; // input color
 
 	// Configuration
 	
-	$forms-input-spacing: 0 tokens.$spacing-x2; // input spacing
+	$forms-input-spacing: 0 theme.$spacing-x2; // input spacing
 	$forms-input-height: 35px; // input height
 	$forms-input-border-width: 1px; // input border width
 
@@ -325,7 +324,7 @@
 	.input-color {
 		@include mixins.sizing(30px, 30px);
 		border: 0;
-		background-color: tokens.$color-bg;
+		background-color: theme.$color-bg;
 		cursor: pointer;
 	}
 
@@ -338,7 +337,7 @@
 
 	// Configuration
 	
-	$forms-required-spacing: 0 0 0 calc(tokens.$spacing-x1 / 2); // required spacing
+	$forms-required-spacing: 0 0 0 calc(theme.$spacing-x1 / 2); // required spacing
 
 	// Style block
 
@@ -354,13 +353,13 @@
 
 	// Colors
 
-	$forms-select-color-01: tokens.$color-bg; // input background
-	$forms-select-color-02: tokens.$color-border; // input border
-	$forms-select-color-03: tokens.$color-text; // input color
+	$forms-select-color-01: theme.$color-bg; // input background
+	$forms-select-color-02: theme.$color-border; // input border
+	$forms-select-color-03: theme.$color-body; // input color
 
 	// Configuration
 	
-	$forms-select-spacing: 0 tokens.$spacing-x8 0 tokens.$spacing-x2; // input spacing
+	$forms-select-spacing: 0 theme.$spacing-x8 0 theme.$spacing-x2; // input spacing
 	$forms-select-height: 35px; // input height
 	$forms-select-border-width: 1px; // input border width
 
@@ -385,7 +384,7 @@
 	.select-wrapper {
 		position: relative;
 		.icon-wrapper {
-			@include mixins.position($type: absolute, $top: 0, $bottom: 0, $right: tokens.$spacing-x2);
+			@include mixins.position($type: absolute, $top: 0, $bottom: 0, $right: theme.$spacing-x2);
 			margin: auto 0;
 		}
 	}
@@ -395,13 +394,13 @@
 
 	// Colors
 
-	$forms-textarea-color-01: tokens.$color-bg; // textarea background
-	$forms-textarea-color-02: tokens.$color-border; // textarea border
-	$forms-textarea-color-03: tokens.$color-text; // textarea color
+	$forms-textarea-color-01: theme.$color-bg; // textarea background
+	$forms-textarea-color-02: theme.$color-border; // textarea border
+	$forms-textarea-color-03: theme.$color-body; // textarea color
 
 	// Configuration
 	
-	$forms-textarea-spacing: tokens.$spacing-x2; // textarea spacing
+	$forms-textarea-spacing: theme.$spacing-x2; // textarea spacing
 	$forms-textarea-min-height: 150px; // textarea min-height
 	$forms-textarea-border-width: 1px; // textarea border width
 
@@ -430,16 +429,16 @@
 
 	// Colors
 
-	$forms-toggle-color-01: tokens.$color-inactive; // toggle background
+	$forms-toggle-color-01: theme.$color-inactive; // toggle background
 	$forms-toggle-color-02: false; // toggle border
-	$forms-toggle-color-03: tokens.$color-bg; // toggle circle
-	$forms-toggle-color-04: tokens.$color-active; // active toggle background
+	$forms-toggle-color-03: theme.$color-bg; // toggle circle
+	$forms-toggle-color-04: theme.$color-active; // active toggle background
 	$forms-toggle-color-05: false; // active toggle border
 	$forms-toggle-color-06: false; // active toggle circle
 
 	// Configuration
 	
-	$forms-toggle-spacing: tokens.$spacing-x2; // spacing between toggle and label
+	$forms-toggle-spacing: theme.$spacing-x2; // spacing between toggle and label
 	$forms-toggle-width: 100px; // toggle width
 	$forms-toggle-height: 25px; // toggle height
 	$forms-toggle-border-radius: 25px; // toggle radius

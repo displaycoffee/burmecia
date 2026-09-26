@@ -18,7 +18,7 @@
 		"build": "npm run generate:tokens && npm run generate:sitemap && npm run generate:dev && vite build && npm run generate:dist && npm run generate:public",
 		"dev": "npm run generate:tokens && npm run generate:sitemap && npm run generate:public && npm run generate:dev && vite --host",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"scripts/**/*.js\" --quiet",
 		"preview": "vite preview"
 	},
 	"devDependencies": {

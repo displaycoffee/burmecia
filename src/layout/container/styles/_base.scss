@@ -2,19 +2,18 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
-@use '../../../_core/styles/theme/_tokens';
 
 //// ELEMENTS
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$base-elements-color-01: tokens.$color-bg; // body background
+	$base-elements-color-01: theme.$color-bg; // body background
 
 	// Configuration
 
-	$base-elements-spacing: tokens.$spacing-x4; // overall spacing of theme
-	$base-elements-body-spacing-vertical: tokens.$spacing-x8; // top / bottom spacing for body
+	$base-elements-spacing: theme.$spacing-x4; // overall spacing of theme
+	$base-elements-body-spacing-vertical: theme.$spacing-x8; // top / bottom spacing for body
 	$base-elements-body-spacing-horizontal: 0; // left / right spacing for body
 
 	// Style block
@@ -40,8 +39,8 @@
 
 	// Colors
 
-	$base-helpers-color-01: tokens.$color-scrollbar-bg; // scrollbar background
-	$base-helpers-color-02: tokens.$color-scrollbar-foreground; // scrollbar foreground
+	$base-helpers-color-01: theme.$color-scrollbar-bg; // scrollbar background
+	$base-helpers-color-02: theme.$color-scrollbar-foreground; // scrollbar foreground
 
 	// Configuration
 

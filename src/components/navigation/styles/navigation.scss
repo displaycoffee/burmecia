@@ -2,7 +2,6 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
-@use '../../../_core/styles/theme/_tokens';
 
 //// NAVIGATION
 //// --------------------------------------------------------------------------
@@ -12,12 +11,12 @@
 	.navigation {
 		.navigation-list {
 			@include mixins.flex-layout((align-items: center));
-			@include mixins.gap(tokens.$spacing-x4);
+			@include mixins.gap(theme.$spacing-x4);
 			.navigation-list-item {
 				&:has(.dropdown) {
 					position: relative;
 					@include mixins.flex-layout((flex-flow: row nowrap, align-items: center));
-					@include mixins.gap(tokens.$spacing-x1);
+					@include mixins.gap(theme.$spacing-x1);
 					.dropdown {
 						position: static;
 						.dropdown-button {
@@ -30,17 +29,17 @@
 						.dropdown-content {
 							right: auto;
 							min-width: 200px;
-							margin-top: tokens.$spacing-x2;
+							margin-top: theme.$spacing-x2;
 						}
 					}
 				}
 				.navigation-link-active {
-					font-weight: theme.$font-weight-01;
+					font-weight: theme.$font-weight-body;
 				}
 			}
 			.navigation-list-submenu {
 				.navigation-list-item {
-					margin: 0 0 tokens.$spacing-x1 0;
+					margin: 0 0 theme.$spacing-x1 0;
 					&:last-child {
 						margin-bottom: 0;
 					}

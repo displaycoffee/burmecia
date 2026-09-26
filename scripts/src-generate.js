@@ -3,26 +3,41 @@ import fs from 'fs';
 import path from 'path';
 
 /* Scripts */
-import { config } from './config.js';
-
-const { site, targets, theme } = config;
-const { breakpoints, colors, favicons, fonts } = theme;
+import { site, targets, theme } from './data/index.js';
+const { breakpoints, colors, fallbacks, favicons, fonts } = theme;
 const templatePath = path.resolve('./scripts/src-template.html');
 const htmlPath = path.resolve('./src/index.html');
 
 if (fs.existsSync(templatePath)) {
 	let html = fs.readFileSync(templatePath, 'utf8');
 
+	// Create favicon links
+	const faviconLinks = [];
+	favicons.forEach((favicon) => {
+		if (favicon.isHead) {
+			faviconLinks.push(`<link href="${favicon.src}" rel="${favicon.rel}" sizes="${favicon.size}" type="${favicon.type}" />`);
+		}
+	});
+
+	// Create fallback font details
+	const fallbackFaces = [];
+	fallbacks.forEach((fallback) => {
+		fallbackFaces.push(`@font-face {
+			font-family: '${fallback.family}';
+			src: ${fallback.src};
+			size-adjust: ${fallback.size};
+		}`);
+	});
+
 	// Create font details
 	const fontLinks = [];
 	const fontFaces = [];
-
 	fonts.forEach((font) => {
 		// Only preload fonts needed for the first render; the rest load on demand through their @font-face rule
-		if (font?.preload) fontLinks.push(`<link rel="preload" href="${font.file}" as="font" type="font/woff2" crossorigin="anonymous" />`);
+		if (font?.preload) fontLinks.push(`<link rel="preload" href="${font.src}" as="font" type="font/${font.ext}" crossorigin="anonymous" />`);
 		fontFaces.push(`@font-face {
 			font-family: '${font.family}';
-			src: url('${font.file}') format('woff2');
+			src: url('${font.src}') format('${font.ext}');
 			font-weight: ${font.weight};
 			font-style: ${font.style};
 			font-display: ${font.display};
@@ -32,18 +47,12 @@ if (fs.existsSync(templatePath)) {
 	// Create target details
 	const targetScripts = [];
 	const targetElements = [];
-
 	targets.forEach((target) => {
 		if (target?.isScript) {
-			targetScripts.push(`<script type="module" src="${target.file}"></script>`);
+			targetScripts.push(`<script type="module" src="${target.src}"></script>`);
 		}
 		targetElements.push(target?.hasTabindex ? `<div id="${target.name}" tabindex="-1"></div>` : `<div id="${target.name}"></div>`);
 	});
-
-	// Function to create favicon link tag
-	const createFavicon = (favicon) => {
-		return `<link href="${favicon.file}" rel="${favicon.rel}" sizes="${favicon.size}" type="${favicon.type}" />`;
-	};
 
 	// Update head
 	// Create head meta, links and scripts
@@ -62,23 +71,12 @@ if (fs.existsSync(templatePath)) {
 		<meta name="theme-color" content="${colors.bg}" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="${colors['bg-dark'] ?? colors.bg}" media="(prefers-color-scheme: dark)" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		${createFavicon(favicons.favicon32)}
-		${createFavicon(favicons.favicon92)}
-		${createFavicon(favicons.favicon180)}
+		${faviconLinks.join('')}
 		<link rel="manifest" href="/manifest.json" />
 		${fontLinks.join('')}
 		${targetScripts.join('')}
 		<style id="preloaded-styles">
-			@font-face {
-				font-family: 'Fallback';
-				src: local('Arial');
-				size-adjust: 105%;
-			}
-			@font-face {
-				font-family: 'Fallback Bold';
-				src: local('Arial Black');
-				size-adjust: 98%;
-			}
+			${fallbackFaces.join('')}
 			${fontFaces.join('')}
 			.hide-mobile {
 				display: none;
@@ -97,13 +95,13 @@ if (fs.existsSync(templatePath)) {
 		</style>
 	`;
 	const headRegex = /<!-- HEAD -->/g;
-	html = html.replace(headRegex, (match, href) => {
+	html = html.replace(headRegex, () => {
 		return head;
 	});
 
 	// Update targets
 	const targetsRegex = /<!-- TARGETS -->/g;
-	html = html.replace(targetsRegex, (match, href) => {
+	html = html.replace(targetsRegex, () => {
 		return targetElements.join('');
 	});
 

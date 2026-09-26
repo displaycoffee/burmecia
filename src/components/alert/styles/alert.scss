@@ -2,22 +2,21 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
-@use '../../../_core/styles/theme/_tokens';
 
 //// ALERT
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$alert-color-01: tokens.$color-alert-text; // alert font
-	$alert-color-02: tokens.$color-alert-link; // alert link
+	$alert-color-01: theme.$color-alert-body; // alert font
+	$alert-color-02: theme.$color-alert-link; // alert link
 
 	// Configuration
 	
-	$alert-spacing: tokens.$spacing-x4; // spacing for alert
+	$alert-spacing: theme.$spacing-x4; // spacing for alert
 	$alert-border-left-width: 5px; // make left border larger
 	$alert-border-radius: false; // alert border radius
-	$alert-icon-size: tokens.$icon-xl; // size of icon
+	$alert-icon-size: theme.$icon-xl; // size of icon
 	$alert-icon-vertical: 1px; // top vertical alignment of icon
 
 	// Style block
@@ -25,8 +24,8 @@
 	.alert {
 		padding: $alert-spacing;
 		@include mixins.gap(calc($alert-spacing / 2));
-		background-color: tokens.$color-error-bg;
-		border: 1px solid tokens.$color-error-border;
+		background-color: theme.$color-error-bg;
+		border: 1px solid theme.$color-error-border;
 		@include mixins.if-exists((
 			border-left-width: $alert-border-left-width,
 		));
@@ -42,7 +41,7 @@
 			@if $alert-icon-vertical != false {
 				@include mixins.position($type: relative, $top: $alert-icon-vertical);
 			}
-			color: tokens.$color-error-border;
+			color: theme.$color-error-border;
 			svg {
 				@include mixins.sizing(100%, 100%);
 			}
@@ -63,23 +62,23 @@
 		}
 	}
 	.alert-warning {
-		background-color: tokens.$color-warning-bg;
-		border-color: tokens.$color-warning-border;
+		background-color: theme.$color-warning-bg;
+		border-color: theme.$color-warning-border;
 		.alert-icon {
-			color: tokens.$color-warning-border;
+			color: theme.$color-warning-border;
 		}
 	}
 	.alert-info {
-		background-color: tokens.$color-info-bg;
-		border-color: tokens.$color-info-border;
+		background-color: theme.$color-info-bg;
+		border-color: theme.$color-info-border;
 		.alert-icon {
-			color: tokens.$color-info-border;
+			color: theme.$color-info-border;
 		}
 	}
 	.alert-success {
-		background-color: tokens.$color-success-bg;
-		border-color: tokens.$color-success-border;
+		background-color: theme.$color-success-bg;
+		border-color: theme.$color-success-border;
 		.alert-icon {
-			color: tokens.$color-success-border;
+			color: theme.$color-success-border;
 		}
 	}

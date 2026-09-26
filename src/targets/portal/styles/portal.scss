@@ -2,7 +2,6 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
-@use '../../../_core/styles/theme/_tokens';
 
 //// PORTAL
 //// --------------------------------------------------------------------------
@@ -10,5 +9,5 @@
 	// Style block
 
 	#portal {
-		margin: tokens.$spacing-x8 0 0 0;
+		margin: theme.$spacing-x8 0 0 0;
 	}

@@ -2,19 +2,18 @@
 @use '../../../_core/styles/utils/_functions';
 @use '../../../_core/styles/utils/_mixins';
 @use '../../../_core/styles/theme/_theme';
-@use '../../../_core/styles/theme/_tokens';
 
 //// OVERLAY
 //// --------------------------------------------------------------------------
 
 	// Colors
 
-	$overlay-color-01: tokens.$color-overlay; // backdrop
-	$overlay-color-02: tokens.$color-bg; // content background
+	$overlay-color-01: theme.$color-overlay; // backdrop
+	$overlay-color-02: theme.$color-bg; // content background
 
 	// Configuration
 
-	$overlay-spacing: tokens.$spacing-x4; // overall spacing value
+	$overlay-spacing: theme.$spacing-x4; // overall spacing value
 	$overlay-duration: 0.6s; // duration of open / close transitions
 	$overlay-duration-discrete: max($overlay-duration, var(--overlay-duration-transform)); // lasts as long as the longest transition
 	$overlay-transition-discrete: display $overlay-duration-discrete ease-in-out, overlay $overlay-duration-discrete ease-in-out; // keeps the dialog in the top layer until the close transition finishes

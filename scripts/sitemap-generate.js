@@ -2,6 +2,9 @@
 import fs from 'fs';
 import path from 'path';
 
+/* Scripts */
+import { site } from './data/index.js';
+
 /* Function to generate sitemap object*/
 const generateSitemap = (object) => {
 	return `let sitemap = ${object};\n\nexport const sitemapConfig = sitemap;\n`;
@@ -11,18 +14,17 @@ const generateSitemap = (object) => {
 const jsPath = path.resolve('./vite.sitemap.js');
 const placeholder = generateSitemap('{}');
 
-/* config.js's own createServer() call needs vite.config.js to resolve, which imports
+/* data/navigation.js's own createServer() call needs vite.config.js to resolve, which imports
    sitemapConfig from this exact file — so vite.sitemap.js has to already exist and export
-   something valid before config.js loads, or that resolution (and this whole script) fails
+   something valid before navigation.js loads, or that resolution (and this whole script) fails
    outright with no way to recover. Seed it with a placeholder first if it's missing, then
-   import config.js dynamically afterward — a static import would run before this check,
+   import navigation.js dynamically afterward — a static import would run before this check,
    since imports are hoisted ahead of a module's own top-level code. */
 if (!fs.existsSync(jsPath)) fs.writeFileSync(jsPath, placeholder);
 
-/* Scripts */
-const { config } = await import('./config.js');
+/* Navigation (dynamic import, see note above) */
+const { navigation } = await import('./data/navigation.js');
 
-const { navigation, site } = config;
 const location = new URL(site.url);
 const assets = `/assets`;
 const images = `${assets}/images`;
@@ -39,7 +41,7 @@ const getFoldersSync = (directoryPath) => {
 const imagesList = getFoldersSync(`./public${images}`);
 
 /* Build sitemap object */
-let sitemap = {
+const sitemap = {
 	dynamicRoutes: navigation,
 	exclude: [...exclude, images, ...imagesList],
 	hostname: location.origin,
