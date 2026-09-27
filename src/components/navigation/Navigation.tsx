@@ -2,14 +2,13 @@
 import './styles/navigation.scss';
 
 /* Packages */
-import { Fragment, useEffect } from 'react';
-import { Link, useLocation } from '@tanstack/react-router';
+import { Fragment } from 'react';
+import { Link } from '@tanstack/react-router';
 
 /* Scripts */
 import type { NavigationComponentProps, NavigationItemComponentProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
 import { useViewTransition } from '../../_core/scripts/hooks';
-import { useAppContext } from '../../context/scripts/context-hooks';
 
 /* Components */
 import { LinkExternal, List } from '../blocks/Blocks';
@@ -17,15 +16,8 @@ import { Dropdown } from '../dropdown/Dropdown';
 
 export const Navigation = (props: NavigationComponentProps) => {
 	const { data, disableTransition, label } = props;
-	const { pathname } = useLocation();
-	const { utils } = useAppContext();
 	const navigationList = navigationUtils.get.list(data);
 	const navigationLinkClass = `no-decoration navigation-link`;
-
-	// Scroll to top when navigation link is clicked on
-	useEffect(() => {
-		utils.scrollTo();
-	}, [pathname, utils]);
 
 	return navigationList.length != 0 ? (
 		<nav className="navigation" aria-label={label}>

@@ -296,12 +296,14 @@
 	$forms-input-color-01: theme.$color-bg; // input background
 	$forms-input-color-02: theme.$color-border; // input border
 	$forms-input-color-03: theme.$color-body; // input color
+	$forms-input-color-04: theme.$color-border; // input color type background
 
 	// Configuration
 	
 	$forms-input-spacing: 0 theme.$spacing-x2; // input spacing
 	$forms-input-height: 35px; // input height
 	$forms-input-border-width: 1px; // input border width
+	$forms-input-color-type-size: 30px; // size of color input
 
 	// Style block
 
@@ -322,9 +324,11 @@
 		}
 	}
 	.input-color {
-		@include mixins.sizing(30px, 30px);
+		@if $forms-input-color-type-size != false {
+			@include mixins.sizing($forms-input-color-type-size, $forms-input-color-type-size);
+		}
 		border: 0;
-		background-color: theme.$color-bg;
+		@include mixins.if-exists((background-color: $forms-input-color-04));
 		cursor: pointer;
 	}
 
