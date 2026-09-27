@@ -2,7 +2,7 @@
 import { createServer } from 'vite';
 
 /* Start a vite server to get information from navigation */
-/* Note: this is the only data file that starts a vite server, so only import it where the navigation is needed (sitemap-generate.js) */
+/* Note: this is the only script that starts a vite server, so only import it where the navigation is needed (sitemap-generate.js) */
 const viteServer = await createServer({
 	server: { middlewareMode: true },
 	appType: 'custom',
@@ -23,4 +23,4 @@ const flattenUrls = (items) => {
 	});
 };
 
-export const navigation = flattenUrls(navigationUtils.get.list(navigationHeader, true));
+export const sitemapRoutes = flattenUrls(navigationUtils.get.list(navigationHeader, true));

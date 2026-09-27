@@ -1,6 +1,6 @@
 /* Packages */
 import type { SyntheticEvent } from 'react';
-import type themeJSON from '../../../tokens/theme.json';
+import type themeJson from '../tokens/theme.json';
 
 /* Type definitions */
 type Events = SyntheticEvent | Event;
@@ -15,9 +15,15 @@ type ObjectPrimitive = {
 
 type Primitive = string | number | boolean;
 
+type Site = {
+	name: string;
+	description: string;
+	url: string;
+};
+
 type Theme = {
-	breakpoints: (typeof themeJSON)['breakpoint'];
-	colors: (typeof themeJSON)['color'];
+	breakpoints: (typeof themeJson)['breakpoint'];
+	colors: (typeof themeJson)['color'];
 };
 
 type Utils = {
@@ -35,11 +41,7 @@ type Variables = {
 	paths: {
 		basename: string;
 	};
-	site: {
-		name: string;
-		description: string;
-		url: string;
-	};
+	site: Site;
 };
 
 declare global {
@@ -49,6 +51,8 @@ declare global {
 	type ObjectStringType = ObjectString;
 
 	type ObjectPrimitiveType = ObjectPrimitive;
+
+	type SiteType = Site;
 
 	type ThemeType = Theme;
 

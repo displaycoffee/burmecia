@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 /* Scripts */
-import { site } from './data/index.js';
+import { site } from '../src/_core/data/site.ts';
 
 /* Function to generate sitemap object*/
 const generateSitemap = (object) => {
@@ -14,16 +14,16 @@ const generateSitemap = (object) => {
 const jsPath = path.resolve('./vite.sitemap.js');
 const placeholder = generateSitemap('{}');
 
-/* data/navigation.js's own createServer() call needs vite.config.js to resolve, which imports
+/* sitemap-routes.js's own createServer() call needs vite.config.js to resolve, which imports
    sitemapConfig from this exact file — so vite.sitemap.js has to already exist and export
-   something valid before navigation.js loads, or that resolution (and this whole script) fails
+   something valid before sitemap-routes.js loads, or that resolution (and this whole script) fails
    outright with no way to recover. Seed it with a placeholder first if it's missing, then
-   import navigation.js dynamically afterward — a static import would run before this check,
+   import sitemap-routes.js dynamically afterward — a static import would run before this check,
    since imports are hoisted ahead of a module's own top-level code. */
 if (!fs.existsSync(jsPath)) fs.writeFileSync(jsPath, placeholder);
 
 /* Navigation (dynamic import, see note above) */
-const { navigation } = await import('./data/navigation.js');
+const { sitemapRoutes } = await import('./sitemap-routes.js');
 
 const location = new URL(site.url);
 const assets = `/assets`;
@@ -42,7 +42,7 @@ const imagesList = getFoldersSync(`./public${images}`);
 
 /* Build sitemap object */
 const sitemap = {
-	dynamicRoutes: navigation,
+	dynamicRoutes: sitemapRoutes,
 	exclude: [...exclude, images, ...imagesList],
 	hostname: location.origin,
 	readable: true,
@@ -56,4 +56,4 @@ const jsContent = generateSitemap(JSON.stringify(sitemap, null, 2));
 /* Write the string synchronously to a .js file */
 fs.writeFileSync(jsPath, jsContent, 'utf8');
 
-console.log(`🚀 Successfully built vite.sitemap.js with ${navigation.length} route(s).`);
+console.log(`🚀 Successfully built vite.sitemap.js with ${sitemapRoutes.length} route(s).`);

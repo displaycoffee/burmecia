@@ -3,8 +3,14 @@ import fs from 'fs';
 import path from 'path';
 
 /* Scripts */
-import { site, targets, theme } from './data/index.js';
-const { breakpoints, colors, fallbacks, favicons, fonts } = theme;
+import { breakpoints } from '../src/_core/data/breakpoints.ts';
+import { colors } from '../src/_core/data/colors.ts';
+import { fallbacks } from '../src/_core/data/fallbacks.ts';
+import { favicons } from '../src/_core/data/favicons.ts';
+import { fonts } from '../src/_core/data/fonts.ts';
+import { site } from '../src/_core/data/site.ts';
+import { targets } from '../src/_core/data/targets.ts';
+
 const templatePath = path.resolve('./scripts/src-template.html');
 const htmlPath = path.resolve('./src/index.html');
 
@@ -34,7 +40,7 @@ if (fs.existsSync(templatePath)) {
 	const fontFaces = [];
 	fonts.forEach((font) => {
 		// Only preload fonts needed for the first render; the rest load on demand through their @font-face rule
-		if (font?.preload) fontLinks.push(`<link rel="preload" href="${font.src}" as="font" type="font/${font.ext}" crossorigin="anonymous" />`);
+		if (font?.isPreload) fontLinks.push(`<link rel="preload" href="${font.src}" as="font" type="font/${font.ext}" crossorigin="anonymous" />`);
 		fontFaces.push(`@font-face {
 			font-family: '${font.family}';
 			src: url('${font.src}') format('${font.ext}');

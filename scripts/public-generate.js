@@ -3,8 +3,10 @@ import fs from 'fs';
 import path from 'path';
 
 /* Scripts */
-import { site, theme } from './data/index.js';
-const { colors, favicons } = theme;
+import { colors } from '../src/_core/data/colors.ts';
+import { favicons } from '../src/_core/data/favicons.ts';
+import { site } from '../src/_core/data/site.ts';
+
 const jsonPath = path.resolve('./public/manifest.json');
 
 /* Format manifest icons */
