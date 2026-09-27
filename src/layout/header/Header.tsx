@@ -4,6 +4,9 @@ import './styles/header.scss';
 /* Packages */
 import { Link } from '@tanstack/react-router';
 
+/* Components */
+import { ThemeToggle } from '../../components/theme-toggle/ThemeToggle';
+
 export const Header = () => {
 	return (
 		<header className="header">
@@ -12,6 +15,8 @@ export const Header = () => {
 					Burmecia
 				</Link>
 			</h1>
+
+			<ThemeToggle />
 		</header>
 	);
 };

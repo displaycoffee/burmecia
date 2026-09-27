@@ -78,6 +78,9 @@
 					@include mixins.transition(transform ease $dropdown-duration);
 					margin-left: auto;
 					order: 9999;
+					.icon path {
+						@include mixins.if-exists((stroke: $dropdown-color-03));
+					}
 				}
 				.button-label {
 					@include mixins.if-exists((color: $dropdown-color-03));
