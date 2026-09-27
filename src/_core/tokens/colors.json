@@ -39,6 +39,7 @@
 		"link-underline": { "$value": "#4762cb", "$extensions": { "dark": "#7f93e6" } },
 		"link-underline-hover": { "$value": "#333333", "$extensions": { "dark": "#fdfdfd" } },
 		"overlay": { "$value": "color-mix(in srgb, {color.black} 75%, transparent)" },
+		"required": { "$value": "#f85149" },
 		"scrollbar-bg": { "$value": "#fdfdfd", "$extensions": { "dark": "#1a1a1a" } },
 		"scrollbar-foreground": { "$value": "#4762cb" },
 		"success-bg": { "$value": "#b6ebcb" },
