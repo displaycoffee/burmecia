@@ -10,7 +10,6 @@ import globals from 'globals';
 
 export default tseslint.config(
 	{
-		// Note: build scripts in scripts/ are linted (see the scripts block below); other .js files (configs, generated files) are ignored
 		ignores: ['**/*.js', '!scripts/**/*.js'],
 	},
 	{
@@ -63,7 +62,6 @@ export default tseslint.config(
 		},
 	},
 	{
-		// Build scripts run in Node and aren't part of tsconfig.json, so turn off the type-aware rules for them
 		files: ['scripts/**/*.js'],
 		...tseslint.configs.disableTypeChecked,
 	},

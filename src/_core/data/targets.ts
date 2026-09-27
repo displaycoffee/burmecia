@@ -1,6 +1,3 @@
-/* Scripts */
-import type { TargetType } from './data-types';
-
 export const targets: TargetType[] = [
 	{
 		name: 'index',
