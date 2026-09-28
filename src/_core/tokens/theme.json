@@ -115,7 +115,7 @@
 	},
 	"fallback": {
 		"name-body": "Fallback",
-		"name-header": "Fallback Bold",
+		"name-header": "Fallback Header",
 		"size-body": "105%",
 		"size-header": "98%",
 		"src-body": "local('Arial')",
@@ -123,7 +123,7 @@
 	},
 	"font": {
 		"family-body": "'Open Sans', 'Fallback', sans-serif",
-		"family-header": "'Montserrat', 'Fallback Bold', sans-serif",
+		"family-header": "'Montserrat', 'Fallback Header', sans-serif",
 		"name-body": "Open Sans",
 		"name-header": "Montserrat",
 		"path-body": "/assets/fonts/open-sans",
