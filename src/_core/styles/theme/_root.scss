@@ -1,6 +1,6 @@
 // Do not edit directly, this file was auto-generated.
 :root {
-	color-scheme: light dark;
+	color-scheme: light;
 	--color-active: #4762cb;
 	--color-alert-body: #333333;
 	--color-alert-link: #000000;
@@ -58,6 +58,7 @@
 
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme='light']) {
+		color-scheme: dark;
 		--color-bg: #1a1a1a;
 		--color-body: #fdfdfd;
 		--color-border: #fdfdfd;
@@ -66,6 +67,7 @@
 		--color-button-primary-body: #1a1a1a;
 		--color-button-primary-bg-hover: #1a1a1a;
 		--color-button-primary-body-hover: #fdfdfd;
+		--color-focus: #7f93e6;
 		--color-form-field-bg: #1a1a1a;
 		--color-form-field-body: #fdfdfd;
 		--color-form-field-border: #fdfdfd;
@@ -80,6 +82,7 @@
 }
 
 :root[data-theme='dark'] {
+	color-scheme: dark;
 	--color-bg: #1a1a1a;
 	--color-body: #fdfdfd;
 	--color-border: #fdfdfd;
@@ -88,6 +91,7 @@
 	--color-button-primary-body: #1a1a1a;
 	--color-button-primary-bg-hover: #1a1a1a;
 	--color-button-primary-body-hover: #fdfdfd;
+	--color-focus: #7f93e6;
 	--color-form-field-bg: #1a1a1a;
 	--color-form-field-body: #fdfdfd;
 	--color-form-field-border: #fdfdfd;

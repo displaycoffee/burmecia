@@ -5,8 +5,12 @@ import IconHeart from '~icons/lucide/heart';
 import IconStar from '~icons/lucide/star';
 
 /* Components */
+import { PageTitle } from '../../components/page-title/PageTitle';
 import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea, Toggle } from '../../components/forms/Forms';
 import { Icon } from '../../components/icons/Icons';
+
+/* Page title */
+const title = 'Page Four';
 
 export const Route = createLazyFileRoute('/page-four/')({
 	component: RouteComponent,
@@ -33,7 +37,9 @@ function RouteComponent() {
 
 	return (
 		<div className="page-four margin-trim">
-			<h2>Page Four</h2>
+			<PageTitle title={title} />
+
+			<h2>{title}</h2>
 
 			<p>This is an example of form fields.</p>
 

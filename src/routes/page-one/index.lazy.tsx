@@ -2,7 +2,11 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
+import { PageTitle } from '../../components/page-title/PageTitle';
 import { Image } from '../../components/image/Image';
+
+/* Page title */
+const title = 'Page One';
 
 export const Route = createLazyFileRoute('/page-one/')({
 	component: RouteComponent,
@@ -11,7 +15,9 @@ export const Route = createLazyFileRoute('/page-one/')({
 function RouteComponent() {
 	return (
 		<div className="page-one margin-trim">
-			<h2>Page One</h2>
+			<PageTitle title={title} />
+
+			<h2>{title}</h2>
 
 			<p>This is the first page.</p>
 

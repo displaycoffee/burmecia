@@ -28,7 +28,7 @@
 		"button-tertiary-body-hover": { "$value": "#fdfdfd" },
 		"error-bg": { "$value": "#fee3e1" },
 		"error-border": { "$value": "#cf0902" },
-		"focus": { "$value": "#7f93e6" },
+		"focus": { "$value": "#7f93e6", "$extensions": { "dark": "#7f93e6" } },
 		"form-field-bg": { "$value": "#fdfdfd", "$extensions": { "dark": "#1a1a1a" } },
 		"form-field-body": { "$value": "#333333", "$extensions": { "dark": "#fdfdfd" } },
 		"form-field-border": { "$value": "#333333", "$extensions": { "dark": "#fdfdfd" } },

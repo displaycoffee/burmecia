@@ -4,6 +4,12 @@ import { createLazyFileRoute, Link } from '@tanstack/react-router';
 /* Scripts */
 import { useAppContext } from '../../../../context/scripts/context-hooks';
 
+/* Components */
+import { PageTitle } from '../../../../components/page-title/PageTitle';
+
+/* Page title */
+const title = 'Child Page Two';
+
 export const Route = createLazyFileRoute('/page-two/(children)/child-page-two/')({
 	component: RouteComponent,
 });
@@ -13,7 +19,9 @@ function RouteComponent() {
 
 	return (
 		<div className="page-child-page-two margin-trim">
-			<h2>Child Page Two</h2>
+			<PageTitle title={title} />
+
+			<h2>{title}</h2>
 
 			<p>
 				This is <strong>child page two</strong> of page two.

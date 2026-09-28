@@ -1,6 +1,9 @@
 /* Packages */
 import { useState } from 'react';
 
+/* Scripts */
+import { settings } from '../../_core/data/settings';
+
 /* Components */
 import { Toggle } from '../forms/Forms';
 
@@ -9,14 +12,11 @@ import { Toggle } from '../forms/Forms';
    Note: the saved theme is applied when this module loads (before React renders), not from index.html, so a saved theme
    that differs from the OS preference can briefly show the OS theme on page load. */
 
-/* Type definitions */
-type Theme = 'light' | 'dark';
-
 /* Settings */
 const storageKey = 'theme';
 
 /* localStorage can throw (e.g. blocked storage or some private browsing modes), so reads and writes fail quietly */
-const getStoredTheme = (): Theme | null => {
+const getStoredTheme = (): ThemeModeType | null => {
 	try {
 		const stored = localStorage.getItem(storageKey);
 		return stored === 'light' || stored === 'dark' ? stored : null;
@@ -25,7 +25,7 @@ const getStoredTheme = (): Theme | null => {
 	}
 };
 
-const setStoredTheme = (theme: Theme) => {
+const setStoredTheme = (theme: ThemeModeType) => {
 	try {
 		localStorage.setItem(storageKey, theme);
 	} catch {
@@ -33,18 +33,22 @@ const setStoredTheme = (theme: Theme) => {
 	}
 };
 
-const getSystemTheme = (): Theme => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+/* Start from the OS setting, or from the default theme if the tokens don't follow the OS (setting.theme.system) */
+const getSystemTheme = (): ThemeModeType => {
+	const { alternate, default: defaultTheme, system } = settings.theme;
+	return system && window.matchMedia(`(prefers-color-scheme: ${alternate})`).matches ? alternate : defaultTheme;
+};
 
 /* Apply a saved theme as early as possible (the generated :root[data-theme] styles take it from here) */
 const storedTheme = getStoredTheme();
 if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme);
 
 export const ThemeToggle = () => {
-	const [theme, setTheme] = useState<Theme>(() => storedTheme ?? getSystemTheme());
+	const [theme, setTheme] = useState<ThemeModeType>(() => storedTheme ?? getSystemTheme());
 
 	// Flip the theme, save it, and apply it immediately
 	const toggleTheme = () => {
-		const next: Theme = theme === 'dark' ? 'light' : 'dark';
+		const next: ThemeModeType = theme === 'dark' ? 'light' : 'dark';
 		setTheme(next);
 		setStoredTheme(next);
 		document.documentElement.setAttribute('data-theme', next);

@@ -2,7 +2,11 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
+import { PageTitle } from '../../components/page-title/PageTitle';
 import { Section } from '../../components/blocks/Blocks';
+
+/* Page title */
+const title = 'Page Three';
 
 export const Route = createLazyFileRoute('/page-three/')({
 	component: RouteComponent,
@@ -11,7 +15,9 @@ export const Route = createLazyFileRoute('/page-three/')({
 function RouteComponent() {
 	return (
 		<div className="page-three margin-trim">
-			<h2>Page Three</h2>
+			<PageTitle title={title} />
+
+			<h2>{title}</h2>
 
 			<p>This is an example of sections that reveal themselves.</p>
 

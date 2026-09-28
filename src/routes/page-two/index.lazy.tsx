@@ -6,7 +6,11 @@ import { navigationHeader } from '../../components/navigation/scripts/navigation
 import { navigationUtils } from '../../components/navigation/scripts/navigation-utils';
 
 /* Components */
+import { PageTitle } from '../../components/page-title/PageTitle';
 import { List } from '../../components/blocks/Blocks';
+
+/* Page title */
+const title = 'Page Two';
 
 /* Get navigation menu */
 const navigationList = navigationUtils.get.listItem(navigationHeader, 'page-two');
@@ -18,7 +22,9 @@ export const Route = createLazyFileRoute('/page-two/')({
 function RouteComponent() {
 	return (
 		<div className="page-two margin-trim">
-			<h2>Page Two</h2>
+			<PageTitle title={title} />
+
+			<h2>{title}</h2>
 
 			{navigationList?.children && navigationList.children.length !== 0 ? (
 				<>
