@@ -1,4 +1,5 @@
 /* Packages */
+import type { ThemeMode } from '@displaycoffee/tokens';
 import { useState } from 'react';
 
 /* Scripts */
@@ -16,7 +17,7 @@ import { Toggle } from '../forms/Forms';
 const storageKey = 'theme';
 
 /* localStorage can throw (e.g. blocked storage or some private browsing modes), so reads and writes fail quietly */
-const getStoredTheme = (): ThemeModeType | null => {
+const getStoredTheme = (): ThemeMode | null => {
 	try {
 		const stored = localStorage.getItem(storageKey);
 		return stored === 'light' || stored === 'dark' ? stored : null;
@@ -25,7 +26,7 @@ const getStoredTheme = (): ThemeModeType | null => {
 	}
 };
 
-const setStoredTheme = (theme: ThemeModeType) => {
+const setStoredTheme = (theme: ThemeMode) => {
 	try {
 		localStorage.setItem(storageKey, theme);
 	} catch {
@@ -34,7 +35,7 @@ const setStoredTheme = (theme: ThemeModeType) => {
 };
 
 /* Start from the OS setting, or from the default theme if the tokens don't follow the OS (setting.theme.system) */
-const getSystemTheme = (): ThemeModeType => {
+const getSystemTheme = (): ThemeMode => {
 	const { alternate, default: defaultTheme, system } = settings.theme;
 	return system && window.matchMedia(`(prefers-color-scheme: ${alternate})`).matches ? alternate : defaultTheme;
 };
@@ -44,11 +45,11 @@ const storedTheme = getStoredTheme();
 if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme);
 
 export const ThemeToggle = () => {
-	const [theme, setTheme] = useState<ThemeModeType>(() => storedTheme ?? getSystemTheme());
+	const [theme, setTheme] = useState<ThemeMode>(() => storedTheme ?? getSystemTheme());
 
 	// Flip the theme, save it, and apply it immediately
 	const toggleTheme = () => {
-		const next: ThemeModeType = theme === 'dark' ? 'light' : 'dark';
+		const next: ThemeMode = theme === 'dark' ? 'light' : 'dark';
 		setTheme(next);
 		setStoredTheme(next);
 		document.documentElement.setAttribute('data-theme', next);
