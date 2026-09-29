@@ -2,10 +2,13 @@
 import './styles/forms.scss';
 
 /* Packages */
-import { Children, createContext, isValidElement, useContext } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
+import IconChevronDown from '~icons/lucide/chevron-down';
+import IconCheck from '~icons/lucide/check';
+import IconDot from '~icons/lucide/dot';
 
 /* Scripts */
-import {
+import type {
 	ButtonProps,
 	ButtonScrollProps,
 	ChoiceProps,
@@ -19,15 +22,14 @@ import {
 	RequiredProps,
 	SelectProps,
 	TextareaProps,
+	ToggleProps,
 } from './scripts/forms-types';
 import { forms } from './scripts/forms';
 import { useAppContext } from '../../context/scripts/context-hooks';
 
 /* Components */
+import { Alert } from '../alert/Alert';
 import { Icon } from '../icons/Icons';
-
-/* Shares the enclosing FormField's id so grouped radios share a name without a Choice prop */
-const ChoiceGroupContext = createContext<string | undefined>(undefined);
 
 export const Button = (props: ButtonProps) => {
 	const { children, className: propClassName, hideLabel = false, label, type = 'button', variant = 'primary', ...rest } = props;
@@ -47,42 +49,34 @@ export const ButtonScroll = (props: ButtonScrollProps) => {
 	const { offset = 0, target, ...rest } = props;
 	const { utils } = useAppContext();
 
-	return <Button variant="link" onClick={(e) => utils.scrollTo(e, target, offset)} {...rest} />;
+	return <Button variant={'link'} onClick={(e) => utils.scrollTo(e, target, offset)} {...rest} />;
 };
 
 export const Choice = (props: ChoiceProps) => {
 	const { active = false, className: propClassName, hideLabel = false, id, label, type = 'checkbox', ...rest } = props;
-	const className = forms.build.className(`choice choice-${type}`, propClassName, rest?.disabled, false, true);
+	const choiceClass = `choice choice-${type}${active ? ' choice-active' : ''} pointer`;
+	const className = forms.build.className(choiceClass, propClassName, rest?.disabled);
+	const choiceRef = useRef<HTMLLabelElement>(null);
+	const [name, setName] = useState(id);
 
-	// Radios must share a name to behave as a mutually exclusive group; checkboxes stay independent
-	const groupId = useContext(ChoiceGroupContext);
-	const name = type === 'radio' ? (groupId ?? id) : id;
+	// Get group id for radios
+	useLayoutEffect(() => {
+		if (choiceRef?.current && type == 'radio') {
+			const groupElement = choiceRef.current.closest<HTMLElement>('[data-group-id]');
+			if (groupElement?.dataset.groupId) setName(groupElement.dataset.groupId);
+		}
+	}, [type]);
 
 	return (
-		<div className={`choice-wrapper choice-wrapper-${type}${active ? ' choice-wrapper-active' : ''}`}>
-			{active ? (
-				type == 'radio' ? (
-					<div className="icon-wrapper">
-						<div className="icon icon-circle"></div>
-					</div>
-				) : (
-					<Icon id={'check-thin'} />
-				)
-			) : (
-				<div className="icon-wrapper"></div>
-			)}
+		<label className={className} htmlFor={id} ref={choiceRef}>
+			{active ? <Icon icon={type == 'radio' ? IconDot : IconCheck} /> : <span className="icon-wrapper"></span>}
 
-			<input id={id} className={className} name={name} type={type} {...rest} />
+			<input id={id} className={`choice-input choice-input-${type} sr-only`} checked={active} name={name} type={type} {...rest} />
 
-			<label className={`label pointer${hideLabel ? ' sr-only' : ''}`} htmlFor={id}>
-				{label}
-			</label>
-		</div>
+			<span className={`choice-label${hideLabel ? ' sr-only' : ''}`}>{label}</span>
+		</label>
 	);
 };
-
-/* Display name for identifying choice elements */
-Choice.displayName = 'Choice';
 
 export const Form = (props: FormProps) => {
 	const { children, className: propClassName, ...rest } = props;
@@ -103,13 +97,8 @@ export const FormActions = (props: FormActionsProps) => {
 };
 
 export const FormField = (props: FormFieldProps) => {
-	const { children, hideLabel, id, label, required } = props;
+	const { children, hideLabel, id, isChoice = false, label, required } = props;
 	const className = forms.build.className(`form-field`, props?.className);
-
-	// Determine if children contain choice fields (checkboxes or radios)
-	const isChoice = Children.toArray(children).some(
-		(child) => isValidElement(child) && (child.type as { displayName?: string })?.displayName === 'Choice',
-	);
 
 	// Create elements for form field
 	const Tag = isChoice ? 'fieldset' : 'div';
@@ -138,8 +127,8 @@ export const FormField = (props: FormFieldProps) => {
 				</div>
 			)}
 
-			<div className="form-field-control">
-				{isChoice ? <ChoiceGroupContext.Provider value={id}>{children}</ChoiceGroupContext.Provider> : children}
+			<div className="form-field-control" data-group-id={isChoice ? id : null}>
+				{children}
 			</div>
 		</Tag>
 	);
@@ -183,7 +172,7 @@ export const Select = (props: SelectProps) => {
 				<select {...selectAttributes} {...rest}>
 					{children}
 				</select>
-				<Icon id={icon ?? 'angle-down'} />
+				<Icon icon={icon ?? IconChevronDown} />
 			</div>
 			<FormFieldDetails description={description} descriptionId={descriptionId} error={error} errorId={errorId} />
 		</FormField>
@@ -209,6 +198,24 @@ export const Textarea = (props: TextareaProps) => {
 	);
 };
 
+export const Toggle = (props: ToggleProps) => {
+	const { active = false, className: propClassName, hideLabel = false, id, label, ...rest } = props;
+	const toggleClass = `toggle${active ? ' toggle-active' : ''}`;
+	const className = forms.build.className(`${toggleClass} flex-nowrap flex-align-items-center pointer`, propClassName, rest?.disabled);
+
+	return (
+		<label className={className} htmlFor={id}>
+			<span className="toggle-slider" aria-hidden="true">
+				<span className="toggle-slider-circle"></span>
+			</span>
+
+			<span className={`toggle-label${hideLabel ? ' sr-only' : ''}`}>{label}</span>
+
+			<input id={id} className="sr-only" checked={active} name={id} role="switch" type="checkbox" {...rest} />
+		</label>
+	);
+};
+
 /* Components for forms only; not exported */
 const Description = (props: DescriptionProps) => {
 	const { description, id } = props;
@@ -224,9 +231,9 @@ const ErrorField = (props: ErrorFieldProps) => {
 	const { error, id } = props;
 
 	return error ? (
-		<div id={id} className="form-error" role="alert">
+		<Alert id={id} type={'warning'}>
 			{error}
-		</div>
+		</Alert>
 	) : null;
 };
 

@@ -3,11 +3,12 @@ import './styles/dropdown.scss';
 
 /* Packages */
 import { useEffect, useRef, useState } from 'react';
+import IconChevronDown from '~icons/lucide/chevron-down';
 
 /* Scripts */
-import { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
+import type { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside } from './scripts/dropdown-hooks';
-import { useFormattedId } from '../../_config/scripts/hooks';
+import { useFormattedId } from '../../_core/scripts/hooks';
 
 /* Components */
 import { Button } from '../forms/Forms';
@@ -52,9 +53,7 @@ export const Dropdown = (props: DropdownProps) => {
 
 	// Determine if we should close dropdown when clicked inside
 	const closeContent = () => {
-		if (closeOnClick) {
-			setDropdown('');
-		}
+		if (closeOnClick) setDropdown('');
 	};
 
 	return (
@@ -79,7 +78,7 @@ export const DropdownButton = (props: DropdownButtonProps) => {
 	const { buttonLabel, buttonRef, contentId, hideLabel, isExpanded, toggleDropdown } = props;
 
 	// Create dropdown icon
-	const icon = <Icon id={'angle-down'} />;
+	const icon = <Icon icon={IconChevronDown} />;
 
 	// Set button attributes
 	const buttonAttributes: DropdownButtonAttributesType = {

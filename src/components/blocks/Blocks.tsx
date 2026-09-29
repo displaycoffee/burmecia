@@ -5,9 +5,9 @@ import './styles/blocks.scss';
 import { useEffect, useRef } from 'react';
 
 /* Scripts */
-import { useFormattedId } from '../../_config/scripts/hooks';
+import type { LinkExternalProps, ListProps, SectionProps } from './scripts/blocks-types';
+import { useFormattedId } from '../../_core/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
-import { LinkExternalProps, ListProps, SectionProps } from './scripts/blocks-types';
 import { blocks } from './scripts/blocks';
 
 /* Components */
@@ -34,14 +34,14 @@ export const List = (props: ListProps) => {
 	const olAttributes = isOrdered ? { reversed, start, type: listType } : {};
 
 	return (
-		<Tag className={className} {...rest} {...olAttributes}>
+		<Tag className={className} role={'list'} {...rest} {...olAttributes}>
 			{children}
 		</Tag>
 	);
 };
 
 export const Section = (props: SectionProps) => {
-	const { children, className: propClassName, hasScroll = true, id, title } = props;
+	const { children, className: propClassName, hasScroll = true, id, target = '#index', title } = props;
 	const { utils } = useAppContext();
 	const fallbackId = useFormattedId();
 	const sectionId = `section-${id ? id : title ? utils.handleize(title) : fallbackId}`;
@@ -62,7 +62,7 @@ export const Section = (props: SectionProps) => {
 
 			{hasScroll ? (
 				<div className="section-button">
-					<ButtonScroll target="#index" label="Back to top" />
+					<ButtonScroll target={target} label={'Back to top'} />
 				</div>
 			) : null}
 		</section>

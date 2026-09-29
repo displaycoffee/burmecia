@@ -2,18 +2,20 @@
 import './styles/container.scss';
 
 /* Packages */
-import { Link, useLocation } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, useLocation } from '@tanstack/react-router';
 
 /* Scripts */
-import { useRespond } from '../../_config/scripts/hooks';
+import { useRespond } from '../../_core/scripts/hooks';
 import { useAppContext } from '../../context/scripts/context-hooks';
-import { useBodyClass } from './scripts/container-hooks';
+import { useAvailableMinHeight, useBodyClass } from './scripts/container-hooks';
+import { navigationHeader } from '../../components/navigation/scripts/navigation';
 
 /* Components */
 import { ErrorBoundary } from '../../components/error-boundary/ErrorBoundary';
 import { Navigation } from '../../components/navigation/Navigation';
 import { ButtonScroll } from '../../components/forms/Forms';
-import { Slideout, SlideoutOverlay } from '../../components/slideout/Slideout';
+import { Slideout } from '../../components/slideout/Slideout';
 import { Header } from '../header/Header';
 import { Content } from '../content/Content';
 import { Sidebar } from '../sidebar/Sidebar';
@@ -26,8 +28,10 @@ const excludeSidebar: string[] = ['/page-two'];
 export const Container = () => {
 	const { theme } = useAppContext();
 	const location = useLocation();
-	const isDesktop = useRespond(theme.bps.bp02 as number);
+	const isDesktop = useRespond(theme.breakpoints.md);
 	const sidebar = !excludeSidebar.includes(location.pathname);
+	const mainRef = useRef<HTMLElement>(null);
+	useAvailableMinHeight(mainRef);
 
 	// Set body class using custom hook
 	useBodyClass('home');
@@ -35,34 +39,27 @@ export const Container = () => {
 	// Slideout options
 	const slideoutOptions = {
 		id: 'menu',
-		isDesktop: isDesktop,
 		label: 'Menu',
-		button: {
-			outside: false,
-			show: true,
-		},
 	};
 
 	return (
 		<div className="container">
 			<ErrorBoundary message={<ContainerError />}>
-				<SlideoutOverlay options={slideoutOptions} />
-
-				<a href="#main-content" className="skip-link sr-only">
+				<a href="#main-content" className="skip-link sr-only no-decoration">
 					Skip to main content
 				</a>
 
 				<Header />
 
 				{isDesktop ? (
-					<Navigation label={'Header Navigation'} />
+					<Navigation data={navigationHeader} label={'Header Navigation'} />
 				) : (
 					<Slideout options={slideoutOptions}>
-						<Navigation disableTransition={true} label={'Mobile Navigation'} />
+						<Navigation data={navigationHeader} disableTransition={true} label={'Mobile Navigation'} />
 					</Slideout>
 				)}
 
-				<main id="main-content" className="main">
+				<main id="main-content" className="main" ref={mainRef}>
 					<div className="main-layout flex-wrap">
 						<Content />
 
@@ -72,7 +69,7 @@ export const Container = () => {
 
 				<Footer />
 
-				<ButtonScroll target={'#index'} label="Scroll to top" />
+				<ButtonScroll target={'#index'} label={'Scroll to top'} />
 
 				<Portal element={'#portal'}>
 					<p>
@@ -88,7 +85,7 @@ export const Container = () => {
 const ContainerError = () => {
 	return (
 		<p>
-			Something went wrong. <Link to={'/'}>Go back.</Link>
+			Something went wrong. <Link to={'/'}>Go back</Link>.
 		</p>
 	);
 };

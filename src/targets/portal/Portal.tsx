@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 /* Scripts */
-import { PortalProps } from './scripts/portal-types';
+import type { PortalProps } from './scripts/portal-types';
 
 export const Portal = ({ element, children }: PortalProps) => {
 	const [container] = useState<HTMLDivElement>(() => {

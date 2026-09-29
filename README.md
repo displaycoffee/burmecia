@@ -1,4 +1,4 @@
-﻿# Burmecia - version 3.9.7
+# Burmecia - version 4.0.0
 
 React-based framework to create projects. It is not very "pretty" and contains very basic styles so that the template may be used as a boilerplate to create something better. [Preview here.](https://burmecia.display.coffee)
 
@@ -6,28 +6,51 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 
 ### dist
 
-- JavaScript and styles are bundled from `src` using `npm run build` and compiled here
+- JavaScript and styles are bundled from `src` using `npm run build` and compiled here.
 
 ### public
 
-- Static assets are stored here and copied into `dist` after running `npm run build`
+- Static assets are stored here and copied into `dist` after running `npm run build`.
+- Favicons are loaded into the root of this directory, mostly so `favicon.ico` displays in the browser.
+- `manifest.json` is automatically generated with `scripts/public-generate.js`.
+
+### scripts
+
+The scripts in here are almost all tied to `package.json`, but Vite uses a few files like `tokens-watch.js`. Commands are set up in `package.json` utilizing the appropriate scripts. These typically do not need to be changed, but they can be altered if needed.
+
+- **dist-generate.js** - Formats the HTML from `src` and re-organizes scripts and link tags.
+- **public-generate.js** - Builds `public/manifest.json`.
+- **sitemap-generate.js** - Generates `vite.sitemap.js` from the routes collected by `sitemap-routes.js`.
+- **sitemap-routes.js** - Loads `src/components/navigation/scripts/navigation.ts` through a Vite server to collect the routes for the sitemap.
+- **src-generate.js** - Builds the `head` element and `body` targets from configurations in `src-template.html`, `src/_core/data`, and `src/_core/tokens`.
+- **src-template.html** - The HTML template that `src-generate.js` uses. You can edit this, but it does use `<!-- HEAD -->` and `<!-- TARGETS -->` for replacements in the script.
+- **tokens-generate.js** - Compiles all tokens from `src/_core/tokens` into `src/_core/styles/theme/_root.scss` (CSS custom properties, including dark mode), `src/_core/styles/theme/_theme.scss` (Sass variables), and `src/_core/tokens/theme.json` (resolved values for scripts).
+- **tokens-watch.js** - A dev-only Vite plugin that re-runs `tokens-generate.js` whenever a token file in `src/_core/tokens` changes.
 
 ### src
 
-- Dev environment is started with `npm run dev`
-- `_config` directory configures "global" settings
-- Organized other directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `pages` ("major" content), and `targets`
-- `targets` directory contains code that targets elements in index.html (`#index` and `#portal`)
-- index.html contains a `style` block with important style rules for rendering things faster on page load
+- Dev environment is started with `npm run dev`.
+- Organized directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `routes` (pages), and `targets` (entry points injected into `src/index.html`, like `index` and `portal`).
+- `_core` directory holds functions, data, tokens, and styles used throughout the app.
+    - **data** - These scripts read `src/_core/tokens/theme.json` (and `package.json` for `site.ts`) and shape it for the app and build scripts. `targets.ts` can be updated to change the injection elements in `src/index.html`. Since the Node scripts import these files too, they can only import JSON or use `import type`.
+    - **scripts** - Helper functions, hooks, variables, and global TypeScript definitions are here.
+    - **styles/theme** - The `scss` files in here are generated from tokens. If you edit these, the changes will be removed later when generation happens again.
+    - **styles/utils** - A collection of Sass helper mixins and functions.
+    - **tokens** - The place to customize design tokens.
+        - Exclude from `scss` files by adding `"$extensions": { "sass": false }`.
+        - Add as a static variable in `scss` files by adding `"$extensions": { "static": true }`. The `breakpoint`, `font`, and `spacing` tokens are static by default, so they stay plain Sass values and are left out of `:root`.
+        - Customize a value for dark mode by using `"$extensions": { "dark": "#ffffff" }`. This only applies to tokens that end up in `:root`.
+        - Themes are set in `settings.json`. `setting.theme.default` is the theme `$value` is written for (`light` or `dark`). For a dark-first project, set it to `dark` and use `"$extensions": { "light": "#ffffff" }` instead. Set `setting.theme.system` to `false` if only the theme toggle should switch themes, not the OS setting.
+        - Set a value to `false` to leave it unset (`$name: false` in Sass). The build fails if another token references an unset token.
 
 ### other
 
-- **optimize-html.js** - A helper script that runs after `npm run build`, reformatting HTML according to Lighthouse best practices
-- **vite.config.js** - Main Vite config file
-- **vite.sitemap.js** - Builds `sitemap.xml` which gets added to `dist` (modify as needed)
-- **vite.utils.js** - Utility functions to keep the Vite config files smaller
+- **package.json** - Check out the `scripts` section for all the commands. `npm run dev` and `npm run build` are going to be the main scripts, along with `npm run lint` and `npm run format`. The `displayName` prop sets the `title` tag, `og:title`, `og:site_name`, and the manifest `short_name`. The `description` and `homepage` props set the meta description and site URL.
+- **vite.config.js** - Main Vite config file.
+- **vite.sitemap.js** - Generated by `scripts/sitemap-generate.js`, so don't edit it directly. Vite uses it to build `dist/sitemap.xml`.
+- **vite.utils.js** - Utility functions to keep the Vite config files smaller.
 
 ### Built with
 
 ![Built with](https://skillicons.dev/icons?i=react,ts,js,css,sass,html,vite)<br />
-Also uses ESLint and Prettier.
+Also uses TanStack Router, Style Dictionary, unplugin-icons with Lucide, react-error-boundary, ESLint, and Prettier.

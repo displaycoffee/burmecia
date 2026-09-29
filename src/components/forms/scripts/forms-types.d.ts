@@ -1,11 +1,21 @@
 /* Packages */
-import { ButtonHTMLAttributes, FormHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import type {
+	ButtonHTMLAttributes,
+	ComponentType,
+	FormHTMLAttributes,
+	InputHTMLAttributes,
+	ReactNode,
+	Ref,
+	SelectHTMLAttributes,
+	SVGProps,
+	TextareaHTMLAttributes,
+} from 'react';
 
 /* Shared field concerns for form controls with a label / error / required state */
 type Field = {
 	className?: string;
 	description?: string;
-	error?: string;
+	error?: ReactNode;
 	hideLabel?: boolean;
 	id: string;
 	label: string;
@@ -18,6 +28,7 @@ type Button = {
 	className?: string;
 	hideLabel?: boolean;
 	label: string;
+	ref?: Ref<HTMLButtonElement>;
 	type?: 'button' | 'reset' | 'submit';
 	variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'unstyled';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type' | 'variant'>;
@@ -42,7 +53,7 @@ type Description = {
 };
 
 type ErrorField = {
-	error?: string;
+	error?: ReactNode;
 	id?: string;
 };
 
@@ -61,6 +72,7 @@ type FormField = {
 	className?: string;
 	hideLabel?: boolean;
 	id: string;
+	isChoice?: boolean;
 	label: string;
 	required?: boolean;
 };
@@ -68,7 +80,7 @@ type FormField = {
 type FormFieldDetails = {
 	description?: string;
 	descriptionId?: string;
-	error?: string;
+	error?: ReactNode;
 	errorId?: string;
 };
 
@@ -97,10 +109,18 @@ type Required = {
 
 type Select = Field & {
 	children: ReactNode;
-	icon?: string;
+	icon?: ComponentType<SVGProps<SVGSVGElement>>;
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children' | 'className' | 'required'>;
 
 type Textarea = Field & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'className' | 'required'>;
+
+type Toggle = {
+	active?: boolean;
+	className?: string;
+	hideLabel?: boolean;
+	id: string;
+	label: string;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'required' | 'type'>;
 
 /* Export prop types */
 export type ButtonProps = Button;
@@ -128,3 +148,5 @@ export type RequiredProps = Required;
 export type SelectProps = Select;
 
 export type TextareaProps = Textarea;
+
+export type ToggleProps = Toggle;
