@@ -1,11 +1,12 @@
 /* Packages */
 import { execFile } from 'child_process';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 /* Paths */
 const projectPath = path.resolve(import.meta.dirname, '..');
 const tokensPath = path.resolve(projectPath, 'src/_core/tokens');
-const scriptPath = path.resolve(import.meta.dirname, 'tokens-generate.js');
+const scriptPath = fileURLToPath(import.meta.resolve('@displaycoffee/tokens/generate'));
 
 /* Vite plugin that rebuilds tokens when a token file changes during dev, so the regenerated Sass hot reloads like any other change */
 /* Note: theme.json is generated into the tokens folder, so it's ignored to avoid a rebuild loop */
@@ -19,7 +20,7 @@ export const tokensWatch = () => {
 		configureServer(server) {
 			const { logger } = server.config;
 
-			// Run tokens-generate.js, queuing one more run if a token file changes while it's still building
+			// Run tokens-generate from @displaycoffee/tokens, queuing one more run if a token file changes while it's still building
 			const buildTokens = () => {
 				if (isRunning) {
 					isQueued = true;

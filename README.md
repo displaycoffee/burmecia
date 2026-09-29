@@ -24,18 +24,19 @@ The scripts in here are almost all tied to `package.json`, but Vite uses a few f
 - **sitemap-routes.js** - Loads `src/components/navigation/scripts/navigation.ts` through a Vite server to collect the routes for the sitemap.
 - **src-generate.js** - Builds the `head` element and `body` targets from configurations in `src-template.html`, `src/_core/data`, and `src/_core/tokens`.
 - **src-template.html** - The HTML template that `src-generate.js` uses. You can edit this, but it does use `<!-- HEAD -->` and `<!-- TARGETS -->` for replacements in the script.
-- **tokens-generate.js** - Compiles all tokens from `src/_core/tokens` into `src/_core/styles/theme/_root.scss` (CSS custom properties, including dark mode), `src/_core/styles/theme/_theme.scss` (Sass variables), and `src/_core/tokens/theme.json` (resolved values for scripts).
-- **tokens-watch.js** - A dev-only Vite plugin that re-runs `tokens-generate.js` whenever a token file in `src/_core/tokens` changes.
+- **tokens-watch.js** - A dev-only Vite plugin that re-runs `tokens-generate` whenever a token file in `src/_core/tokens` changes.
+
+Token generation lives in [`@displaycoffee/tokens`](https://www.npmjs.com/package/@displaycoffee/tokens). Its `tokens-generate` command compiles all tokens from `src/_core/tokens` into `src/_core/styles/theme/_root.scss` (CSS custom properties, including dark mode), `src/_core/styles/theme/_theme.scss` (Sass variables), and `src/_core/tokens/theme.json` (resolved values for scripts).
 
 ### src
 
 - Dev environment is started with `npm run dev`.
 - Organized directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `routes` (pages), and `targets` (entry points injected into `src/index.html`, like `index` and `portal`).
 - `_core` directory holds functions, data, tokens, and styles used throughout the app.
-    - **data** - These scripts read `src/_core/tokens/theme.json` (and `package.json` for `site.ts`) and shape it for the app and build scripts. `targets.ts` can be updated to change the injection elements in `src/index.html`. Since the Node scripts import these files too, they can only import JSON or use `import type`.
+    - **data** - These scripts read `src/_core/tokens/theme.json` (and `package.json` for `site.ts`) and shape it for the app and build scripts. `targets.ts` can be updated to change the injection elements in `src/index.html`. Since the Node scripts import these files too, they can only import JSON, plain JS packages (like the `@displaycoffee/tokens` helpers), or use `import type`.
     - **scripts** - Helper functions, hooks, variables, and global TypeScript definitions are here.
     - **styles/theme** - The `scss` files in here are generated from tokens. If you edit these, the changes will be removed later when generation happens again.
-    - **styles/utils** - A collection of Sass helper mixins and functions.
+    - Sass helper mixins and functions come from [`@displaycoffee/styles`](https://www.npmjs.com/package/@displaycoffee/styles), e.g. `@use '@displaycoffee/styles/mixins';`.
     - **tokens** - The place to customize design tokens.
         - Exclude from `scss` files by adding `"$extensions": { "sass": false }`.
         - Add as a static variable in `scss` files by adding `"$extensions": { "static": true }`. The `breakpoint`, `font`, and `spacing` tokens are static by default, so they stay plain Sass values and are left out of `:root`.
