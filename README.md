@@ -12,21 +12,18 @@ This is named after a city in the game Final Fantasy IX -- the "Realm of Eternal
 
 - Static assets are stored here and copied into `dist` after running `npm run build`.
 - Favicons are loaded into the root of this directory, mostly so `favicon.ico` displays in the browser.
-- `manifest.json` is automatically generated with `scripts/public-generate.js`.
+- `manifest.json` is automatically generated with `burmecia public`.
 
-### scripts
+### Build scripts
 
-The scripts in here are almost all tied to `package.json`, but Vite uses a few files like `tokens-watch.js`. Commands are set up in `package.json` utilizing the appropriate scripts. These typically do not need to be changed, but they can be altered if needed.
+The build scripts come from [`@displaycoffee/burmecia`](https://www.npmjs.com/package/@displaycoffee/burmecia) and [`@displaycoffee/tokens`](https://www.npmjs.com/package/@displaycoffee/tokens), and are run through the `generate:*` commands in `package.json`.
 
-- **dist-generate.js** - Formats the HTML from `src` and re-organizes scripts and link tags.
-- **public-generate.js** - Builds `public/manifest.json`.
-- **sitemap-generate.js** - Generates `vite.sitemap.js` from the routes collected by `sitemap-routes.js`.
-- **sitemap-routes.js** - Loads `src/components/navigation/scripts/navigation.ts` through a Vite server to collect the routes for the sitemap.
-- **src-generate.js** - Builds the `head` element and `body` targets from configurations in `src-template.html`, `src/_core/data`, and `src/_core/tokens`.
-- **src-template.html** - The HTML template that `src-generate.js` uses. You can edit this, but it does use `<!-- HEAD -->` and `<!-- TARGETS -->` for replacements in the script.
-- **tokens-watch.js** - A dev-only Vite plugin that re-runs `tokens-generate` whenever a token file in `src/_core/tokens` changes.
-
-Token generation lives in [`@displaycoffee/tokens`](https://www.npmjs.com/package/@displaycoffee/tokens). Its `tokens-generate` command compiles all tokens from `src/_core/tokens` into `src/_core/styles/theme/_root.scss` (CSS custom properties, including dark mode), `src/_core/styles/theme/_theme.scss` (Sass variables), and `src/_core/tokens/theme.json` (resolved values for scripts).
+- **burmecia src** - Builds `src/index.html` (the `head` element and `body` targets) from `src/_core/data` and `src/_core/tokens`.
+- **burmecia dist** - Formats the HTML from `src` and re-organizes scripts and link tags in `dist/index.html`.
+- **burmecia public** - Builds `public/manifest.json`.
+- **burmecia sitemap** - Generates `vite.sitemap.js` from the routes in `src/components/navigation/scripts/navigation.ts`.
+- **tokens-generate** - Compiles all tokens from `src/_core/tokens` into `src/_core/styles/_root.scss` (CSS custom properties, including dark mode), `src/_core/styles/_theme.scss` (Sass variables), and `src/_core/tokens/theme.json` (resolved values for scripts).
+- **tokensWatch** - A dev-only Vite plugin (in `vite.utils.js`) that re-runs `tokens-generate` whenever a token file in `src/_core/tokens` changes.
 
 ### src
 
@@ -35,8 +32,7 @@ Token generation lives in [`@displaycoffee/tokens`](https://www.npmjs.com/packag
 - `_core` directory holds functions, data, tokens, and styles used throughout the app.
     - **data** - These scripts read `src/_core/tokens/theme.json` (and `package.json` for `site.ts`) and shape it for the app and build scripts. `targets.ts` can be updated to change the injection elements in `src/index.html`. Since the Node scripts import these files too, they can only import JSON, plain JS packages (like the `@displaycoffee/tokens` helpers), or use `import type`.
     - **scripts** - Helper functions, hooks, variables, and global TypeScript definitions are here.
-    - **styles/theme** - The `scss` files in here are generated from tokens. If you edit these, the changes will be removed later when generation happens again.
-    - Sass helper mixins and functions come from [`@displaycoffee/styles`](https://www.npmjs.com/package/@displaycoffee/styles), e.g. `@use '@displaycoffee/styles/mixins';`.
+    - **styles** - `_root.scss` and `_theme.scss` are generated from tokens. If you edit these, the changes will be removed later when generation happens again. Sass helper mixins and functions come from [`@displaycoffee/styles`](https://www.npmjs.com/package/@displaycoffee/styles), e.g. `@use '@displaycoffee/styles/mixins';`.
     - **tokens** - The place to customize design tokens.
         - Exclude from `scss` files by adding `"$extensions": { "sass": false }`.
         - Add as a static variable in `scss` files by adding `"$extensions": { "static": true }`. The `breakpoint`, `font`, and `spacing` tokens are static by default, so they stay plain Sass values and are left out of `:root`.
@@ -48,7 +44,7 @@ Token generation lives in [`@displaycoffee/tokens`](https://www.npmjs.com/packag
 
 - **package.json** - Check out the `scripts` section for all the commands. `npm run dev` and `npm run build` are going to be the main scripts, along with `npm run lint` and `npm run format`. The `displayName` prop sets the `title` tag, `og:title`, `og:site_name`, and the manifest `short_name`. The `description` and `homepage` props set the meta description and site URL.
 - **vite.config.js** - Main Vite config file.
-- **vite.sitemap.js** - Generated by `scripts/sitemap-generate.js`, so don't edit it directly. Vite uses it to build `dist/sitemap.xml`.
+- **vite.sitemap.js** - Generated by `burmecia sitemap`, so don't edit it directly. Vite uses it to build `dist/sitemap.xml`.
 - **vite.utils.js** - Utility functions to keep the Vite config files smaller.
 
 ### Built with
