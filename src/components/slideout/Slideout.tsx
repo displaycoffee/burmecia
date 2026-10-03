@@ -3,8 +3,6 @@ import './styles/slideout.scss';
 
 /* Packages */
 import { useRef, useState } from 'react';
-import IconX from '~icons/lucide/x';
-import IconSlidersVertical from '~icons/lucide/sliders-vertical';
 
 /* Scripts */
 import type { SlideoutProps, SlideoutTouchType, SlideoutTouchRefType } from './scripts/slideout-types';
@@ -73,7 +71,7 @@ export const Slideout = (props: SlideoutProps) => {
 				aria-haspopup={'dialog'}
 				aria-label={`Open ${options.label}`}
 			>
-				<Icon icon={IconSlidersVertical} size={'lg'} />
+				<Icon name={'sliders-vertical'} size={'lg'} />
 			</Button>
 
 			<Overlay
@@ -99,7 +97,7 @@ export const Slideout = (props: SlideoutProps) => {
 						variant={'unstyled'}
 						data-autofocus
 					>
-						<Icon icon={IconX} size={'2xl'} />
+						<Icon name={'x'} size={'2xl'} />
 					</Button>
 				</header>
 

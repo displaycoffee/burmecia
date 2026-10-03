@@ -3,9 +3,6 @@ import './styles/forms.scss';
 
 /* Packages */
 import { useLayoutEffect, useRef, useState } from 'react';
-import IconChevronDown from '~icons/lucide/chevron-down';
-import IconCheck from '~icons/lucide/check';
-import IconDot from '~icons/lucide/dot';
 
 /* Scripts */
 import type {
@@ -69,7 +66,7 @@ export const Choice = (props: ChoiceProps) => {
 
 	return (
 		<label className={className} htmlFor={id} ref={choiceRef}>
-			{active ? <Icon icon={type == 'radio' ? IconDot : IconCheck} /> : <span className="icon-wrapper"></span>}
+			{active ? <Icon name={type == 'radio' ? 'dot' : 'check'} /> : <span className="icon-wrapper"></span>}
 
 			<input id={id} className={`choice-input choice-input-${type} sr-only`} checked={active} name={name} type={type} {...rest} />
 
@@ -172,7 +169,7 @@ export const Select = (props: SelectProps) => {
 				<select {...selectAttributes} {...rest}>
 					{children}
 				</select>
-				<Icon icon={icon ?? IconChevronDown} />
+				<Icon name={icon ?? 'chevron-down'} />
 			</div>
 			<FormFieldDetails description={description} descriptionId={descriptionId} error={error} errorId={errorId} />
 		</FormField>

@@ -1,8 +1,6 @@
 /* Packages */
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import IconHeart from '~icons/lucide/heart';
-import IconStar from '~icons/lucide/star';
 
 /* Components */
 import { PageTitle } from '../../components/page-title/PageTitle';
@@ -88,12 +86,12 @@ function RouteComponent() {
 
 				<FormActions>
 					<Button label={'Primary Button with Children'}>
-						<Icon icon={IconHeart} />
+						<Icon name={'heart'} />
 					</Button>
 					<Button label={'Secondary Button'} variant={'secondary'} />
 					<Button label={'Tertiary Button'} variant={'tertiary'} />
 					<Button label={'Button with Hidden Label'} hideLabel={true}>
-						<Icon icon={IconStar} />
+						<Icon name={'star'} />
 					</Button>
 				</FormActions>
 			</Form>
