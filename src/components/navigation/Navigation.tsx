@@ -8,7 +8,7 @@ import { Link } from '@tanstack/react-router';
 /* Scripts */
 import type { NavigationComponentProps, NavigationItemComponentProps } from './scripts/navigation-types';
 import { navigationUtils } from './scripts/navigation-utils';
-import { useViewTransition } from '../../_core/scripts/hooks';
+import { useViewTransition } from '@displaycoffee/scripts/hooks-tanstack';
 
 /* Components */
 import { LinkExternal, List } from '../blocks/Blocks';

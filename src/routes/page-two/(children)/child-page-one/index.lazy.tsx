@@ -15,7 +15,7 @@ export const Route = createLazyFileRoute('/page-two/(children)/child-page-one/')
 });
 
 function RouteComponent() {
-	const { utils } = useAppContext();
+	const { utilsBrowser } = useAppContext();
 
 	return (
 		<div className="page-child-page-one margin-trim">
@@ -28,7 +28,7 @@ function RouteComponent() {
 			</p>
 
 			<p>
-				<Link to={utils.getPage()}>Go back to page two</Link>
+				<Link to={utilsBrowser.getPage()}>Go back to page two</Link>
 			</p>
 		</div>
 	);

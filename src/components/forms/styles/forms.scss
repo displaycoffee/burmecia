@@ -512,3 +512,8 @@
 			}
 		}
 	}
+	.form-field:has(.toggle) {
+		.form-field-label {
+			margin: 0 0 theme.$spacing-x2 0;
+		}
+	}

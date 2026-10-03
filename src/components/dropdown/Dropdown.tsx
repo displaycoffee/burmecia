@@ -8,7 +8,7 @@ import IconChevronDown from '~icons/lucide/chevron-down';
 /* Scripts */
 import type { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
 import { useClickOutside } from './scripts/dropdown-hooks';
-import { useFormattedId } from '../../_core/scripts/hooks';
+import { useFormattedId } from '@displaycoffee/scripts/hooks';
 
 /* Components */
 import { Button } from '../forms/Forms';
