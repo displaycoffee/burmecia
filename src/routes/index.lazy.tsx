@@ -14,7 +14,7 @@ export const Route = createLazyFileRoute('/')({
 
 function RouteComponent() {
 	return (
-		<div className="home margin-trim">
+		<div className="index margin-trim">
 			<h2>Home</h2>
 
 			<p>This is an index page.</p>
