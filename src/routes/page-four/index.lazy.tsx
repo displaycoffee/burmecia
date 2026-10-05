@@ -30,7 +30,7 @@ function RouteComponent() {
 
 	// Build state props for each group
 	const checkboxProps = (id: string) => ({ id: id, active: checkboxes.includes(id), onChange: () => setCheckboxes(updateGroup(checkboxes, id)) });
-	const radioProps = (id: string) => ({ id: id, active: radio == id, onChange: () => setRadio(id) });
+	const radioProps = (id: string) => ({ id: id, name: 'radios-01', active: radio == id, onChange: () => setRadio(id) });
 	const toggleProps = (id: string) => ({ id: id, active: toggles.includes(id), onChange: () => setToggles(updateGroup(toggles, id)) });
 
 	return (

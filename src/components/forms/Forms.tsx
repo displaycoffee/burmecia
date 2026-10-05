@@ -1,9 +1,6 @@
 /* Styles */
 import './styles/forms.scss';
 
-/* Packages */
-import { useLayoutEffect, useRef, useState } from 'react';
-
 /* Scripts */
 import type {
 	ButtonProps,
@@ -50,25 +47,16 @@ export const ButtonScroll = (props: ButtonScrollProps) => {
 };
 
 export const Choice = (props: ChoiceProps) => {
-	const { active = false, className: propClassName, hideLabel = false, id, label, type = 'checkbox', ...rest } = props;
+	const { active = false, className: propClassName, hideLabel = false, id, label, name, type = 'checkbox', ...rest } = props;
 	const choiceClass = `choice choice-${type}${active ? ' choice-active' : ''} pointer`;
 	const className = forms.build.className(choiceClass, propClassName, rest?.disabled);
-	const choiceRef = useRef<HTMLLabelElement>(null);
-	const [name, setName] = useState(id);
 
-	// Get group id for radios
-	useLayoutEffect(() => {
-		if (choiceRef?.current && type == 'radio') {
-			const groupElement = choiceRef.current.closest<HTMLElement>('[data-group-id]');
-			if (groupElement?.dataset.groupId) setName(groupElement.dataset.groupId);
-		}
-	}, [type]);
-
+	// Note: radios in the same group need to share a name, so pass it in (checkboxes fall back to their id)
 	return (
-		<label className={className} htmlFor={id} ref={choiceRef}>
+		<label className={className} htmlFor={id}>
 			{active ? <Icon name={type == 'radio' ? 'dot' : 'check'} /> : <span className="icon-wrapper"></span>}
 
-			<input id={id} className={`choice-input choice-input-${type} sr-only`} checked={active} name={name} type={type} {...rest} />
+			<input id={id} className={`choice-input choice-input-${type} sr-only`} checked={active} name={name ?? id} type={type} {...rest} />
 
 			<span className={`choice-label${hideLabel ? ' sr-only' : ''}`}>{label}</span>
 		</label>
@@ -124,7 +112,7 @@ export const FormField = (props: FormFieldProps) => {
 				</div>
 			)}
 
-			<div className="form-field-control" data-group-id={isChoice ? id : null}>
+			<div className="form-field-control">
 				{children}
 			</div>
 		</Tag>
