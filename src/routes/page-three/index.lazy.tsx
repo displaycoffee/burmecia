@@ -2,8 +2,8 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
-import { PageTitle } from '../../components/page-title/PageTitle';
-import { Section } from '../../components/blocks/Blocks';
+import { PageTitle } from '@/components/page-title/PageTitle';
+import { Section } from '@/components/blocks/Blocks';
 
 /* Page title */
 const title = 'Page Three';

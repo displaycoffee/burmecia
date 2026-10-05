@@ -5,8 +5,8 @@ import './index/styles/index.scss';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 /* Components */
-import { List } from '../components/blocks/Blocks';
-import { Dropdown } from '../components/dropdown/Dropdown';
+import { List } from '@/components/blocks/Blocks';
+import { Dropdown } from '@/components/dropdown/Dropdown';
 
 export const Route = createLazyFileRoute('/')({
 	component: RouteComponent,

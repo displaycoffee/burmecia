@@ -28,11 +28,12 @@ The build scripts come from [`@displaycoffee/burmecia`](https://www.npmjs.com/pa
 ### src
 
 - Dev environment is started with `npm run dev`.
+- Imports from `src` use the `@/` alias (e.g. `@/components/forms/Forms`), set in `tsconfig.json` and read by Vite with `resolve.tsconfigPaths`. Same-folder imports stay relative (`./scripts/...`).
 - Organized directories into folders as: `components` (shared elements), `context` (context providers), `layout` (layout elements), `routes` (pages), and `targets` (entry points injected into `src/index.html`, like `index` and `portal`).
 - `_core` directory holds functions, data, tokens, and styles used throughout the app.
-    - **data** - These scripts read `src/_core/tokens/theme.json` (and `package.json` for `site.ts`) and shape it for the app and build scripts. `targets.ts` can be updated to change the injection elements in `src/index.html`. Since the Node scripts import these files too, they can only import JSON, plain JS packages (like the `@displaycoffee/tokens` helpers), or use `import type`.
+    - **data** - These scripts read `src/_core/tokens/theme.json` (and `package.json` for `site.ts`) and shape it for the app and build scripts. `targets.ts` can be updated to change the injection elements in `src/index.html`. Since the Node scripts import these files too, they can only import JSON, plain JS packages (like the `@displaycoffee/tokens` helpers), or use `import type`, and they must use relative paths: Node doesn't understand the `@/` alias.
     - **scripts** - Helper functions, hooks, variables, and global TypeScript definitions are here.
-    - **styles** - `_root.scss` and `_theme.scss` are generated from tokens. If you edit these, the changes will be removed later when generation happens again. Sass helper mixins and functions come from [`@displaycoffee/styles`](https://www.npmjs.com/package/@displaycoffee/styles), e.g. `@use '@displaycoffee/styles/mixins';`.
+    - **styles** - `_root.scss` and `_theme.scss` are generated from tokens. If you edit these, the changes will be removed later when generation happens again. Sass helper mixins and functions come from [`@displaycoffee/styles`](https://www.npmjs.com/package/@displaycoffee/styles), e.g. `@use '@displaycoffee/styles/mixins';`. `src` is a Sass load path (`css.preprocessorOptions.scss.loadPaths` in `vite.config.js`), so project styles are imported without relative paths, e.g. `@use '_core/styles/_theme';`.
     - **tokens** - The place to customize design tokens.
         - Exclude from `scss` files by adding `"$extensions": { "sass": false }`.
         - Add as a static variable in `scss` files by adding `"$extensions": { "static": true }`. The `breakpoint`, `font`, and `spacing` tokens are static by default, so they stay plain Sass values and are left out of `:root`.

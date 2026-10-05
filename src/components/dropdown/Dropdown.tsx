@@ -10,8 +10,8 @@ import { useClickOutside } from './scripts/dropdown-hooks';
 import { useFormattedId } from '@displaycoffee/scripts/hooks';
 
 /* Components */
-import { Button } from '../forms/Forms';
-import { Icon } from '../icons/Icons';
+import { Button } from '@/components/forms/Forms';
+import { Icon } from '@/components/icons/Icons';
 
 export const Dropdown = (props: DropdownProps) => {
 	const { buttonLabel, children, closeOnClick, hideLabel = false } = props;

@@ -5,10 +5,10 @@ import './styles/header.scss';
 import { Link } from '@tanstack/react-router';
 
 /* Scripts */
-import { useAppContext } from '../../context/scripts/context-hooks';
+import { useAppContext } from '@/context/scripts/context-hooks';
 
 /* Components */
-import { ThemeToggle } from '../../components/theme-toggle/ThemeToggle';
+import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
 
 export const Header = () => {
 	const { variables } = useAppContext();

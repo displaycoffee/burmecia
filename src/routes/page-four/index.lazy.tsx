@@ -3,9 +3,9 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 
 /* Components */
-import { PageTitle } from '../../components/page-title/PageTitle';
-import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea, Toggle } from '../../components/forms/Forms';
-import { Icon } from '../../components/icons/Icons';
+import { PageTitle } from '@/components/page-title/PageTitle';
+import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea, Toggle } from '@/components/forms/Forms';
+import { Icon } from '@/components/icons/Icons';
 
 /* Page title */
 const title = 'Page Four';

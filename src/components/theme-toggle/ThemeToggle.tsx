@@ -3,10 +3,10 @@ import type { ThemeMode } from '@displaycoffee/tokens';
 import { useState } from 'react';
 
 /* Scripts */
-import { settings } from '../../_core/data/settings';
+import { settings } from '@/_core/data/settings';
 
 /* Components */
-import { Toggle } from '../forms/Forms';
+import { Toggle } from '@/components/forms/Forms';
 
 /* Theme toggle
    Note: everything for the toggle lives in this file, so it can be removed by deleting this folder and <ThemeToggle />.

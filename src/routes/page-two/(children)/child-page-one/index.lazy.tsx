@@ -2,11 +2,11 @@
 import { createLazyFileRoute, Link } from '@tanstack/react-router';
 
 /* Scripts */
-import { navigationHeader } from '../../../../components/navigation/scripts/navigation';
-import { navigationUtils } from '../../../../components/navigation/scripts/navigation-utils';
+import { navigationHeader } from '@/components/navigation/scripts/navigation';
+import { navigationUtils } from '@/components/navigation/scripts/navigation-utils';
 
 /* Components */
-import { PageTitle } from '../../../../components/page-title/PageTitle';
+import { PageTitle } from '@/components/page-title/PageTitle';
 
 /* Page title */
 const title = 'Child Page One';

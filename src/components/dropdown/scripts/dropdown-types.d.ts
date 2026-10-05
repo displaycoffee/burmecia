@@ -1,6 +1,6 @@
 /* Packages */
 import type { MouseEventHandler, ReactNode, RefObject } from 'react';
-import type { ButtonProps } from '../../forms/scripts/forms-types';
+import type { ButtonProps } from '@/components/forms/scripts/forms-types';
 
 /* Type definitions */
 type Dropdown = {
