@@ -2,7 +2,7 @@
 import './styles/dropdown.scss';
 
 /* Packages */
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 /* Scripts */
 import type { DropdownButtonAttributesType, DropdownProps, DropdownButtonProps, DropdownContentProps } from './scripts/dropdown-types';
@@ -22,9 +22,10 @@ export const Dropdown = (props: DropdownProps) => {
 	const buttonRef = useRef<HTMLButtonElement>(null);
 
 	// Close dropdown
-	const closeDropdown = () => {
+	// Note: memoized so useClickOutside doesn't re-add its listener on every render
+	const closeDropdown = useCallback(() => {
 		setDropdown('');
-	};
+	}, []);
 
 	// Toggle dropdown state
 	const toggleDropdown = () => {
@@ -40,6 +41,8 @@ export const Dropdown = (props: DropdownProps) => {
 
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
+				// Stop the Escape from also closing a parent dialog (e.g. the slideout)
+				e.preventDefault();
 				closeDropdown();
 				buttonRef.current?.focus();
 			}
@@ -48,7 +51,7 @@ export const Dropdown = (props: DropdownProps) => {
 		document.addEventListener('keydown', handleKeyDown);
 
 		return () => document.removeEventListener('keydown', handleKeyDown);
-	}, [isExpanded]);
+	}, [closeDropdown, isExpanded]);
 
 	// Determine if we should close dropdown when clicked inside
 	const closeContent = () => {
