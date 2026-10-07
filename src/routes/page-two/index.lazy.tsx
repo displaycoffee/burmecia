@@ -34,7 +34,7 @@ function RouteComponent() {
 						{navigationList.children.map((nav) => {
 							return (
 								<li key={nav.url}>
-									<Link to={`${nav.url}`}>{nav.label}</Link>
+									<Link to={nav.url}>{nav.label}</Link>
 								</li>
 							);
 						})}
