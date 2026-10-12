@@ -3,7 +3,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 
 /* Components */
-import { PageTitle } from '@/components/page-title/PageTitle';
+import { Title } from '@/components/title/Title';
 import { Button, Choice, Form, FormActions, FormField, Input, Select, Textarea, Toggle } from '@/components/forms/Forms';
 import { Icon } from '@/components/icons/Icons';
 
@@ -35,7 +35,7 @@ function RouteComponent() {
 
 	return (
 		<div className="page-four margin-trim">
-			<PageTitle title={title} />
+			<Title title={title} />
 
 			<h2>{title}</h2>
 

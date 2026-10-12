@@ -6,7 +6,7 @@ import { navigationHeader } from '@/components/navigation/scripts/navigation';
 import { navigationUtils } from '@/components/navigation/scripts/navigation-utils';
 
 /* Components */
-import { PageTitle } from '@/components/page-title/PageTitle';
+import { Title } from '@/components/title/Title';
 
 /* Page title */
 const title = 'Child Page Two';
@@ -21,7 +21,7 @@ export const Route = createLazyFileRoute('/page-two/(children)/child-page-two/')
 function RouteComponent() {
 	return (
 		<div className="page-child-page-two margin-trim">
-			<PageTitle title={title} />
+			<Title title={title} />
 
 			<h2>{title}</h2>
 
