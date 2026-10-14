@@ -7,8 +7,10 @@ import IconCircleX from '~icons/lucide/circle-x';
 import IconDot from '~icons/lucide/dot';
 import IconHeart from '~icons/lucide/heart';
 import IconInfo from '~icons/lucide/info';
+import IconMoon from '~icons/lucide/moon';
 import IconSlidersVertical from '~icons/lucide/sliders-vertical';
 import IconStar from '~icons/lucide/star';
+import IconSun from '~icons/lucide/sun';
 import IconX from '~icons/lucide/x';
 
 /* Icons used in this project, keyed by their Lucide name */
@@ -22,7 +24,9 @@ export const icons = {
 	dot: IconDot,
 	heart: IconHeart,
 	info: IconInfo,
+	moon: IconMoon,
 	'sliders-vertical': IconSlidersVertical,
 	star: IconStar,
+	sun: IconSun,
 	x: IconX,
 };

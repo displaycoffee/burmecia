@@ -1,3 +1,6 @@
+/* Styles */
+import './styles/theme-toggle.scss';
+
 /* Packages */
 import type { ThemeMode } from '@displaycoffee/tokens';
 import { useState } from 'react';
@@ -6,7 +9,7 @@ import { useState } from 'react';
 import { settings } from '@/_core/data/settings';
 
 /* Components */
-import { Toggle } from '@/components/forms/Forms';
+import { Icon } from '@/components/icons/Icons';
 
 /* Theme toggle
    Note: everything for the toggle lives in this file, so it can be removed by deleting this folder and <ThemeToggle />.
@@ -46,6 +49,7 @@ if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme
 
 export const ThemeToggle = () => {
 	const [theme, setTheme] = useState<ThemeMode>(() => storedTheme ?? getSystemTheme());
+	const toggleId = 'theme-toggle-choice';
 
 	// Flip the theme, save it, and apply it immediately
 	const toggleTheme = () => {
@@ -55,5 +59,13 @@ export const ThemeToggle = () => {
 		document.documentElement.setAttribute('data-theme', next);
 	};
 
-	return <Toggle active={theme === 'dark'} id={'theme-toggle'} label={`${theme === 'dark' ? 'Dark' : 'Light'} mode`} onChange={toggleTheme} />;
+	// Note: the label stays "Dark mode", since the switch's checked state tells screen readers whether it's on, and CSS shows the sun or moon icon from :checked
+	return (
+		<label className="theme-toggle pointer" htmlFor={toggleId}>
+			<span className="theme-toggle-label sr-only">Dark mode</span>
+			<input id={toggleId} className="theme-toggle-choice sr-only" checked={theme === 'dark'} onChange={toggleTheme} role="switch" type="checkbox" name="theme-toggle" />
+			<Icon name={'sun'} size={'2xl'} />
+			<Icon name={'moon'} size={'2xl'} />
+		</label>
+	);
 };

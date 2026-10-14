@@ -7,9 +7,6 @@ import { Link } from '@tanstack/react-router';
 /* Scripts */
 import { useAppContext } from '@/context/scripts/context-hooks';
 
-/* Components */
-import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
-
 export const Header = () => {
 	const { variables } = useAppContext();
 
@@ -20,8 +17,6 @@ export const Header = () => {
 					{variables.site.name}
 				</Link>
 			</h1>
-
-			<ThemeToggle />
 		</header>
 	);
 };
