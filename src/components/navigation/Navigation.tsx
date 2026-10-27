@@ -15,13 +15,13 @@ import { LinkExternal, List } from '@/components/blocks/Blocks';
 import { Dropdown } from '@/components/dropdown/Dropdown';
 
 export const Navigation = (props: NavigationComponentProps) => {
-	const { data, disableTransition, label } = props;
+	const { data, direction = 'horizontal', disableTransition, label } = props;
 	const navigationList = Array.isArray(data) ? data : navigationUtils.get.list(data);
 	const navigationLinkClass = `no-decoration navigation-link`;
 
 	return navigationList.length != 0 ? (
 		<nav className="navigation" aria-label={label}>
-			<List className={'navigation-list'} variant={'ul-unstyled'}>
+			<List className={`navigation-list navigation-list-${direction}`} variant={'ul-unstyled'}>
 				{navigationList.map((nav) => {
 					return (
 						<Fragment key={nav.id}>
